@@ -1,0 +1,288 @@
+type Project {
+  id: ID!
+  userId: String
+  name: String!
+  steps(filter: ModelStepFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStepConnection
+  materials(filter: ModelMaterialFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMaterialConnection
+  media(filter: ModelMediaFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMediaConnection
+  startTime: AWSDate
+  endTime: AWSDate
+  totalCost: Float
+}
+
+type Step {
+  id: ID!
+  title: String!
+  project: Project
+  name: String
+  description: String
+  time: String
+}
+
+type Material {
+  id: ID!
+  project: Project
+  name: String
+  quantityNeeded: Int
+  pricePerItem: Float
+  totalCost: Float
+  productUrl: AWSURL
+}
+
+type Media {
+  id: ID!
+  project: Project
+  caption: String
+  src: AWSURL
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelProjectConnection {
+  items: [Project]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelProjectFilterInput {
+  id: ModelIDFilterInput
+  userId: ModelStringFilterInput
+  name: ModelStringFilterInput
+  startTime: ModelStringFilterInput
+  endTime: ModelStringFilterInput
+  totalCost: ModelFloatFilterInput
+  and: [ModelProjectFilterInput]
+  or: [ModelProjectFilterInput]
+  not: ModelProjectFilterInput
+}
+
+type Query {
+  getProject(id: ID!): Project
+  listProjects(filter: ModelProjectFilterInput, limit: Int, nextToken: String): ModelProjectConnection
+  getStep(id: ID!): Step
+  listSteps(filter: ModelStepFilterInput, limit: Int, nextToken: String): ModelStepConnection
+  getMaterial(id: ID!): Material
+  listMaterials(filter: ModelMaterialFilterInput, limit: Int, nextToken: String): ModelMaterialConnection
+  getMedia(id: ID!): Media
+  listMedias(filter: ModelMediaFilterInput, limit: Int, nextToken: String): ModelMediaConnection
+}
+
+input CreateProjectInput {
+  id: ID
+  userId: String
+  name: String!
+  startTime: AWSDate
+  endTime: AWSDate
+  totalCost: Float
+}
+
+input UpdateProjectInput {
+  id: ID!
+  userId: String
+  name: String
+  startTime: AWSDate
+  endTime: AWSDate
+  totalCost: Float
+}
+
+input DeleteProjectInput {
+  id: ID
+}
+
+type Mutation {
+  createProject(input: CreateProjectInput!): Project
+  updateProject(input: UpdateProjectInput!): Project
+  deleteProject(input: DeleteProjectInput!): Project
+  createStep(input: CreateStepInput!): Step
+  updateStep(input: UpdateStepInput!): Step
+  deleteStep(input: DeleteStepInput!): Step
+  createMaterial(input: CreateMaterialInput!): Material
+  updateMaterial(input: UpdateMaterialInput!): Material
+  deleteMaterial(input: DeleteMaterialInput!): Material
+  createMedia(input: CreateMediaInput!): Media
+  updateMedia(input: UpdateMediaInput!): Media
+  deleteMedia(input: DeleteMediaInput!): Media
+}
+
+type Subscription {
+  onCreateProject: Project @aws_subscribe(mutations: ["createProject"])
+  onUpdateProject: Project @aws_subscribe(mutations: ["updateProject"])
+  onDeleteProject: Project @aws_subscribe(mutations: ["deleteProject"])
+  onCreateStep: Step @aws_subscribe(mutations: ["createStep"])
+  onUpdateStep: Step @aws_subscribe(mutations: ["updateStep"])
+  onDeleteStep: Step @aws_subscribe(mutations: ["deleteStep"])
+  onCreateMaterial: Material @aws_subscribe(mutations: ["createMaterial"])
+  onUpdateMaterial: Material @aws_subscribe(mutations: ["updateMaterial"])
+  onDeleteMaterial: Material @aws_subscribe(mutations: ["deleteMaterial"])
+  onCreateMedia: Media @aws_subscribe(mutations: ["createMedia"])
+  onUpdateMedia: Media @aws_subscribe(mutations: ["updateMedia"])
+  onDeleteMedia: Media @aws_subscribe(mutations: ["deleteMedia"])
+}
+
+type ModelStepConnection {
+  items: [Step]
+  nextToken: String
+}
+
+input ModelStepFilterInput {
+  id: ModelIDFilterInput
+  title: ModelStringFilterInput
+  name: ModelStringFilterInput
+  description: ModelStringFilterInput
+  time: ModelStringFilterInput
+  and: [ModelStepFilterInput]
+  or: [ModelStepFilterInput]
+  not: ModelStepFilterInput
+}
+
+input CreateStepInput {
+  id: ID
+  title: String!
+  name: String
+  description: String
+  time: String
+  stepProjectId: ID
+}
+
+input UpdateStepInput {
+  id: ID!
+  title: String
+  name: String
+  description: String
+  time: String
+  stepProjectId: ID
+}
+
+input DeleteStepInput {
+  id: ID
+}
+
+type ModelMaterialConnection {
+  items: [Material]
+  nextToken: String
+}
+
+input ModelMaterialFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  quantityNeeded: ModelIntFilterInput
+  pricePerItem: ModelFloatFilterInput
+  totalCost: ModelFloatFilterInput
+  productUrl: ModelStringFilterInput
+  and: [ModelMaterialFilterInput]
+  or: [ModelMaterialFilterInput]
+  not: ModelMaterialFilterInput
+}
+
+input CreateMaterialInput {
+  id: ID
+  name: String
+  quantityNeeded: Int
+  pricePerItem: Float
+  totalCost: Float
+  productUrl: AWSURL
+  materialProjectId: ID
+}
+
+input UpdateMaterialInput {
+  id: ID!
+  name: String
+  quantityNeeded: Int
+  pricePerItem: Float
+  totalCost: Float
+  productUrl: AWSURL
+  materialProjectId: ID
+}
+
+input DeleteMaterialInput {
+  id: ID
+}
+
+type ModelMediaConnection {
+  items: [Media]
+  nextToken: String
+}
+
+input ModelMediaFilterInput {
+  id: ModelIDFilterInput
+  caption: ModelStringFilterInput
+  src: ModelStringFilterInput
+  and: [ModelMediaFilterInput]
+  or: [ModelMediaFilterInput]
+  not: ModelMediaFilterInput
+}
+
+input CreateMediaInput {
+  id: ID
+  caption: String
+  src: AWSURL
+  mediaProjectId: ID
+}
+
+input UpdateMediaInput {
+  id: ID!
+  caption: String
+  src: AWSURL
+  mediaProjectId: ID
+}
+
+input DeleteMediaInput {
+  id: ID
+}
