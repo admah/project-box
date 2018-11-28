@@ -1,0 +1,34 @@
+type Project @model {
+  id: ID!
+  userId: String
+  name: String!
+  steps: [Step] @connection(name: "ProjectSteps")
+  materials: [Material] @connection(name: "ProjectMaterials")
+  media: [Media] @connection(name: "ProjectMedia")
+  startTime: AWSDate
+  endTime: AWSDate
+  totalCost: Float
+}
+type Step @model {
+  id: ID!
+  title: String!
+  project: Project @connection(name: "ProjectSteps")
+  name: String
+  description: String
+  time: String
+}
+type Material @model {
+  id: ID!
+  project: Project @connection(name: "ProjectMaterials")
+  name: String
+  quantityNeeded: Int
+  pricePerItem: Float
+  totalCost: Float
+  productUrl: AWSURL
+}
+type Media @model {
+  id: ID!
+  project: Project @connection(name: "ProjectMedia")
+  caption: String
+  src: AWSURL
+}
