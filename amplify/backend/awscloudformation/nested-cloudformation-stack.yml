@@ -84,10 +84,10 @@
 				"TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"AppSyncApiName": "projectbox",
-					"schemaGraphql": "s3://projectbox-20181128110131-deployment/amplify-appsync-files/schema.graphql.1543425266188",
+					"schemaGraphql": "s3://projectbox-20181128110131-deployment/amplify-appsync-files/schema.graphql.1543462151540",
 					"ResolverBucket": "projectbox-20181128110131-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1543425266188"
+					"DeploymentTimestamp": "1543462151540"
 				}
 			}
 		}

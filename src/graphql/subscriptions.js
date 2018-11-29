@@ -6,6 +6,7 @@ export const onCreateProject = `subscription OnCreateProject {
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -35,9 +36,6 @@ export const onCreateProject = `subscription OnCreateProject {
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -46,6 +44,7 @@ export const onUpdateProject = `subscription OnUpdateProject {
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -75,9 +74,6 @@ export const onUpdateProject = `subscription OnUpdateProject {
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -86,6 +82,7 @@ export const onDeleteProject = `subscription OnDeleteProject {
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -115,9 +112,6 @@ export const onDeleteProject = `subscription OnDeleteProject {
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -129,9 +123,7 @@ export const onCreateStep = `subscription OnCreateStep {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -147,9 +139,7 @@ export const onUpdateStep = `subscription OnUpdateStep {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -165,9 +155,7 @@ export const onDeleteStep = `subscription OnDeleteStep {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -182,9 +170,7 @@ export const onCreateMaterial = `subscription OnCreateMaterial {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -201,9 +187,7 @@ export const onUpdateMaterial = `subscription OnUpdateMaterial {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -220,9 +204,7 @@ export const onDeleteMaterial = `subscription OnDeleteMaterial {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -239,9 +221,7 @@ export const onCreateMedia = `subscription OnCreateMedia {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src
@@ -255,9 +235,7 @@ export const onUpdateMedia = `subscription OnUpdateMedia {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src
@@ -271,9 +249,7 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src

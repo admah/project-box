@@ -2,12 +2,10 @@ type Project {
   id: ID!
   userId: String
   name: String!
+  description: String
   steps(filter: ModelStepFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStepConnection
   materials(filter: ModelMaterialFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMaterialConnection
   media(filter: ModelMediaFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMediaConnection
-  startTime: AWSDate
-  endTime: AWSDate
-  totalCost: Float
 }
 
 type Step {
@@ -105,9 +103,7 @@ input ModelProjectFilterInput {
   id: ModelIDFilterInput
   userId: ModelStringFilterInput
   name: ModelStringFilterInput
-  startTime: ModelStringFilterInput
-  endTime: ModelStringFilterInput
-  totalCost: ModelFloatFilterInput
+  description: ModelStringFilterInput
   and: [ModelProjectFilterInput]
   or: [ModelProjectFilterInput]
   not: ModelProjectFilterInput
@@ -128,18 +124,14 @@ input CreateProjectInput {
   id: ID
   userId: String
   name: String!
-  startTime: AWSDate
-  endTime: AWSDate
-  totalCost: Float
+  description: String
 }
 
 input UpdateProjectInput {
   id: ID!
   userId: String
   name: String
-  startTime: AWSDate
-  endTime: AWSDate
-  totalCost: Float
+  description: String
 }
 
 input DeleteProjectInput {

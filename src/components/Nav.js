@@ -6,8 +6,8 @@ class Nav extends Component {
   render() {
     return (
       <Menu className="inverted top fixed">
-        <NavLink className="menu item" exact to="/">
-          <Icon className="rounded clipboard" />
+        <NavLink className="menu item" exact to="/" activeClassName="">
+          <Icon className="big rounded clipboard" />
           Project-Box
         </NavLink>
         <NavLink className="menu item" to="/projects">
