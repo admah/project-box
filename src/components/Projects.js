@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { Connect } from "aws-amplify-react";
-import { Button, Dimmer, Header, Loader, Modal } from "semantic-ui-react";
+import { Button, Card, Dimmer, Header, Loader, Modal } from "semantic-ui-react";
 import { listProjects } from "../graphql/queries";
 import ProjectCard from "./ProjectCard";
-import NewProject from "./NewProject";
+import ProjectForm from "./ProjectForm";
 
 class Projects extends Component {
   render() {
@@ -16,11 +16,11 @@ class Projects extends Component {
         >
           <Header icon="browser" content="Add a Project" />
           <Modal.Content>
-            <NewProject />
+            <ProjectForm />
           </Modal.Content>
         </Modal>
 
-        <div style={{ marginTop: "30px" }}>
+        <Card.Group style={{ marginTop: "30px" }}>
           <Connect query={graphqlOperation(listProjects)}>
             {({ data: { listProjects }, loading, error }) => {
               if (error) return <h3>Error</h3>;
@@ -33,13 +33,14 @@ class Projects extends Component {
               return listProjects.items.map(project => (
                 <ProjectCard
                   key={project.id}
+                  id={project.id}
                   name={project.name}
                   description={project.description}
                 />
               ));
             }}
           </Connect>
-        </div>
+        </Card.Group>
       </div>
     );
   }

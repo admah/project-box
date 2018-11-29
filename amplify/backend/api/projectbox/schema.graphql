@@ -3,6 +3,7 @@ type Project @model {
   userId: String
   name: String!
   description: String
+  created: AWSDateTime
   steps: [Step] @connection(name: "ProjectSteps")
   materials: [Material] @connection(name: "ProjectMaterials")
   media: [Media] @connection(name: "ProjectMedia")
