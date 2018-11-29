@@ -16,7 +16,7 @@ class Projects extends Component {
         >
           <Header icon="browser" content="Add a Project" />
           <Modal.Content>
-            <ProjectForm />
+            <ProjectForm formMode="create" />
           </Modal.Content>
         </Modal>
 

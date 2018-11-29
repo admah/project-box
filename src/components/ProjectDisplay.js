@@ -16,16 +16,6 @@ import ProjectCard from "./ProjectCard";
 
 const ProjectDisplay = ({ match }) => (
   <div className="ui container" style={{ marginTop: "80px" }}>
-    <Modal
-      trigger={<Button icon="edit outline" floated="right" size="tiny" />}
-      closeIcon
-    >
-      <Header icon="edit outline" content="Edit Project" />
-      <Modal.Content>
-        <ProjectForm mode="edit" projectId={match.params.projectId} />
-      </Modal.Content>
-    </Modal>
-
     <Container style={{ marginTop: "30px" }}>
       <Connect
         query={graphqlOperation(getProject, { id: match.params.projectId })}
@@ -39,11 +29,24 @@ const ProjectDisplay = ({ match }) => (
               </Dimmer>
             );
           return (
-            <div>
-              <h3>{getProject.name}</h3>
-              <Divider />
-              <p>{getProject.description}</p>
-            </div>
+            <React.Fragment>
+              <Modal
+                trigger={
+                  <Button icon="edit outline" floated="right" size="tiny" />
+                }
+                closeIcon
+              >
+                <Header icon="edit outline" content="Edit Project" />
+                <Modal.Content>
+                  <ProjectForm formMode="edit" project={getProject} />
+                </Modal.Content>
+              </Modal>
+              <div>
+                <h3>{getProject.name}</h3>
+                <Divider />
+                <p>{getProject.description}</p>
+              </div>
+            </React.Fragment>
           );
         }}
       </Connect>

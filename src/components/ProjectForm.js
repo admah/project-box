@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { Form, Input, Message, TextArea } from "semantic-ui-react";
 import { withFormik } from "formik";
-import { createProject } from "../graphql/mutations";
+import { createProject, updateProject } from "../graphql/mutations";
 
 class ProjectForm extends Component {
   static defaultProps = {
-    createProject: () => null
+    createProject: () => null,
+    project: {}
   };
 
   render() {
@@ -74,10 +75,15 @@ class ProjectForm extends Component {
 }
 
 export default withFormik({
-  mapPropsToValues: () => ({
-    name: "",
-    description: "",
-    tags: ""
+  enableReinitialize: true,
+  mapPropsToValues: props => ({
+    name: props.formMode === "edit" ? props.project.name : "",
+    description:
+      props.formMode === "edit" && props.project.description
+        ? props.project.description
+        : "",
+    tags:
+      props.formMode === "edit" && props.project.tags ? props.project.tags : ""
   }),
 
   // Custom sync validation
@@ -91,15 +97,14 @@ export default withFormik({
     return errors;
   },
 
-  handleChange: date => {
-    this.setState({
-      startDate: date
-    });
+  handleChange: event => {
+    console.log(event);
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    const projectTags = values.tags.split(/[ ,]+/);
-    const ProjectForm = async () =>
+    const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
+
+    const CreateProjectForm = async () =>
       await API.graphql(
         graphqlOperation(createProject, {
           input: {
@@ -110,9 +115,21 @@ export default withFormik({
           }
         })
       );
+    const UpdateProjectForm = async () =>
+      await API.graphql(
+        graphqlOperation(updateProject, {
+          input: {
+            id: props.project.id,
+            name: values.name,
+            description: values.description,
+            tags: projectTags
+          }
+        })
+      );
     try {
-      //ProjectForm();
+      props.formMode === "edit" ? UpdateProjectForm() : CreateProjectForm();
       console.log("project added: ", {
+        id: props.project.id || "",
         name: values.name,
         description: values.description,
         tags: projectTags,
