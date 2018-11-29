@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-import { Form } from "semantic-ui-react";
-import { withFormik, Field } from "formik";
+import { Form, Input, Message, TextArea } from "semantic-ui-react";
+import { withFormik } from "formik";
 import { createProject } from "../graphql/mutations";
 
-class NewProject extends Component {
+class ProjectForm extends Component {
   static defaultProps = {
     createProject: () => null
   };
@@ -20,7 +20,10 @@ class NewProject extends Component {
     } = this.props;
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <Field
+        <Form.Field
+          id="form-input-control-project-name"
+          control={Input}
+          label="Project Name"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.name}
@@ -29,7 +32,10 @@ class NewProject extends Component {
         />
         {errors.name && touched.name && <div id="feedback">{errors.name}</div>}
         <br />
-        <Field
+        <Form.Field
+          id="form-input-control-project-description"
+          control={TextArea}
+          label="Project Description"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.description}
@@ -41,6 +47,11 @@ class NewProject extends Component {
         )}
         <br />
         <br />
+        <Message
+          success
+          header="Project Created!"
+          content="Your project was successfully created. Refresh the page to see it added to the list."
+        />
         <Form.Button type="submit">Submit</Form.Button>
       </Form>
     );
@@ -71,11 +82,11 @@ export default withFormik({
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log("values", values);
-    const newProject = async () =>
+    console.log("props: ", props);
+    const ProjectForm = async () =>
       await API.graphql(graphqlOperation(createProject, { input: values }));
     try {
-      newProject();
+      //ProjectForm();
       console.log("project added: ", values);
     } catch {
       console.log("problem adding project: ", values);
@@ -86,4 +97,4 @@ export default withFormik({
   },
 
   displayName: "New Project"
-})(NewProject);
+})(ProjectForm);
