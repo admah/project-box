@@ -25,8 +25,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiprojectbox"
 			},
-			"lastPushTimeStamp": "2018-11-28T17:17:41.688Z",
-			"lastPushDirHash": "sBn14cJAiOTCriwUWI4gVdoSjqU="
+			"lastPushTimeStamp": "2018-11-29T03:31:22.400Z",
+			"lastPushDirHash": "mbl8si8Byyt7m2fllB56IE6btHY="
 		}
 	}
 }

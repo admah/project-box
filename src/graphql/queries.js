@@ -6,6 +6,7 @@ export const getProject = `query GetProject($id: ID!) {
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -35,9 +36,6 @@ export const getProject = `query GetProject($id: ID!) {
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -51,6 +49,7 @@ export const listProjects = `query ListProjects(
       id
       userId
       name
+      description
       steps {
         items {
           id
@@ -80,9 +79,6 @@ export const listProjects = `query ListProjects(
         }
         nextToken
       }
-      startTime
-      endTime
-      totalCost
     }
     nextToken
   }
@@ -96,9 +92,7 @@ export const getStep = `query GetStep($id: ID!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -119,9 +113,7 @@ export const listSteps = `query ListSteps(
         id
         userId
         name
-        startTime
-        endTime
-        totalCost
+        description
       }
       name
       description
@@ -138,9 +130,7 @@ export const getMaterial = `query GetMaterial($id: ID!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -162,9 +152,7 @@ export const listMaterials = `query ListMaterials(
         id
         userId
         name
-        startTime
-        endTime
-        totalCost
+        description
       }
       name
       quantityNeeded
@@ -183,9 +171,7 @@ export const getMedia = `query GetMedia($id: ID!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src
@@ -204,9 +190,7 @@ export const listMedias = `query ListMedias(
         id
         userId
         name
-        startTime
-        endTime
-        totalCost
+        description
       }
       caption
       src

@@ -6,6 +6,7 @@ export const createProject = `mutation CreateProject($input: CreateProjectInput!
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -35,9 +36,6 @@ export const createProject = `mutation CreateProject($input: CreateProjectInput!
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -46,6 +44,7 @@ export const updateProject = `mutation UpdateProject($input: UpdateProjectInput!
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -75,9 +74,6 @@ export const updateProject = `mutation UpdateProject($input: UpdateProjectInput!
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -86,6 +82,7 @@ export const deleteProject = `mutation DeleteProject($input: DeleteProjectInput!
     id
     userId
     name
+    description
     steps {
       items {
         id
@@ -115,9 +112,6 @@ export const deleteProject = `mutation DeleteProject($input: DeleteProjectInput!
       }
       nextToken
     }
-    startTime
-    endTime
-    totalCost
   }
 }
 `;
@@ -129,9 +123,7 @@ export const createStep = `mutation CreateStep($input: CreateStepInput!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -147,9 +139,7 @@ export const updateStep = `mutation UpdateStep($input: UpdateStepInput!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -165,9 +155,7 @@ export const deleteStep = `mutation DeleteStep($input: DeleteStepInput!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     description
@@ -182,9 +170,7 @@ export const createMaterial = `mutation CreateMaterial($input: CreateMaterialInp
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -201,9 +187,7 @@ export const updateMaterial = `mutation UpdateMaterial($input: UpdateMaterialInp
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -220,9 +204,7 @@ export const deleteMaterial = `mutation DeleteMaterial($input: DeleteMaterialInp
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     name
     quantityNeeded
@@ -239,9 +221,7 @@ export const createMedia = `mutation CreateMedia($input: CreateMediaInput!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src
@@ -255,9 +235,7 @@ export const updateMedia = `mutation UpdateMedia($input: UpdateMediaInput!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src
@@ -271,9 +249,7 @@ export const deleteMedia = `mutation DeleteMedia($input: DeleteMediaInput!) {
       id
       userId
       name
-      startTime
-      endTime
-      totalCost
+      description
     }
     caption
     src
