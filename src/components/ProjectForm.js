@@ -31,7 +31,6 @@ class ProjectForm extends Component {
           placeholder="Enter your project name"
         />
         {errors.name && touched.name && <div id="feedback">{errors.name}</div>}
-        <br />
         <Form.Field
           id="form-input-control-project-description"
           control={TextArea}
@@ -41,6 +40,22 @@ class ProjectForm extends Component {
           value={values.description}
           name="description"
           placeholder="Enter a description"
+        />
+        {errors.description && touched.description && (
+          <div id="feedback">{errors.description}</div>
+        )}
+        <Form.Field
+          id="form-input-control-project-tags"
+          control={Input}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.tags}
+          name="tags"
+          placeholder="Enter tags for your project"
+          icon="tags"
+          iconPosition="left"
+          label="Project Tags"
+          labelPosition="right"
         />
         {errors.description && touched.description && (
           <div id="feedback">{errors.description}</div>
@@ -61,7 +76,8 @@ class ProjectForm extends Component {
 export default withFormik({
   mapPropsToValues: () => ({
     name: "",
-    description: ""
+    description: "",
+    tags: ""
   }),
 
   // Custom sync validation
@@ -82,12 +98,26 @@ export default withFormik({
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log("props: ", props);
+    const projectTags = values.tags.split(/[ ,]+/);
     const ProjectForm = async () =>
-      await API.graphql(graphqlOperation(createProject, { input: values }));
+      await API.graphql(
+        graphqlOperation(createProject, {
+          input: {
+            name: values.name,
+            description: values.description,
+            tags: projectTags,
+            created: Date.now()
+          }
+        })
+      );
     try {
       //ProjectForm();
-      console.log("project added: ", values);
+      console.log("project added: ", {
+        name: values.name,
+        description: values.description,
+        tags: projectTags,
+        created: Date.now()
+      });
     } catch {
       console.log("problem adding project: ", values);
     }

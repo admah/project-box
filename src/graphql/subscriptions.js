@@ -7,6 +7,8 @@ export const onCreateProject = `subscription OnCreateProject {
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -45,6 +47,8 @@ export const onUpdateProject = `subscription OnUpdateProject {
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -83,6 +87,8 @@ export const onDeleteProject = `subscription OnDeleteProject {
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -124,6 +130,8 @@ export const onCreateStep = `subscription OnCreateStep {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -140,6 +148,8 @@ export const onUpdateStep = `subscription OnUpdateStep {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -156,6 +166,8 @@ export const onDeleteStep = `subscription OnDeleteStep {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -171,6 +183,8 @@ export const onCreateMaterial = `subscription OnCreateMaterial {
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -188,6 +202,8 @@ export const onUpdateMaterial = `subscription OnUpdateMaterial {
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -205,6 +221,8 @@ export const onDeleteMaterial = `subscription OnDeleteMaterial {
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -222,6 +240,8 @@ export const onCreateMedia = `subscription OnCreateMedia {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src
@@ -236,6 +256,8 @@ export const onUpdateMedia = `subscription OnUpdateMedia {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src
@@ -250,6 +272,8 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src
