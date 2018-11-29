@@ -7,6 +7,8 @@ export const getProject = `query GetProject($id: ID!) {
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -50,6 +52,8 @@ export const listProjects = `query ListProjects(
       userId
       name
       description
+      tags
+      created
       steps {
         items {
           id
@@ -93,6 +97,8 @@ export const getStep = `query GetStep($id: ID!) {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -114,6 +120,8 @@ export const listSteps = `query ListSteps(
         userId
         name
         description
+        tags
+        created
       }
       name
       description
@@ -131,6 +139,8 @@ export const getMaterial = `query GetMaterial($id: ID!) {
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -153,6 +163,8 @@ export const listMaterials = `query ListMaterials(
         userId
         name
         description
+        tags
+        created
       }
       name
       quantityNeeded
@@ -172,6 +184,8 @@ export const getMedia = `query GetMedia($id: ID!) {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src
@@ -191,6 +205,8 @@ export const listMedias = `query ListMedias(
         userId
         name
         description
+        tags
+        created
       }
       caption
       src

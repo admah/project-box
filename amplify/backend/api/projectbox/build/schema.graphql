@@ -3,6 +3,8 @@ type Project {
   userId: String
   name: String!
   description: String
+  tags: [String]
+  created: AWSTimestamp
   steps(filter: ModelStepFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStepConnection
   materials(filter: ModelMaterialFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMaterialConnection
   media(filter: ModelMediaFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMediaConnection
@@ -104,6 +106,8 @@ input ModelProjectFilterInput {
   userId: ModelStringFilterInput
   name: ModelStringFilterInput
   description: ModelStringFilterInput
+  tags: ModelStringFilterInput
+  created: ModelIntFilterInput
   and: [ModelProjectFilterInput]
   or: [ModelProjectFilterInput]
   not: ModelProjectFilterInput
@@ -125,6 +129,8 @@ input CreateProjectInput {
   userId: String
   name: String!
   description: String
+  tags: [String]
+  created: AWSTimestamp
 }
 
 input UpdateProjectInput {
@@ -132,6 +138,8 @@ input UpdateProjectInput {
   userId: String
   name: String
   description: String
+  tags: [String]
+  created: AWSTimestamp
 }
 
 input DeleteProjectInput {

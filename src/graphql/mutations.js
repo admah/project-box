@@ -7,6 +7,8 @@ export const createProject = `mutation CreateProject($input: CreateProjectInput!
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -45,6 +47,8 @@ export const updateProject = `mutation UpdateProject($input: UpdateProjectInput!
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -83,6 +87,8 @@ export const deleteProject = `mutation DeleteProject($input: DeleteProjectInput!
     userId
     name
     description
+    tags
+    created
     steps {
       items {
         id
@@ -124,6 +130,8 @@ export const createStep = `mutation CreateStep($input: CreateStepInput!) {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -140,6 +148,8 @@ export const updateStep = `mutation UpdateStep($input: UpdateStepInput!) {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -156,6 +166,8 @@ export const deleteStep = `mutation DeleteStep($input: DeleteStepInput!) {
       userId
       name
       description
+      tags
+      created
     }
     name
     description
@@ -171,6 +183,8 @@ export const createMaterial = `mutation CreateMaterial($input: CreateMaterialInp
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -188,6 +202,8 @@ export const updateMaterial = `mutation UpdateMaterial($input: UpdateMaterialInp
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -205,6 +221,8 @@ export const deleteMaterial = `mutation DeleteMaterial($input: DeleteMaterialInp
       userId
       name
       description
+      tags
+      created
     }
     name
     quantityNeeded
@@ -222,6 +240,8 @@ export const createMedia = `mutation CreateMedia($input: CreateMediaInput!) {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src
@@ -236,6 +256,8 @@ export const updateMedia = `mutation UpdateMedia($input: UpdateMediaInput!) {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src
@@ -250,6 +272,8 @@ export const deleteMedia = `mutation DeleteMedia($input: DeleteMediaInput!) {
       userId
       name
       description
+      tags
+      created
     }
     caption
     src

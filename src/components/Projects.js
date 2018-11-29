@@ -31,12 +31,7 @@ class Projects extends Component {
                   </Dimmer>
                 );
               return listProjects.items.map(project => (
-                <ProjectCard
-                  key={project.id}
-                  id={project.id}
-                  name={project.name}
-                  description={project.description}
-                />
+                <ProjectCard key={project.id} {...project} />
               ));
             }}
           </Connect>
