@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { Form, Input, Message } from "semantic-ui-react";
-import { FieldArray, withFormik } from "formik";
+import { withFormik } from "formik";
 import { createMaterial, updateMaterial } from "../graphql/mutations";
 
 class MaterialForm extends Component {
@@ -88,9 +88,6 @@ export default withFormik({
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log("values: ", values);
-    console.log("props: ", props);
-
     const CreateMaterialForm = async () =>
       await API.graphql(
         graphqlOperation(createMaterial, {
@@ -120,20 +117,9 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateMaterialForm() : CreateMaterialForm();
-      console.log("project success: ", {
-        name: values.name,
-        project: props.project,
-        quantityNeeded: values.quantityNeeded,
-        pricePerItem: values.pricePerItem,
-        totalCost: values.quantityNeeded * values.pricePerItem
-      });
     } catch {
       console.log("problem adding materials: ", {
-        name: values.name,
-        project: props.project,
-        quantityNeeded: values.quantityNeeded,
-        pricePerItem: values.pricePerItem,
-        totalCost: values.quantityNeeded * values.pricePerItem
+        ...values
       });
     }
 
