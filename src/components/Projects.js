@@ -21,7 +21,7 @@ class Projects extends Component {
           </Modal.Content>
         </Modal>
 
-        <Card.Group style={{ marginTop: "30px" }}>
+        <Card.Group style={{ marginTop: "30px" }} centered>
           <Connect
             query={graphqlOperation(listProjects)}
             subscription={graphqlOperation(onCreateProject)}

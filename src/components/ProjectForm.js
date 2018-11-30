@@ -12,13 +12,6 @@ class ProjectForm extends Component {
     project: {}
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: new Date()
-    };
-  }
-
   render() {
     const {
       values,
@@ -135,7 +128,6 @@ export default withFormik({
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(values);
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
 
     const CreateProjectForm = async () =>
@@ -167,18 +159,7 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateProjectForm() : CreateProjectForm();
-      console.log("project success: ", {
-        id: props.project.id || "",
-        name: values.name,
-        description: values.description,
-        startDate: values.startDate,
-        endDate: values.endDate,
-        tags: projectTags || values.tags,
-        materials: {
-          items: values.materials
-        },
-        created: Date.now()
-      });
+      props.toggleModal();
     } catch {
       console.log("problem adding project: ", values);
     }
