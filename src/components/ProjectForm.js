@@ -159,6 +159,7 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateProjectForm() : CreateProjectForm();
+      props.closeModal();
     } catch {
       console.log("problem adding project: ", values);
     }

@@ -20,13 +20,15 @@ class ProjectDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false
+      activeModal: ""
     };
-    this.toggleModal = this.toggleModal.bind(this);
+
+    this.closeModal = this.closeModal.bind(this);
   }
-  toggleModal() {
+
+  closeModal() {
     this.setState({
-      isModalOpen: !this.state.isModalOpen
+      activeModal: ""
     });
   }
 
@@ -55,18 +57,23 @@ class ProjectDisplay extends Component {
                         icon="edit outline"
                         floated="right"
                         size="tiny"
-                        onClick={this.toggleModal}
+                        onClick={() =>
+                          this.setState({
+                            activeModal: "project"
+                          })
+                        }
                       />
                     }
+                    onClose={this.closeModal}
+                    open={this.state.activeModal === "project"}
                     closeIcon
-                    open={this.state.isModalOpen}
                   >
                     <Header icon="edit outline" content="Edit Project" />
                     <Modal.Content>
                       <ProjectForm
                         formMode="edit"
                         project={getProject}
-                        toggleModal={this.toggleModal}
+                        closeModal={this.closeModal}
                       />
                     </Modal.Content>
                   </Modal>
@@ -81,8 +88,15 @@ class ProjectDisplay extends Component {
                               content="Add Material"
                               fluid
                               style={{ marginBottom: "10px" }}
+                              onClick={() =>
+                                this.setState({
+                                  activeModal: "material"
+                                })
+                              }
                             />
                           }
+                          onClose={this.closeModal}
+                          open={this.state.activeModal === "material"}
                           closeIcon
                         >
                           <Header icon="plus" content="Add Material" />
@@ -90,11 +104,24 @@ class ProjectDisplay extends Component {
                             <MaterialForm
                               formMode="create"
                               project={getProject}
+                              closeModal={this.closeModal}
                             />
                           </Modal.Content>
                         </Modal>
                         <Modal
-                          trigger={<Button content="Add Step" fluid />}
+                          trigger={
+                            <Button
+                              content="Add Step"
+                              onClick={() =>
+                                this.setState({
+                                  activeModal: "step"
+                                })
+                              }
+                              fluid
+                            />
+                          }
+                          onClose={this.closeModal}
+                          open={this.state.activeModal === "step"}
                           closeIcon
                         >
                           <Header icon="plus" content="Add Step" />
@@ -102,6 +129,7 @@ class ProjectDisplay extends Component {
                             <StepForm
                               formMode="create"
                               projectId={getProject.id}
+                              closeModal={this.closeModal}
                             />
                           </Modal.Content>
                         </Modal>
@@ -131,7 +159,19 @@ class ProjectDisplay extends Component {
                                           icon="edit outline"
                                           floated="right"
                                           size="tiny"
+                                          onClick={() =>
+                                            this.setState({
+                                              activeModal: `material-${
+                                                material.id
+                                              }`
+                                            })
+                                          }
                                         />
+                                      }
+                                      onClose={this.closeModal}
+                                      open={
+                                        this.state.activeModal ===
+                                        `material-${material.id}`
                                       }
                                       closeIcon
                                     >
@@ -143,6 +183,7 @@ class ProjectDisplay extends Component {
                                         <MaterialForm
                                           formMode="edit"
                                           material={material}
+                                          closeModal={this.closeModal}
                                         />
                                       </Modal.Content>
                                     </Modal>
