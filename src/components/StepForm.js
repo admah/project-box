@@ -123,16 +123,11 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateStepForm() : CreateStepForm();
-      console.log("project success: ", {
-        id: props.project.id || "",
-        ...values
-      });
     } catch {
       console.log("problem adding project: ", values);
     }
 
     setSubmitting(false);
-    //props.history.push("/projects?saved=true");*/
   },
 
   displayName: "Step Form"

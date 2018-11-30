@@ -22,7 +22,7 @@ class ProjectForm extends Component {
       handleSubmit,
       setFieldValue
     } = this.props;
-    console.log(values);
+
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Form.Field
@@ -159,7 +159,6 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateProjectForm() : CreateProjectForm();
-      props.toggleModal();
     } catch {
       console.log("problem adding project: ", values);
     }
