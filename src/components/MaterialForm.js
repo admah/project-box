@@ -11,7 +11,13 @@ class MaterialForm extends Component {
   };
 
   render() {
-    const { values, handleChange, handleBlur, handleSubmit } = this.props;
+    const {
+      values,
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      closeModal
+    } = this.props;
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Form.Group inline>
@@ -67,7 +73,14 @@ class MaterialForm extends Component {
           header="Materials Added!"
           content="Your materials were successfully added. Refresh the page to see it added to the list."
         />
-        <Form.Button type="submit">Submit</Form.Button>
+        <Form.Group>
+          <Form.Button type="submit" positive>
+            Submit
+          </Form.Button>
+          <Form.Button type="button" onClick={closeModal} negative>
+            Cancel
+          </Form.Button>
+        </Form.Group>
       </Form>
     );
   }
@@ -117,6 +130,7 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateMaterialForm() : CreateMaterialForm();
+      props.closeModal();
     } catch {
       console.log("problem adding materials: ", {
         ...values

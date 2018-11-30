@@ -17,7 +17,8 @@ class StepForm extends Component {
       errors,
       handleChange,
       handleBlur,
-      handleSubmit
+      handleSubmit,
+      closeModal
     } = this.props;
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
@@ -68,7 +69,14 @@ class StepForm extends Component {
           header="Step Created!"
           content="Your step was successfully created. Refresh the page to see it added to the list."
         />
-        <Form.Button type="submit">Submit</Form.Button>
+        <Form.Group>
+          <Form.Button type="submit" positive>
+            Submit
+          </Form.Button>
+          <Form.Button type="button" onClick={closeModal} negative>
+            Cancel
+          </Form.Button>
+        </Form.Group>
       </Form>
     );
   }
@@ -123,6 +131,7 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateStepForm() : CreateStepForm();
+      props.closeModal();
     } catch {
       console.log("problem adding project: ", values);
     }

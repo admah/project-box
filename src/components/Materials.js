@@ -4,6 +4,7 @@ import { Connect } from "aws-amplify-react";
 import { Button, Dimmer, Header, Item, Loader, Modal } from "semantic-ui-react";
 import { listMaterials } from "../graphql/queries";
 import MaterialForm from "./MaterialForm";
+import { ConsoleLogger } from "@aws-amplify/core";
 
 class Materials extends Component {
   render() {
