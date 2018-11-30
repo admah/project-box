@@ -22,6 +22,7 @@ class ProjectForm extends Component {
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Form.Field
+          required
           id="form-input-control-project-name"
           control={Input}
           label="Project Name"
@@ -58,9 +59,8 @@ class ProjectForm extends Component {
           label="Project Tags"
           labelPosition="right"
         />
-        {errors.description && touched.description && (
-          <div id="feedback">{errors.description}</div>
-        )}
+        {errors.tags && touched.tags && <div id="feedback">{errors.tags}</div>}
+
         <br />
         <br />
         <Message
@@ -102,6 +102,7 @@ export default withFormik({
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
+    console.log(values);
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
 
     const CreateProjectForm = async () =>
@@ -126,13 +127,17 @@ export default withFormik({
           }
         })
       );
+
     try {
       props.formMode === "edit" ? UpdateProjectForm() : CreateProjectForm();
-      console.log("project added: ", {
+      console.log("project success: ", {
         id: props.project.id || "",
         name: values.name,
         description: values.description,
-        tags: projectTags,
+        tags: projectTags || values.tags,
+        materials: {
+          items: values.materials
+        },
         created: Date.now()
       });
     } catch {
@@ -143,5 +148,5 @@ export default withFormik({
     //props.history.push("/projects?saved=true");*/
   },
 
-  displayName: "New Project"
+  displayName: "Project Form"
 })(ProjectForm);
