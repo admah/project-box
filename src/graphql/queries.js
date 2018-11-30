@@ -9,10 +9,11 @@ export const getProject = `query GetProject($id: ID!) {
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -54,10 +55,11 @@ export const listProjects = `query ListProjects(
       description
       tags
       created
+      startDate
+      endDate
       steps {
         items {
           id
-          title
           name
           description
           time
@@ -91,7 +93,7 @@ export const listProjects = `query ListProjects(
 export const getStep = `query GetStep($id: ID!) {
   getStep(id: $id) {
     id
-    title
+    name
     project {
       id
       userId
@@ -99,8 +101,9 @@ export const getStep = `query GetStep($id: ID!) {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -114,7 +117,7 @@ export const listSteps = `query ListSteps(
   listSteps(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      title
+      name
       project {
         id
         userId
@@ -122,8 +125,9 @@ export const listSteps = `query ListSteps(
         description
         tags
         created
+        startDate
+        endDate
       }
-      name
       description
       time
     }
@@ -141,6 +145,8 @@ export const getMaterial = `query GetMaterial($id: ID!) {
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -165,6 +171,8 @@ export const listMaterials = `query ListMaterials(
         description
         tags
         created
+        startDate
+        endDate
       }
       name
       quantityNeeded
@@ -186,6 +194,8 @@ export const getMedia = `query GetMedia($id: ID!) {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src
@@ -207,6 +217,8 @@ export const listMedias = `query ListMedias(
         description
         tags
         created
+        startDate
+        endDate
       }
       caption
       src

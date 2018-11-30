@@ -15,7 +15,7 @@ import {
 import { getProject } from "../graphql/queries";
 import ProjectForm from "./ProjectForm";
 import MaterialForm from "./MaterialForm";
-import Materials from "./Materials";
+import StepForm from "./StepForm";
 
 const ProjectDisplay = ({ match }) => (
   <div className="ui container" style={{ marginTop: "80px" }}>
@@ -50,12 +50,27 @@ const ProjectDisplay = ({ match }) => (
                 <Grid>
                   <Grid.Column width={4}>
                     <Modal
-                      trigger={<Button content="Add Material" />}
+                      trigger={
+                        <Button
+                          content="Add Material"
+                          fluid
+                          style={{ marginBottom: "10px" }}
+                        />
+                      }
                       closeIcon
                     >
                       <Header icon="plus" content="Add Material" />
                       <Modal.Content>
                         <MaterialForm formMode="create" project={getProject} />
+                      </Modal.Content>
+                    </Modal>
+                    <Modal
+                      trigger={<Button content="Add Step" fluid />}
+                      closeIcon
+                    >
+                      <Header icon="plus" content="Add Step" />
+                      <Modal.Content>
+                        <StepForm formMode="create" projectId={getProject.id} />
                       </Modal.Content>
                     </Modal>
                   </Grid.Column>
