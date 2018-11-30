@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { Form, Input, Message, TextArea } from "semantic-ui-react";
 import { withFormik } from "formik";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { createProject, updateProject } from "../graphql/mutations";
 
 class ProjectForm extends Component {
@@ -10,6 +12,13 @@ class ProjectForm extends Component {
     project: {}
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: new Date()
+    };
+  }
+
   render() {
     const {
       values,
@@ -17,8 +26,10 @@ class ProjectForm extends Component {
       errors,
       handleChange,
       handleBlur,
-      handleSubmit
+      handleSubmit,
+      setFieldValue
     } = this.props;
+    console.log(values);
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Form.Field
@@ -46,6 +57,18 @@ class ProjectForm extends Component {
         {errors.description && touched.description && (
           <div id="feedback">{errors.description}</div>
         )}
+        <DatePicker
+          name={"startDate"}
+          selected={values["startDate"]}
+          onChange={e => setFieldValue("startDate", e)}
+          placeholderText="Start Date"
+        />
+        <DatePicker
+          name={"endDate"}
+          selected={values["endDate"]}
+          onChange={e => setFieldValue("endDate", e)}
+          placeholderText="End Date"
+        />
         <Form.Field
           id="form-input-control-project-tags"
           control={Input}
@@ -68,7 +91,7 @@ class ProjectForm extends Component {
           header="Project Created!"
           content="Your project was successfully created. Refresh the page to see it added to the list."
         />
-        <Form.Button type="submit">Submit</Form.Button>
+        <Form.Button type="submit">Save</Form.Button>
       </Form>
     );
   }
@@ -83,7 +106,17 @@ export default withFormik({
         ? props.project.description
         : "",
     tags:
-      props.formMode === "edit" && props.project.tags ? props.project.tags : ""
+      props.formMode === "edit" && props.project.tags
+        ? String(props.project.tags)
+        : "",
+    startDate:
+      props.formMode === "edit" && props.project.startDate
+        ? props.project.startDate
+        : new Date(),
+    endDate:
+      props.formMode === "edit" && props.project.endDate
+        ? props.project.endDate
+        : new Date()
   }),
 
   // Custom sync validation
@@ -112,6 +145,8 @@ export default withFormik({
             name: values.name,
             description: values.description,
             tags: projectTags,
+            startDate: values.startDate,
+            endDate: values.endDate,
             created: Date.now()
           }
         })
@@ -123,7 +158,9 @@ export default withFormik({
             id: props.project.id,
             name: values.name,
             description: values.description,
-            tags: projectTags
+            tags: projectTags,
+            startDate: values.startDate,
+            endDate: values.endDate
           }
         })
       );
@@ -134,6 +171,8 @@ export default withFormik({
         id: props.project.id || "",
         name: values.name,
         description: values.description,
+        startDate: values.startDate,
+        endDate: values.endDate,
         tags: projectTags || values.tags,
         materials: {
           items: values.materials

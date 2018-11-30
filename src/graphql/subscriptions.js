@@ -9,10 +9,11 @@ export const onCreateProject = `subscription OnCreateProject {
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -49,10 +50,11 @@ export const onUpdateProject = `subscription OnUpdateProject {
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -89,10 +91,11 @@ export const onDeleteProject = `subscription OnDeleteProject {
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -124,7 +127,7 @@ export const onDeleteProject = `subscription OnDeleteProject {
 export const onCreateStep = `subscription OnCreateStep {
   onCreateStep {
     id
-    title
+    name
     project {
       id
       userId
@@ -132,8 +135,9 @@ export const onCreateStep = `subscription OnCreateStep {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -142,7 +146,7 @@ export const onCreateStep = `subscription OnCreateStep {
 export const onUpdateStep = `subscription OnUpdateStep {
   onUpdateStep {
     id
-    title
+    name
     project {
       id
       userId
@@ -150,8 +154,9 @@ export const onUpdateStep = `subscription OnUpdateStep {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -160,7 +165,7 @@ export const onUpdateStep = `subscription OnUpdateStep {
 export const onDeleteStep = `subscription OnDeleteStep {
   onDeleteStep {
     id
-    title
+    name
     project {
       id
       userId
@@ -168,8 +173,9 @@ export const onDeleteStep = `subscription OnDeleteStep {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -185,6 +191,8 @@ export const onCreateMaterial = `subscription OnCreateMaterial {
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -204,6 +212,8 @@ export const onUpdateMaterial = `subscription OnUpdateMaterial {
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -223,6 +233,8 @@ export const onDeleteMaterial = `subscription OnDeleteMaterial {
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -242,6 +254,8 @@ export const onCreateMedia = `subscription OnCreateMedia {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src
@@ -258,6 +272,8 @@ export const onUpdateMedia = `subscription OnUpdateMedia {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src
@@ -274,6 +290,8 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src

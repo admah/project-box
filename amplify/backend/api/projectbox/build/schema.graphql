@@ -5,6 +5,8 @@ type Project {
   description: String
   tags: [String]
   created: AWSTimestamp
+  startDate: AWSDateTime
+  endDate: AWSDateTime
   steps(filter: ModelStepFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStepConnection
   materials(filter: ModelMaterialFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMaterialConnection
   media(filter: ModelMediaFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMediaConnection
@@ -12,9 +14,8 @@ type Project {
 
 type Step {
   id: ID!
-  title: String!
+  name: String!
   project: Project
-  name: String
   description: String
   time: String
 }
@@ -22,7 +23,7 @@ type Step {
 type Material {
   id: ID!
   project: Project
-  name: String
+  name: String!
   quantityNeeded: Int
   pricePerItem: Float
   totalCost: Float
@@ -108,6 +109,8 @@ input ModelProjectFilterInput {
   description: ModelStringFilterInput
   tags: ModelStringFilterInput
   created: ModelIntFilterInput
+  startDate: ModelStringFilterInput
+  endDate: ModelStringFilterInput
   and: [ModelProjectFilterInput]
   or: [ModelProjectFilterInput]
   not: ModelProjectFilterInput
@@ -131,6 +134,8 @@ input CreateProjectInput {
   description: String
   tags: [String]
   created: AWSTimestamp
+  startDate: AWSDateTime
+  endDate: AWSDateTime
 }
 
 input UpdateProjectInput {
@@ -140,6 +145,8 @@ input UpdateProjectInput {
   description: String
   tags: [String]
   created: AWSTimestamp
+  startDate: AWSDateTime
+  endDate: AWSDateTime
 }
 
 input DeleteProjectInput {
@@ -183,7 +190,6 @@ type ModelStepConnection {
 
 input ModelStepFilterInput {
   id: ModelIDFilterInput
-  title: ModelStringFilterInput
   name: ModelStringFilterInput
   description: ModelStringFilterInput
   time: ModelStringFilterInput
@@ -194,8 +200,7 @@ input ModelStepFilterInput {
 
 input CreateStepInput {
   id: ID
-  title: String!
-  name: String
+  name: String!
   description: String
   time: String
   stepProjectId: ID
@@ -203,7 +208,6 @@ input CreateStepInput {
 
 input UpdateStepInput {
   id: ID!
-  title: String
   name: String
   description: String
   time: String
@@ -233,7 +237,7 @@ input ModelMaterialFilterInput {
 
 input CreateMaterialInput {
   id: ID
-  name: String
+  name: String!
   quantityNeeded: Int
   pricePerItem: Float
   totalCost: Float

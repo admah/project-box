@@ -5,22 +5,23 @@ type Project @model {
   description: String
   tags: [String]
   created: AWSTimestamp
+  startDate: AWSDateTime
+  endDate: AWSDateTime
   steps: [Step] @connection(name: "ProjectSteps")
   materials: [Material] @connection(name: "ProjectMaterials")
   media: [Media] @connection(name: "ProjectMedia")
 }
 type Step @model {
   id: ID!
-  title: String!
+  name: String!
   project: Project @connection(name: "ProjectSteps")
-  name: String
   description: String
   time: String
 }
 type Material @model {
   id: ID!
   project: Project @connection(name: "ProjectMaterials")
-  name: String
+  name: String!
   quantityNeeded: Int
   pricePerItem: Float
   totalCost: Float

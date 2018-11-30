@@ -9,10 +9,11 @@ export const createProject = `mutation CreateProject($input: CreateProjectInput!
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -49,10 +50,11 @@ export const updateProject = `mutation UpdateProject($input: UpdateProjectInput!
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -89,10 +91,11 @@ export const deleteProject = `mutation DeleteProject($input: DeleteProjectInput!
     description
     tags
     created
+    startDate
+    endDate
     steps {
       items {
         id
-        title
         name
         description
         time
@@ -124,7 +127,7 @@ export const deleteProject = `mutation DeleteProject($input: DeleteProjectInput!
 export const createStep = `mutation CreateStep($input: CreateStepInput!) {
   createStep(input: $input) {
     id
-    title
+    name
     project {
       id
       userId
@@ -132,8 +135,9 @@ export const createStep = `mutation CreateStep($input: CreateStepInput!) {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -142,7 +146,7 @@ export const createStep = `mutation CreateStep($input: CreateStepInput!) {
 export const updateStep = `mutation UpdateStep($input: UpdateStepInput!) {
   updateStep(input: $input) {
     id
-    title
+    name
     project {
       id
       userId
@@ -150,8 +154,9 @@ export const updateStep = `mutation UpdateStep($input: UpdateStepInput!) {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -160,7 +165,7 @@ export const updateStep = `mutation UpdateStep($input: UpdateStepInput!) {
 export const deleteStep = `mutation DeleteStep($input: DeleteStepInput!) {
   deleteStep(input: $input) {
     id
-    title
+    name
     project {
       id
       userId
@@ -168,8 +173,9 @@ export const deleteStep = `mutation DeleteStep($input: DeleteStepInput!) {
       description
       tags
       created
+      startDate
+      endDate
     }
-    name
     description
     time
   }
@@ -185,6 +191,8 @@ export const createMaterial = `mutation CreateMaterial($input: CreateMaterialInp
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -204,6 +212,8 @@ export const updateMaterial = `mutation UpdateMaterial($input: UpdateMaterialInp
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -223,6 +233,8 @@ export const deleteMaterial = `mutation DeleteMaterial($input: DeleteMaterialInp
       description
       tags
       created
+      startDate
+      endDate
     }
     name
     quantityNeeded
@@ -242,6 +254,8 @@ export const createMedia = `mutation CreateMedia($input: CreateMediaInput!) {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src
@@ -258,6 +272,8 @@ export const updateMedia = `mutation UpdateMedia($input: UpdateMediaInput!) {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src
@@ -274,6 +290,8 @@ export const deleteMedia = `mutation DeleteMedia($input: DeleteMediaInput!) {
       description
       tags
       created
+      startDate
+      endDate
     }
     caption
     src
