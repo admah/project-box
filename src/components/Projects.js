@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { Connect } from "aws-amplify-react";
-import { Button, Card, Dimmer, Header, Loader, Modal } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  Container,
+  Dimmer,
+  Divider,
+  Header,
+  Loader,
+  Modal
+} from "semantic-ui-react";
 import { listProjects } from "../graphql/queries";
 import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
@@ -10,7 +19,7 @@ import ProjectForm from "./ProjectForm";
 class Projects extends Component {
   render() {
     return (
-      <div className="ui container" style={{ marginTop: "80px" }}>
+      <Container style={{ marginTop: "80px" }}>
         <Modal
           trigger={<Button positive icon="plus" content="Add a Project" />}
           closeIcon
@@ -44,7 +53,7 @@ class Projects extends Component {
             }}
           </Connect>
         </Card.Group>
-      </div>
+      </Container>
     );
   }
 }
