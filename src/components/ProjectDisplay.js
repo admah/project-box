@@ -8,9 +8,11 @@ import {
   Divider,
   Grid,
   Header,
+  Icon,
   Item,
   Loader,
-  Modal
+  Modal,
+  Segment
 } from "semantic-ui-react";
 import { getProject } from "../graphql/queries";
 import ProjectForm from "./ProjectForm";
@@ -49,6 +51,15 @@ class ProjectDisplay extends Component {
                     <Loader />
                   </Dimmer>
                 );
+
+              const materials = getProject.materials.items;
+              const totalMaterialCost = materials.reduce(
+                (prev, cur) => prev + cur.totalCost,
+                0
+              );
+
+              console.log(materials);
+
               return (
                 <React.Fragment>
                   <Modal
@@ -135,63 +146,91 @@ class ProjectDisplay extends Component {
                         </Modal>
                       </Grid.Column>
                       <Grid.Column width={12}>
-                        {getProject.description}
-
-                        <Container style={{ margin: "20px 0" }}>
-                          <h3>Project Materials</h3>
-                          <Divider />
-                          <Item.Group>
-                            {getProject.materials &&
-                              getProject.materials.items.map(material => (
+                        <Segment>{getProject.description}</Segment>
+                        {materials.length > 0 && (
+                          <Segment style={{ margin: "20px 0" }}>
+                            <h3>Project Materials</h3>
+                            <p>{`Total Cost: $${totalMaterialCost}`}</p>
+                            <Divider />
+                            <Item.Group>
+                              {materials.map(material => (
                                 <Item key={material.id}>
                                   <Item.Image
-                                    size="tiny"
+                                    size="small"
                                     src="/images/wireframe/image.png"
                                   />
-                                  <Item.Content
-                                    header={material.name}
-                                    meta={`Price: ${material.pricePerItem}`}
-                                  />
-                                  <Item.Extra>
-                                    <Modal
-                                      trigger={
-                                        <Button
-                                          icon="edit outline"
-                                          floated="right"
-                                          size="tiny"
-                                          onClick={() =>
-                                            this.setState({
-                                              activeModal: `material-${
-                                                material.id
-                                              }`
-                                            })
-                                          }
-                                        />
-                                      }
-                                      onClose={this.closeModal}
-                                      open={
-                                        this.state.activeModal ===
-                                        `material-${material.id}`
-                                      }
-                                      closeIcon
+                                  <Item.Content>
+                                    <Item.Header
+                                      as="a"
+                                      href={material.productUrl}
+                                      target="_blank"
                                     >
-                                      <Header
-                                        icon="edit outline"
-                                        content="Edit Material"
-                                      />
-                                      <Modal.Content>
-                                        <MaterialForm
-                                          formMode="edit"
-                                          material={material}
-                                          closeModal={this.closeModal}
+                                      {material.name}
+                                    </Item.Header>
+                                    <Item.Meta>{`Quantity: ${
+                                      material.quantityNeeded
+                                    } / Price: ${
+                                      material.pricePerItem
+                                    }`}</Item.Meta>
+                                    <Item.Extra>
+                                      <Modal
+                                        trigger={
+                                          <Button
+                                            icon="edit outline"
+                                            size="tiny"
+                                            onClick={() =>
+                                              this.setState({
+                                                activeModal: `material-${
+                                                  material.id
+                                                }`
+                                              })
+                                            }
+                                          />
+                                        }
+                                        onClose={this.closeModal}
+                                        open={
+                                          this.state.activeModal ===
+                                          `material-${material.id}`
+                                        }
+                                        closeIcon
+                                      >
+                                        <Header
+                                          icon="edit outline"
+                                          content="Edit Material"
                                         />
-                                      </Modal.Content>
-                                    </Modal>
-                                  </Item.Extra>
+                                        <Modal.Content>
+                                          <MaterialForm
+                                            formMode="edit"
+                                            material={material}
+                                            closeModal={this.closeModal}
+                                          />
+                                        </Modal.Content>
+                                      </Modal>
+                                    </Item.Extra>
+                                  </Item.Content>
                                 </Item>
                               ))}
-                          </Item.Group>
-                        </Container>
+                            </Item.Group>
+                          </Segment>
+                        )}
+                        {materials.length === 0 && (
+                          <Segment placeholder>
+                            <Header icon>
+                              <Icon name="home" />
+                              This project does not have any materials yet.
+                            </Header>
+                            <Button
+                              onClick={() =>
+                                this.setState({
+                                  activeModal: "material"
+                                })
+                              }
+                              primary
+                            >
+                              Add Material
+                            </Button>
+                          </Segment>
+                        )}
                       </Grid.Column>
                     </Grid>
                   </Container>
