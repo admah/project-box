@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Amplify, { graphqlOperation } from "aws-amplify";
-import { Connect } from "aws-amplify-react";
+import { Connect, S3Image } from "aws-amplify-react";
 import {
   Button,
   Container,
@@ -9,6 +9,7 @@ import {
   Grid,
   Header,
   Icon,
+  Image,
   Item,
   Loader,
   Modal,
@@ -170,6 +171,17 @@ class ProjectDisplay extends Component {
                           />
                         </Modal.Content>
                       </Modal>
+
+                      {getProject.media.items.length > 0 && (
+                        <div>
+                          <h4>Images</h4>
+                          <Image.Group size="tiny">
+                            {getProject.media.items.map(item => (
+                              <S3Image imgKey={item.src} />
+                            ))}
+                          </Image.Group>
+                        </div>
+                      )}
                     </Grid.Column>
                     <Grid.Column width={12}>
                       <Segment>

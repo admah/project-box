@@ -31,5 +31,5 @@ type Media @model {
   id: ID!
   project: Project @connection(name: "ProjectMedia")
   caption: String
-  src: AWSURL
+  src: String
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify, { API, graphqlOperation, Storage } from "aws-amplify";
 import { Form, Header, Icon, Input, Message, Segment } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
@@ -14,25 +14,23 @@ class MediaForm extends Component {
 
   state = {
     name: "",
-    file: null
+    files: []
   };
 
   onDrop = async acceptedFiles => {
-    console.log(acceptedFiles);
-    /*const req = request.post("/upload");
-    acceptedFiles.forEach(file => {
-      req.attach(file.name, file);
+    this.setState({
+      files: this.state.files.concat(acceptedFiles)
     });
-    req.end(callback);*/
-  };
 
-  uploadToS3 = async (file, signedRequest) => {
-    const options = {
-      headers: {
-        "Content-Type": file.type
-      }
-    };
-    await axios.put(signedRequest, file, options);
+    acceptedFiles.forEach(file => {
+      this.props.setFieldValue("src", file.name);
+
+      Storage.put(file.name, file, {
+        contentType: file.type
+      })
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
+    });
   };
 
   formatFilename = filename => {
@@ -46,26 +44,10 @@ class MediaForm extends Component {
   };
 
   render() {
-    const {
-      values,
-      touched,
-      errors,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-      closeModal,
-      setFieldValue
-    } = this.props;
+    const { handleSubmit, closeModal } = this.props;
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <Dropzone
-          required
-          onDrop={this.onDrop}
-          onChange={e => {
-            setFieldValue("file", this.state.file);
-          }}
-          name="src"
-        >
+        <Dropzone required onDrop={this.onDrop} name="src">
           <Segment>
             <Header icon>
               <Icon name="picture" />
@@ -73,7 +55,8 @@ class MediaForm extends Component {
             </Header>
           </Segment>
         </Dropzone>
-
+        {this.state.files.length > 0 &&
+          this.state.files.map(file => <p key={file.name}>{file.name}</p>)}
         <br />
         <br />
         <Message
@@ -101,45 +84,24 @@ export default withFormik({
   }),
 
   handleSubmit: async (values, { props, setSubmitting }) => {
-    const { file } = this.state;
-
-    const response = await props.s3Sign({
-      variables: {
-        filename: this.formatFilename(file.name),
-        filetype: file.type
-      }
-    });
-
+    console.log("values: ", values);
     console.log("props: ", props);
-
-    const { signedRequest, url } = response.data.signS3;
-    await this.uploadToS3(file, signedRequest);
 
     const CreateMediaForm = await API.graphql(
       graphqlOperation(createMedia, {
         input: {
-          mediaProjectid: props.project.id,
-          caption: values.caption,
-          src: url
-        }
-      })
-    );
-    const UpdateMediaForm = await API.graphql(
-      graphqlOperation(updateMedia, {
-        input: {
-          mediaProjectid: props.project.id,
-          ...values
+          mediaProjectId: props.project.id,
+          src: values.src
         }
       })
     );
 
     try {
-      //props.formMode === "edit" ? UpdateMediaForm() : CreateMediaForm();
-      //props.closeModal();
-      console.log(props);
-      console.log(values);
+      CreateMediaForm();
+      props.closeModal();
+      console.log("success adding media: ", values);
     } catch {
-      console.log("problem adding project: ", values);
+      console.log("problem adding media: ", values);
     }
 
     setSubmitting(false);

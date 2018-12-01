@@ -34,7 +34,7 @@ type Media {
   id: ID!
   project: Project
   caption: String
-  src: AWSURL
+  src: String
 }
 
 enum ModelSortDirection {
@@ -276,14 +276,14 @@ input ModelMediaFilterInput {
 input CreateMediaInput {
   id: ID
   caption: String
-  src: AWSURL
+  src: String
   mediaProjectId: ID
 }
 
 input UpdateMediaInput {
   id: ID!
   caption: String
-  src: AWSURL
+  src: String
   mediaProjectId: ID
 }
 
