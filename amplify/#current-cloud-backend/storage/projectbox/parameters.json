@@ -1,0 +1,9 @@
+{
+    "bucketName": "projectbox1332d459e2aa4589972dd8363a1bad93",
+    "authPolicyName": "s3_amplify_b9981dae",
+    "unauthPolicyName": "s3_amplify_b9981dae",
+    "authRoleName": "projectbox-20181128110131-authRole",
+    "unauthRoleName": "projectbox-20181128110131-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": "rw"
+}

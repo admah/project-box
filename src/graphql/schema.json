@@ -1489,7 +1489,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
-            "name" : "AWSURL",
+            "name" : "String",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2546,7 +2546,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "AWSURL",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2595,7 +2595,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "AWSURL",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
