@@ -6,7 +6,7 @@ import { createMaterial, updateMaterial } from "../graphql/mutations";
 
 class MaterialForm extends Component {
   static defaultProps = {
-    createProject: () => null,
+    createMaterial: () => null,
     material: {}
   };
 
@@ -123,6 +123,7 @@ export default withFormik({
             name: values.name,
             quantityNeeded: values.quantityNeeded,
             pricePerItem: values.pricePerItem,
+            totalCost: values.quantityNeeded * values.pricePerItem,
             productUrl: values.productUrl
           }
         })
