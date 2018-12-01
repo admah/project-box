@@ -17,6 +17,7 @@ import {
 import { getProject } from "../graphql/queries";
 import ProjectForm from "./ProjectForm";
 import MaterialForm from "./MaterialForm";
+import MediaForm from "./MediaForm";
 import StepForm from "./StepForm";
 class ProjectDisplay extends Component {
   constructor(props) {
@@ -121,6 +122,32 @@ class ProjectDisplay extends Component {
                       <Modal
                         trigger={
                           <Button
+                            content="Add Media"
+                            fluid
+                            style={{ marginBottom: "10px" }}
+                            onClick={() =>
+                              this.setState({
+                                activeModal: "media"
+                              })
+                            }
+                          />
+                        }
+                        onClose={this.closeModal}
+                        open={this.state.activeModal === "media"}
+                        closeIcon
+                      >
+                        <Header icon="plus" content="Add Media" />
+                        <Modal.Content>
+                          <MediaForm
+                            formMode="create"
+                            project={getProject}
+                            closeModal={this.closeModal}
+                          />
+                        </Modal.Content>
+                      </Modal>
+                      <Modal
+                        trigger={
+                          <Button
                             content="Add Step"
                             onClick={() =>
                               this.setState({
@@ -145,10 +172,14 @@ class ProjectDisplay extends Component {
                       </Modal>
                     </Grid.Column>
                     <Grid.Column width={12}>
-                      <Segment>{getProject.description}</Segment>
+                      <Segment>
+                        <h2>Description</h2>
+                        <Divider />
+                        {getProject.description}
+                      </Segment>
                       {materials.length > 0 && (
                         <Segment style={{ margin: "20px 0" }}>
-                          <h3>Project Materials</h3>
+                          <h2>Materials</h2>
                           <p>{`Total Cost: $${totalMaterialCost}`}</p>
                           <Divider />
                           <Item.Group>

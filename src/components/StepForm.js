@@ -6,8 +6,8 @@ import { createStep, updateStep } from "../graphql/mutations";
 
 class StepForm extends Component {
   static defaultProps = {
-    createProject: () => null,
-    project: {}
+    createStep: () => null,
+    step: {}
   };
 
   render() {
