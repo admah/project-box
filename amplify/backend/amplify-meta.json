@@ -25,7 +25,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiprojectbox"
 			},
-			"lastPushTimeStamp": "2018-12-01T04:54:56.693Z",
+			"lastPushTimeStamp": "2018-12-02T03:53:55.972Z",
 			"lastPushDirHash": "I4mroO3vP9gWie4z1J4xDWfT2bY="
 		}
 	},
@@ -37,7 +37,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/auth/cognito404d8088-cloudformation-template.yml",
 				"logicalId": "authcognito404d8088"
 			},
-			"lastPushTimeStamp": "2018-12-01T04:54:54.877Z",
+			"lastPushTimeStamp": "2018-12-02T03:53:55.980Z",
 			"output": {
 				"AppClientSecret": "h7upjj1377qbgp4oqigrcbqdthbvr157qf6sm95bofml3f5pfsv",
 				"UserPoolId": "us-east-1_wV1tralJa",
@@ -45,9 +45,12 @@
 				"AppClientID": "7h6f3tlm67j0lc649tig55gd8b",
 				"IdentityPoolId": "us-east-1:39b5e0a3-4acb-4835-b477-5453bb6c48f2",
 				"IdentityPoolName": "cognito404d8088_identitypool_404d8088",
-				"UserPoolName": "cognito404d8088_userpool_404d8088"
+				"UserPoolName": "cognito404d8088_userpool_404d8088",
+				"GoogleWebClient": "1234",
+				"FacebookWebClient": "577982072662925"
 			},
-			"lastPushDirHash": "/GWK7yYcC53uFxHsyvXSDZqDTwY="
+			"lastPushDirHash": "ro0iJ33R+EdOICp2GYxOg76eGXU=",
+			"[object Object]": {}
 		}
 	},
 	"storage": {
@@ -58,7 +61,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storageprojectbox"
 			},
-			"lastPushTimeStamp": "2018-12-01T04:54:54.883Z",
+			"lastPushTimeStamp": "2018-12-02T03:53:55.979Z",
 			"output": {
 				"BucketName": "projectbox1332d459e2aa4589972dd8363a1bad93",
 				"Region": "us-east-1"
