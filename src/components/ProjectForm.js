@@ -26,6 +26,7 @@ class ProjectForm extends Component {
   state = { open: false };
 
   open = () => this.setState({ open: true });
+  close = () => this.setState({ close: true });
   confirmDelete = async () => {
     this.setState({ open: false });
     await API.graphql(
@@ -35,7 +36,7 @@ class ProjectForm extends Component {
         }
       })
     );
-    this.props.closeModal();
+    this.props.history.push("/projects");
   };
 
   render() {
@@ -113,7 +114,7 @@ class ProjectForm extends Component {
         />
 
         <div style={{ paddingBottom: "40px" }}>
-          <Button type="submit" floated="left">
+          <Button type="submit" floated="left" positive>
             Save
           </Button>
           {formMode === "edit" && (

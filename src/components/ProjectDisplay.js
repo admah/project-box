@@ -37,7 +37,7 @@ class ProjectDisplay extends Component {
   }
 
   render() {
-    const { match } = this.props;
+    const { history, match } = this.props;
 
     return (
       <Container style={{ marginTop: "80px" }}>
@@ -84,6 +84,7 @@ class ProjectDisplay extends Component {
                   <Modal.Content>
                     <ProjectForm
                       formMode="edit"
+                      history={history}
                       project={getProject}
                       closeModal={this.closeModal}
                     />
