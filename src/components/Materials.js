@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Amplify, { graphqlOperation } from "aws-amplify";
+import { graphqlOperation } from "aws-amplify";
 import { Connect } from "aws-amplify-react";
 import {
   Button,

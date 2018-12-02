@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Amplify, { graphqlOperation } from "aws-amplify";
+import { graphqlOperation } from "aws-amplify";
 import { Connect } from "aws-amplify-react";
 import {
   Button,
   Card,
   Container,
   Dimmer,
-  Divider,
   Header,
   Loader,
   Modal
@@ -30,7 +29,11 @@ class Projects extends Component {
           </Modal.Content>
         </Modal>
 
-        <Card.Group style={{ marginTop: "30px" }} centered>
+        <Card.Group
+          style={{ marginTop: "30px" }}
+          itemsPerRow={4}
+          stackable={true}
+        >
           <Connect
             query={graphqlOperation(listProjects)}
             subscription={graphqlOperation(onCreateProject)}

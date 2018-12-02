@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
-import { Form, Input, Message, TextArea } from "semantic-ui-react";
-import moment from "moment";
+import { API, graphqlOperation } from "aws-amplify";
+import {
+  Button,
+  Confirm,
+  Form,
+  Input,
+  Message,
+  TextArea
+} from "semantic-ui-react";
 import { withFormik } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { createProject, updateProject } from "../graphql/mutations";
+import {
+  createProject,
+  updateProject,
+  deleteProject
+} from "../graphql/mutations";
 
 class ProjectForm extends Component {
   static defaultProps = {
@@ -13,8 +23,24 @@ class ProjectForm extends Component {
     project: {}
   };
 
+  state = { open: false };
+
+  open = () => this.setState({ open: true });
+  confirmDelete = async () => {
+    this.setState({ open: false });
+    await API.graphql(
+      graphqlOperation(deleteProject, {
+        input: {
+          id: this.props.project.id
+        }
+      })
+    );
+    this.props.closeModal();
+  };
+
   render() {
     const {
+      formMode,
       values,
       touched,
       errors,
@@ -85,7 +111,31 @@ class ProjectForm extends Component {
           header="Project Created!"
           content="Your project was successfully created. Refresh the page to see it added to the list."
         />
-        <Form.Button type="submit">Save</Form.Button>
+
+        <div style={{ paddingBottom: "40px" }}>
+          <Button type="submit" floated="left">
+            Save
+          </Button>
+          {formMode === "edit" && (
+            <div>
+              <Button
+                type="button"
+                floated="right"
+                onClick={this.open}
+                negative
+              >
+                Delete
+              </Button>
+              <Confirm
+                open={this.state.open}
+                onCancel={this.close}
+                onConfirm={this.confirmDelete}
+                content="Are you sure that you want to delete this project?"
+                confirmButton="Yes"
+              />
+            </div>
+          )}
+        </div>
       </Form>
     );
   }
