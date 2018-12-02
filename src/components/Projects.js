@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { graphqlOperation } from "aws-amplify";
+import { Auth, graphqlOperation } from "aws-amplify";
 import { Connect } from "aws-amplify-react";
 import {
   Button,
@@ -16,6 +16,12 @@ import ProjectCard from "./ProjectCard";
 import ProjectForm from "./forms/ProjectForm";
 
 class Projects extends Component {
+  async getAuthUserId() {
+    const authUser = await Auth.currentAuthenticatedUser();
+
+    return authUser.attributes.sub;
+  }
+
   render() {
     return (
       <Container style={{ marginTop: "20px" }}>
@@ -35,7 +41,9 @@ class Projects extends Component {
           stackable={true}
         >
           <Connect
-            query={graphqlOperation(listProjects)}
+            query={graphqlOperation(listProjects, {
+              input: { userId: this.getAuthUserId }
+            })}
             subscription={graphqlOperation(onCreateProject)}
             onSubscriptionMsg={(prev, { onCreateProject }) => {
               console.log(onCreateProject);
