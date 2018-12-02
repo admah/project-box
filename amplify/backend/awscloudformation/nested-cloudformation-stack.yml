@@ -97,8 +97,8 @@
 				"TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/auth/cognito404d8088-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "cognito404d8088_identitypool_404d8088",
-					"allowUnauthenticatedIdentities": true,
-					"thirdPartyAuth": false,
+					"allowUnauthenticatedIdentities": false,
+					"thirdPartyAuth": true,
 					"lambdaLogPolicy": "cognito404d8088_lambda_log_policy",
 					"openIdLambdaRoleName": "cognito404d8088_openid_lambda_role",
 					"openIdRolePolicy": "cognito404d8088_openid_pass_role_policy",
@@ -121,7 +121,7 @@
 					"requiredAttributes": "email",
 					"userpoolClientName": "cognito404d8088_app_client",
 					"userpoolClientGenerateSecret": true,
-					"userpoolClientRefreshTokenValidity": 30,
+					"userpoolClientRefreshTokenValidity": "30",
 					"userpoolClientReadAttributes": "email",
 					"mfaLambdaRole": "cognito404d8088_totp_lambda_role",
 					"mfaLambdaLogPolicy": "cognito404d8088_totp_lambda_log_policy",
@@ -131,13 +131,17 @@
 					"userpoolClientLogPolicy": "cognito404d8088_userpoolclient_lambda_log_policy",
 					"userpoolClientLambdaPolicy": "cognito404d8088_userpoolclient_lambda_iam_policy",
 					"userpoolClientSetAttributes": false,
-					"useDefault": "default",
+					"resourceName": "cognito404d8088",
+					"authSelections": "identityPoolAndUserPool",
+					"useDefault": "manual",
 					"unAuthRoleName": "projectbox-20181128110131-unauthRole",
 					"authRoleName": "projectbox-20181128110131-authRole",
 					"unAuthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-unauthRole",
 					"authRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-authRole",
-					"resourceName": "cognito404d8088",
-					"authSelections": "identityPoolAndUserPool"
+					"authProviders": "graph.facebook.com,accounts.google.com",
+					"facebookAppId": "577982072662925",
+					"googleClientId": "1234",
+					"selectedParties": "{\"graph.facebook.com\":\"577982072662925\",\"accounts.google.com\":\"1234\"}"
 				}
 			}
 		},
