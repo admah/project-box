@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import Amplify, { API, graphqlOperation, Storage } from "aws-amplify";
-import { Form, Header, Icon, Input, Message, Segment } from "semantic-ui-react";
-import axios from "axios";
+import { API, graphqlOperation, Storage } from "aws-amplify";
+import { Form, Header, Icon, Message, Segment } from "semantic-ui-react";
 import moment from "moment";
 import { withFormik } from "formik";
-import { createMedia, updateMedia } from "../graphql/mutations";
+import { createMedia } from "../graphql/mutations";
 
 class MediaForm extends Component {
   static defaultProps = {
