@@ -178,7 +178,7 @@ class ProjectDisplay extends Component {
                           <h4>Images</h4>
                           <Image.Group size="tiny">
                             {getProject.media.items.map(item => (
-                              <S3Image imgKey={item.src} />
+                              <S3Image key={item.src} imgKey={item.src} />
                             ))}
                           </Image.Group>
                         </div>
