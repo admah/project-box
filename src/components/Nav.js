@@ -5,7 +5,7 @@ import { Icon, Menu, Button } from "semantic-ui-react";
 class Nav extends Component {
   render() {
     return (
-      <Menu className="inverted top fixed">
+      <Menu className="inverted top">
         <NavLink className="menu item" exact to="/" activeClassName="">
           <Icon className="big rounded clipboard" />
           Project-Box

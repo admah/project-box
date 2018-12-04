@@ -9,15 +9,17 @@ import Materials from "../components/Materials";
 class Wrapper extends Component {
   render() {
     return (
-      <div className="ui container">
+      <React.Fragment>
         <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/projects" component={Projects} />
-          <Route path="/project/:projectId" component={ProjectDisplay} />
-          <Route path="/materials" component={Materials} />
-        </Switch>
-      </div>
+        <div className="ui container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/projects" component={Projects} />
+            <Route path="/project/:projectId" component={ProjectDisplay} />
+            <Route path="/materials" component={Materials} />
+          </Switch>
+        </div>
+      </React.Fragment>
     );
   }
 }
