@@ -1,0 +1,20 @@
+{
+    "api": {
+        "projectbox": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "auth": {
+        "cognito404d8088": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "storage": {
+        "projectbox": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation"
+        }
+    }
+}

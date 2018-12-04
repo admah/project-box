@@ -11,6 +11,7 @@ export const getProject = `query GetProject($id: ID!) {
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -57,6 +58,7 @@ export const listProjects = `query ListProjects(
       created
       startDate
       endDate
+      public
       steps {
         items {
           id
@@ -103,6 +105,7 @@ export const getStep = `query GetStep($id: ID!) {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -127,6 +130,7 @@ export const listSteps = `query ListSteps(
         created
         startDate
         endDate
+        public
       }
       description
       time
@@ -147,6 +151,7 @@ export const getMaterial = `query GetMaterial($id: ID!) {
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -173,6 +178,7 @@ export const listMaterials = `query ListMaterials(
         created
         startDate
         endDate
+        public
       }
       name
       quantityNeeded
@@ -196,6 +202,7 @@ export const getMedia = `query GetMedia($id: ID!) {
       created
       startDate
       endDate
+      public
     }
     caption
     src
@@ -219,6 +226,7 @@ export const listMedias = `query ListMedias(
         created
         startDate
         endDate
+        public
       }
       caption
       src

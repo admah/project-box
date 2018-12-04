@@ -7,6 +7,7 @@ type Project {
   created: AWSTimestamp
   startDate: AWSDateTime
   endDate: AWSDateTime
+  public: Boolean
   steps(filter: ModelStepFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStepConnection
   materials(filter: ModelMaterialFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMaterialConnection
   media(filter: ModelMediaFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMediaConnection
@@ -111,6 +112,7 @@ input ModelProjectFilterInput {
   created: ModelIntFilterInput
   startDate: ModelStringFilterInput
   endDate: ModelStringFilterInput
+  public: ModelBooleanFilterInput
   and: [ModelProjectFilterInput]
   or: [ModelProjectFilterInput]
   not: ModelProjectFilterInput
@@ -136,6 +138,7 @@ input CreateProjectInput {
   created: AWSTimestamp
   startDate: AWSDateTime
   endDate: AWSDateTime
+  public: Boolean
 }
 
 input UpdateProjectInput {
@@ -147,6 +150,7 @@ input UpdateProjectInput {
   created: AWSTimestamp
   startDate: AWSDateTime
   endDate: AWSDateTime
+  public: Boolean
 }
 
 input DeleteProjectInput {

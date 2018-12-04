@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Icon, Menu } from "semantic-ui-react";
+import { Icon, Menu, Button } from "semantic-ui-react";
 
 class Nav extends Component {
   render() {
@@ -16,6 +16,14 @@ class Nav extends Component {
         <NavLink className="menu item" to="/materials">
           Materials
         </NavLink>
+        <Menu.Menu position="right">
+          <Menu.Item>
+            <Button inverted>Log In</Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button inverted>Sign Up</Button>
+          </Menu.Item>
+        </Menu.Menu>
       </Menu>
     );
   }
