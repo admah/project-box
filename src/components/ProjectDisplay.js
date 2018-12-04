@@ -16,10 +16,10 @@ import {
   Segment
 } from "semantic-ui-react";
 import { getProject } from "../graphql/queries";
-import ProjectForm from "./ProjectForm";
-import MaterialForm from "./MaterialForm";
-import MediaForm from "./MediaForm";
-import StepForm from "./StepForm";
+import ProjectForm from "./forms/ProjectForm";
+import MaterialForm from "./forms/MaterialForm";
+import MediaForm from "./forms/MediaForm";
+import StepForm from "./forms/StepForm";
 class ProjectDisplay extends Component {
   constructor(props) {
     super(props);

@@ -4,7 +4,7 @@ import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Form, Header, Icon, Message, Segment } from "semantic-ui-react";
 import moment from "moment";
 import { withFormik } from "formik";
-import { createMedia } from "../graphql/mutations";
+import { createMedia } from "../../graphql/mutations";
 
 class MediaForm extends Component {
   static defaultProps = {
@@ -67,7 +67,7 @@ class MediaForm extends Component {
           <Form.Button type="submit" positive>
             Submit
           </Form.Button>
-          <Form.Button type="button" onClick={closeModal} negative>
+          <Form.Button type="button" onClick={closeModal}>
             Cancel
           </Form.Button>
         </Form.Group>

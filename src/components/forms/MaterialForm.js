@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Form, Input, Message } from "semantic-ui-react";
 import { withFormik } from "formik";
-import { createMaterial, updateMaterial } from "../graphql/mutations";
+import { createMaterial, updateMaterial } from "../../graphql/mutations";
 
 class MaterialForm extends Component {
   static defaultProps = {
