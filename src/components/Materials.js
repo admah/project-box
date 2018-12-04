@@ -12,7 +12,7 @@ import {
   Modal
 } from "semantic-ui-react";
 import { listMaterials } from "../graphql/queries";
-import MaterialForm from "./MaterialForm";
+import MaterialForm from "./forms/MaterialForm";
 
 class Materials extends Component {
   constructor(props) {

@@ -13,7 +13,7 @@ import {
 import { listProjects } from "../graphql/queries";
 import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
-import ProjectForm from "./ProjectForm";
+import ProjectForm from "./forms/ProjectForm";
 
 class Projects extends Component {
   render() {

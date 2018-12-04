@@ -15,7 +15,7 @@ import {
   createProject,
   updateProject,
   deleteProject
-} from "../graphql/mutations";
+} from "../../graphql/mutations";
 
 class ProjectForm extends Component {
   static defaultProps = {

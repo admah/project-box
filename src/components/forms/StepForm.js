@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Form, Input, Message, TextArea } from "semantic-ui-react";
 import { withFormik } from "formik";
-import { createStep, updateStep } from "../graphql/mutations";
+import { createStep, updateStep } from "../../graphql/mutations";
 
 class StepForm extends Component {
   static defaultProps = {
