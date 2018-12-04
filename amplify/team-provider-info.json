@@ -1,5 +1,5 @@
 {
-    "providers": {
+    "NONE": {
         "awscloudformation": {
             "AuthRoleName": "projectbox-20181128110131-authRole",
             "UnauthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-unauthRole",
@@ -9,6 +9,14 @@
             "UnauthRoleName": "projectbox-20181128110131-unauthRole",
             "StackName": "projectbox-20181128110131",
             "StackId": "arn:aws:cloudformation:us-east-1:537789755158:stack/projectbox-20181128110131/41606910-f32f-11e8-8421-500c217dbe62"
+        },
+        "categories": {
+            "auth": {
+                "cognito404d8088": {
+                    "facebookAppId": "577982072662925",
+                    "googleClientId": "1234"
+                }
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ type Project @model {
   created: AWSTimestamp
   startDate: AWSDateTime
   endDate: AWSDateTime
+  public: Boolean
   steps: [Step] @connection(name: "ProjectSteps")
   materials: [Material] @connection(name: "ProjectMaterials")
   media: [Media] @connection(name: "ProjectMedia")

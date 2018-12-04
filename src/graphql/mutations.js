@@ -11,6 +11,7 @@ export const createProject = `mutation CreateProject($input: CreateProjectInput!
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -52,6 +53,7 @@ export const updateProject = `mutation UpdateProject($input: UpdateProjectInput!
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -93,6 +95,7 @@ export const deleteProject = `mutation DeleteProject($input: DeleteProjectInput!
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -137,6 +140,7 @@ export const createStep = `mutation CreateStep($input: CreateStepInput!) {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -156,6 +160,7 @@ export const updateStep = `mutation UpdateStep($input: UpdateStepInput!) {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -175,6 +180,7 @@ export const deleteStep = `mutation DeleteStep($input: DeleteStepInput!) {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -193,6 +199,7 @@ export const createMaterial = `mutation CreateMaterial($input: CreateMaterialInp
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -214,6 +221,7 @@ export const updateMaterial = `mutation UpdateMaterial($input: UpdateMaterialInp
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -235,6 +243,7 @@ export const deleteMaterial = `mutation DeleteMaterial($input: DeleteMaterialInp
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -256,6 +265,7 @@ export const createMedia = `mutation CreateMedia($input: CreateMediaInput!) {
       created
       startDate
       endDate
+      public
     }
     caption
     src
@@ -274,6 +284,7 @@ export const updateMedia = `mutation UpdateMedia($input: UpdateMediaInput!) {
       created
       startDate
       endDate
+      public
     }
     caption
     src
@@ -292,6 +303,7 @@ export const deleteMedia = `mutation DeleteMedia($input: DeleteMediaInput!) {
       created
       startDate
       endDate
+      public
     }
     caption
     src

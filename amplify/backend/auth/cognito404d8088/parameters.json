@@ -1,4 +1,22 @@
 {
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
     "identityPoolName": "cognito404d8088_identitypool_404d8088",
     "allowUnauthenticatedIdentities": false,
     "thirdPartyAuth": true,
@@ -51,14 +69,10 @@
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "unAuthRoleName": "projectbox-20181128110131-unauthRole",
-    "authRoleName": "projectbox-20181128110131-authRole",
     "unAuthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-unauthRole",
-    "authRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-authRole",
     "authProviders": [
         "graph.facebook.com",
         "accounts.google.com"
     ],
-    "facebookAppId": "577982072662925",
-    "googleClientId": "1234",
     "selectedParties": "{\"graph.facebook.com\":\"577982072662925\",\"accounts.google.com\":\"1234\"}"
 }

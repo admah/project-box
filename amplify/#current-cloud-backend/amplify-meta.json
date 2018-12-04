@@ -1,72 +1,72 @@
 {
-	"providers": {
-		"awscloudformation": {
-			"AuthRoleName": "projectbox-20181128110131-authRole",
-			"UnauthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "projectbox-20181128110131-deployment",
-			"UnauthRoleName": "projectbox-20181128110131-unauthRole",
-			"StackName": "projectbox-20181128110131",
-			"StackId": "arn:aws:cloudformation:us-east-1:537789755158:stack/projectbox-20181128110131/41606910-f32f-11e8-8421-500c217dbe62"
-		}
-	},
-	"api": {
-		"projectbox": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"securityType": "API_KEY",
-				"GraphQLAPIIdOutput": "cacaqjvqwzevtgj6fdhfgxy7sy",
-				"GraphQLAPIEndpointOutput": "https://5ziu5oh5bvga5kdixb5olf33qq.appsync-api.us-east-1.amazonaws.com/graphql",
-				"GraphQLAPIKeyOutput": "da2-s4smfdet5nhxjiqyrrzjw36xja"
-			},
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-				"logicalId": "apiprojectbox"
-			},
-			"lastPushTimeStamp": "2018-12-02T03:53:55.972Z",
-			"lastPushDirHash": "I4mroO3vP9gWie4z1J4xDWfT2bY="
-		}
-	},
-	"auth": {
-		"cognito404d8088": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/auth/cognito404d8088-cloudformation-template.yml",
-				"logicalId": "authcognito404d8088"
-			},
-			"lastPushTimeStamp": "2018-12-02T03:53:55.980Z",
-			"output": {
-				"AppClientSecret": "h7upjj1377qbgp4oqigrcbqdthbvr157qf6sm95bofml3f5pfsv",
-				"UserPoolId": "us-east-1_wV1tralJa",
-				"AppClientIDWeb": "5vkkvp6pgh6n1aibp1if9v50ke",
-				"AppClientID": "7h6f3tlm67j0lc649tig55gd8b",
-				"IdentityPoolId": "us-east-1:39b5e0a3-4acb-4835-b477-5453bb6c48f2",
-				"IdentityPoolName": "cognito404d8088_identitypool_404d8088",
-				"UserPoolName": "cognito404d8088_userpool_404d8088",
-				"GoogleWebClient": "1234",
-				"FacebookWebClient": "577982072662925"
-			},
-			"lastPushDirHash": "ro0iJ33R+EdOICp2GYxOg76eGXU=",
-			"[object Object]": {}
-		}
-	},
-	"storage": {
-		"projectbox": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
-				"logicalId": "storageprojectbox"
-			},
-			"lastPushTimeStamp": "2018-12-02T03:53:55.979Z",
-			"output": {
-				"BucketName": "projectbox1332d459e2aa4589972dd8363a1bad93",
-				"Region": "us-east-1"
-			},
-			"lastPushDirHash": "N6EFJZr7lwHmxsFhY5xq4fHtm48="
-		}
-	}
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "projectbox-20181128110131-authRole",
+            "UnauthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::537789755158:role/projectbox-20181128110131-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "projectbox-20181128110131-deployment",
+            "UnauthRoleName": "projectbox-20181128110131-unauthRole",
+            "StackName": "projectbox-20181128110131",
+            "StackId": "arn:aws:cloudformation:us-east-1:537789755158:stack/projectbox-20181128110131/41606910-f32f-11e8-8421-500c217dbe62"
+        }
+    },
+    "api": {
+        "projectbox": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "securityType": "API_KEY",
+                "GraphQLAPIIdOutput": "cacaqjvqwzevtgj6fdhfgxy7sy",
+                "GraphQLAPIEndpointOutput": "https://5ziu5oh5bvga5kdixb5olf33qq.appsync-api.us-east-1.amazonaws.com/graphql",
+                "GraphQLAPIKeyOutput": "da2-s4smfdet5nhxjiqyrrzjw36xja"
+            },
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+                "logicalId": "apiprojectbox"
+            },
+            "lastPushTimeStamp": "2018-12-04T16:10:57.579Z",
+            "lastPushDirHash": "7sHT2Sd2CfmXfOzeEUY/2DxYCU4="
+        }
+    },
+    "auth": {
+        "cognito404d8088": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/auth/cognito404d8088-cloudformation-template.yml",
+                "logicalId": "authcognito404d8088"
+            },
+            "lastPushTimeStamp": "2018-12-04T16:10:55.047Z",
+            "output": {
+                "AppClientSecret": "h7upjj1377qbgp4oqigrcbqdthbvr157qf6sm95bofml3f5pfsv",
+                "UserPoolId": "us-east-1_wV1tralJa",
+                "AppClientIDWeb": "5vkkvp6pgh6n1aibp1if9v50ke",
+                "AppClientID": "7h6f3tlm67j0lc649tig55gd8b",
+                "IdentityPoolId": "us-east-1:39b5e0a3-4acb-4835-b477-5453bb6c48f2",
+                "IdentityPoolName": "cognito404d8088_identitypool_404d8088",
+                "UserPoolName": "cognito404d8088_userpool_404d8088",
+                "GoogleWebClient": "1234",
+                "FacebookWebClient": "577982072662925"
+            },
+            "lastPushDirHash": "ro0iJ33R+EdOICp2GYxOg76eGXU=",
+            "[object Object]": {}
+        }
+    },
+    "storage": {
+        "projectbox": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/projectbox-20181128110131-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+                "logicalId": "storageprojectbox"
+            },
+            "lastPushTimeStamp": "2018-12-04T16:10:55.053Z",
+            "output": {
+                "BucketName": "projectbox1332d459e2aa4589972dd8363a1bad93",
+                "Region": "us-east-1"
+            },
+            "lastPushDirHash": "N6EFJZr7lwHmxsFhY5xq4fHtm48="
+        }
+    }
 }

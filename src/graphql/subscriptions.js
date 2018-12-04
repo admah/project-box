@@ -11,6 +11,7 @@ export const onCreateProject = `subscription OnCreateProject {
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -52,6 +53,7 @@ export const onUpdateProject = `subscription OnUpdateProject {
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -93,6 +95,7 @@ export const onDeleteProject = `subscription OnDeleteProject {
     created
     startDate
     endDate
+    public
     steps {
       items {
         id
@@ -137,6 +140,7 @@ export const onCreateStep = `subscription OnCreateStep {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -156,6 +160,7 @@ export const onUpdateStep = `subscription OnUpdateStep {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -175,6 +180,7 @@ export const onDeleteStep = `subscription OnDeleteStep {
       created
       startDate
       endDate
+      public
     }
     description
     time
@@ -193,6 +199,7 @@ export const onCreateMaterial = `subscription OnCreateMaterial {
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -214,6 +221,7 @@ export const onUpdateMaterial = `subscription OnUpdateMaterial {
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -235,6 +243,7 @@ export const onDeleteMaterial = `subscription OnDeleteMaterial {
       created
       startDate
       endDate
+      public
     }
     name
     quantityNeeded
@@ -256,6 +265,7 @@ export const onCreateMedia = `subscription OnCreateMedia {
       created
       startDate
       endDate
+      public
     }
     caption
     src
@@ -274,6 +284,7 @@ export const onUpdateMedia = `subscription OnUpdateMedia {
       created
       startDate
       endDate
+      public
     }
     caption
     src
@@ -292,6 +303,7 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
       created
       startDate
       endDate
+      public
     }
     caption
     src
