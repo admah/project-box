@@ -32,7 +32,7 @@ class Materials extends Component {
 
   render() {
     return (
-      <Container style={{ marginTop: "80px" }}>
+      <Container style={{ marginTop: "20px" }}>
         <h2>All Materials</h2>
         <Divider />
         <Item.Group>
