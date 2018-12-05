@@ -6,7 +6,11 @@ const ProjectCard = ({ ...props }) => (
     <Card.Content>
       <Card.Header>{props.name}</Card.Header>
       <Card.Meta>Project</Card.Meta>
-      <Card.Description>{props.description}</Card.Description>
+      <Card.Description
+        dangerouslySetInnerHTML={{
+          __html: props.description
+        }}
+      />
     </Card.Content>
     {props.tags && (
       <Card.Content extra>
