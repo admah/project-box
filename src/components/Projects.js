@@ -18,7 +18,7 @@ import ProjectForm from "./forms/ProjectForm";
 class Projects extends Component {
   render() {
     return (
-      <Container style={{ marginTop: "80px" }}>
+      <Container style={{ marginTop: "20px" }}>
         <Modal
           trigger={<Button positive icon="plus" content="Add a Project" />}
           closeIcon
