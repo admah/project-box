@@ -10,20 +10,34 @@ import {
 } from "semantic-ui-react";
 import { withFormik } from "formik";
 import DatePicker from "react-datepicker";
+import {
+  EditorState,
+  convertFromHTML,
+  convertFromRaw,
+  ContentState
+} from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   createProject,
   updateProject,
   deleteProject
 } from "../../graphql/mutations";
-
 class ProjectForm extends Component {
   static defaultProps = {
     createProject: () => null,
     project: {}
   };
 
-  state = { open: false };
+  state = {
+    open: false,
+    editorState: EditorState.createWithContent(
+      ContentState.createFromBlockArray(
+        convertFromHTML(this.props.project.description)
+      )
+    )
+  };
 
   open = () => this.setState({ open: true });
   close = () => this.setState({ close: true });
@@ -37,6 +51,16 @@ class ProjectForm extends Component {
       })
     );
     this.props.history.push("/projects");
+  };
+
+  onEditorStateChange = editorState => {
+    this.setState({
+      editorState
+    });
+  };
+
+  onContentStateChange = contentState => {
+    this.props.setFieldValue("description", contentState.blocks[0].text);
   };
 
   render() {
@@ -65,19 +89,14 @@ class ProjectForm extends Component {
           placeholder="Enter your project name"
         />
         {errors.name && touched.name && <div id="feedback">{errors.name}</div>}
-        <Form.Field
-          id="form-input-control-project-description"
-          control={TextArea}
-          label="Project Description"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.description}
-          name="description"
-          placeholder="Enter a description"
+
+        <Editor
+          wrapperClassName="project-wysiwyg ui textarea segment"
+          editorState={this.state.editorState}
+          onEditorStateChange={this.onEditorStateChange}
+          onContentStateChange={this.onContentStateChange}
         />
-        {errors.description && touched.description && (
-          <div id="feedback">{errors.description}</div>
-        )}
+
         <DatePicker
           name={"startDate"}
           selected={values["startDate"]}
@@ -156,11 +175,11 @@ export default withFormik({
         : "",
     startDate:
       props.formMode === "edit" && props.project.startDate
-        ? props.project.startDate
+        ? new Date(props.project.startDate)
         : new Date(),
     endDate:
       props.formMode === "edit" && props.project.endDate
-        ? props.project.endDate
+        ? new Date(props.project.endDate)
         : new Date()
   }),
 
