@@ -52,7 +52,6 @@ class ProjectDisplay extends Component {
                   <Loader />
                 </Dimmer>
               );
-
             const materials = getProject.materials.items;
             const totalMaterialCost = materials.reduce(
               (prev, cur) => prev + cur.totalCost,
@@ -188,7 +187,11 @@ class ProjectDisplay extends Component {
                       <Segment>
                         <h2>Description</h2>
                         <Divider />
-                        {getProject.description}
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: getProject.description
+                          }}
+                        />
                       </Segment>
                       {materials.length > 0 && (
                         <Segment style={{ margin: "20px 0" }}>

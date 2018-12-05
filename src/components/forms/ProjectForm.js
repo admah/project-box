@@ -13,10 +13,11 @@ import DatePicker from "react-datepicker";
 import {
   EditorState,
   convertFromHTML,
-  convertFromRaw,
+  convertToRaw,
   ContentState
 } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -32,11 +33,13 @@ class ProjectForm extends Component {
 
   state = {
     open: false,
-    editorState: EditorState.createWithContent(
-      ContentState.createFromBlockArray(
-        convertFromHTML(this.props.project.description)
-      )
-    )
+    editorState: this.props.project.description
+      ? EditorState.createWithContent(
+          ContentState.createFromBlockArray(
+            convertFromHTML(this.props.project.description)
+          )
+        )
+      : EditorState.createEmpty()
   };
 
   open = () => this.setState({ open: true });
@@ -54,13 +57,12 @@ class ProjectForm extends Component {
   };
 
   onEditorStateChange = editorState => {
+    const rawContentState = convertToRaw(editorState.getCurrentContent());
+
+    this.props.setFieldValue("description", draftToHtml(rawContentState));
     this.setState({
       editorState
     });
-  };
-
-  onContentStateChange = contentState => {
-    this.props.setFieldValue("description", contentState.blocks[0].text);
   };
 
   render() {
@@ -69,8 +71,6 @@ class ProjectForm extends Component {
       values,
       touched,
       errors,
-      handleChange,
-      handleBlur,
       handleSubmit,
       setFieldValue
     } = this.props;
@@ -82,8 +82,6 @@ class ProjectForm extends Component {
           id="form-input-control-project-name"
           control={Input}
           label="Project Name"
-          onChange={handleChange}
-          onBlur={handleBlur}
           value={values.name}
           name="name"
           placeholder="Enter your project name"
@@ -94,7 +92,6 @@ class ProjectForm extends Component {
           wrapperClassName="project-wysiwyg ui textarea segment"
           editorState={this.state.editorState}
           onEditorStateChange={this.onEditorStateChange}
-          onContentStateChange={this.onContentStateChange}
         />
 
         <DatePicker
@@ -112,8 +109,6 @@ class ProjectForm extends Component {
         <Form.Field
           id="form-input-control-project-tags"
           control={Input}
-          onChange={handleChange}
-          onBlur={handleBlur}
           value={values.tags}
           name="tags"
           placeholder="Enter tags for your project"
@@ -192,10 +187,6 @@ export default withFormik({
     }
 
     return errors;
-  },
-
-  handleChange: event => {
-    console.log(event);
   },
 
   handleSubmit: (values, { props, setSubmitting }) => {
