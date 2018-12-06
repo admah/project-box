@@ -1,11 +1,13 @@
 import React from "react";
-import { Card, Icon, List } from "semantic-ui-react";
+import { Card, Icon, Label, List } from "semantic-ui-react";
 
 const ProjectCard = ({ id, name, description, tags }) => (
   <Card href={`/project/${id}`}>
     <Card.Content>
-      <Card.Header>{name}</Card.Header>
-      <Card.Meta>Project</Card.Meta>
+      <Label color="blue" ribbon>
+        Project
+      </Label>
+      <Card.Header style={{ marginTop: "10px" }}>{name}</Card.Header>
       <Card.Description
         dangerouslySetInnerHTML={{
           __html: description
