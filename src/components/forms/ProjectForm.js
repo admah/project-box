@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import { API, graphqlOperation } from "aws-amplify";
-import {
-  Button,
-  Confirm,
-  Form,
-  Input,
-  Message,
-  TextArea
-} from "semantic-ui-react";
+import { API, Auth, graphqlOperation } from "aws-amplify";
+import { Button, Confirm, Form, Input, Message } from "semantic-ui-react";
 import { withFormik } from "formik";
 import DatePicker from "react-datepicker";
 import {
@@ -189,14 +182,16 @@ export default withFormik({
     return errors;
   },
 
-  handleSubmit: (values, { props, setSubmitting }) => {
+  handleSubmit: async (values, { props, setSubmitting }) => {
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
+    const authUser = await Auth.currentAuthenticatedUser();
 
     const CreateProjectForm = async () =>
       await API.graphql(
         graphqlOperation(createProject, {
           input: {
             name: values.name,
+            userId: authUser ? authUser.attributes.sub : "",
             description: values.description,
             tags: projectTags,
             startDate: values.startDate,
@@ -211,6 +206,7 @@ export default withFormik({
           input: {
             id: props.project.id,
             name: values.name,
+            userId: authUser ? authUser.attributes.sub : "",
             description: values.description,
             tags: projectTags,
             startDate: values.startDate,

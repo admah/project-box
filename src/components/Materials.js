@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { graphqlOperation } from "aws-amplify";
-import { Connect } from "aws-amplify-react";
+import { Auth, graphqlOperation } from "aws-amplify";
+import { Connect, withAuthenticator } from "aws-amplify-react";
 import {
   Button,
   Container,
@@ -24,6 +24,12 @@ class Materials extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  async getAuthUserId() {
+    const authUser = await Auth.currentAuthenticatedUser();
+
+    return authUser.attributes.sub;
+  }
+
   closeModal() {
     this.setState({
       activeModal: ""
@@ -36,7 +42,11 @@ class Materials extends Component {
         <h2>All Materials</h2>
         <Divider />
         <Item.Group>
-          <Connect query={graphqlOperation(listMaterials)}>
+          <Connect
+            query={graphqlOperation(listMaterials, {
+              input: { userId: this.getAuthUserId }
+            })}
+          >
             {({ data: { listMaterials }, loading, error }) => {
               if (error) return <h3>Error</h3>;
               if (loading || !listMaterials)
@@ -98,4 +108,4 @@ class Materials extends Component {
   }
 }
 
-export default Materials;
+export default withAuthenticator(Materials);
