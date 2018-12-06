@@ -196,7 +196,10 @@ class ProjectDisplay extends Component {
                       {materials.length > 0 && (
                         <Segment style={{ margin: "20px 0" }}>
                           <h2>Materials</h2>
-                          <p>{`Total Cost: $${totalMaterialCost}`}</p>
+                          <p>{`Total Cost: $${parseInt(
+                            totalMaterialCost,
+                            10
+                          )}`}</p>
                           <Divider />
                           <Item.Group>
                             {materials.map(material => (

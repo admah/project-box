@@ -64,6 +64,8 @@ class ProjectForm extends Component {
       values,
       touched,
       errors,
+      handleChange,
+      handleBlur,
       handleSubmit,
       setFieldValue
     } = this.props;
@@ -75,6 +77,8 @@ class ProjectForm extends Component {
           id="form-input-control-project-name"
           control={Input}
           label="Project Name"
+          onChange={handleChange}
+          onBlur={handleBlur}
           value={values.name}
           name="name"
           placeholder="Enter your project name"
@@ -102,6 +106,8 @@ class ProjectForm extends Component {
         <Form.Field
           id="form-input-control-project-tags"
           control={Input}
+          onChange={handleChange}
+          onBlur={handleBlur}
           value={values.tags}
           name="tags"
           placeholder="Enter tags for your project"
@@ -180,6 +186,10 @@ export default withFormik({
     }
 
     return errors;
+  },
+
+  handleChange: event => {
+    console.log(event);
   },
 
   handleSubmit: async (values, { props, setSubmitting }) => {
