@@ -60,7 +60,7 @@ class Nav extends Component {
               </NavLink>
             )}
             {!this.state.authUserName && (
-              <NavLink to="/user/projects">
+              <NavLink to="/projects">
                 <Button inverted>Log In / Sign Up</Button>
               </NavLink>
             )}
