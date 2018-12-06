@@ -182,7 +182,7 @@ export default withFormik({
     return errors;
   },
 
-  handleSubmit: (values, { props, setSubmitting }) => {
+  handleSubmit: async (values, { props, setSubmitting }) => {
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
     const authUser = await Auth.currentAuthenticatedUser();
 
