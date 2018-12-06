@@ -91,6 +91,7 @@ class ProjectForm extends Component {
           onEditorStateChange={this.onEditorStateChange}
         />
 
+        <br />
         <DatePicker
           name={"startDate"}
           selected={values["startDate"]}
@@ -103,6 +104,7 @@ class ProjectForm extends Component {
           onChange={e => setFieldValue("endDate", e)}
           placeholderText="End Date"
         />
+
         <Form.Field
           id="form-input-control-project-tags"
           control={Input}
