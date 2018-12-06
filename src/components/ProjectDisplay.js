@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { graphqlOperation } from "aws-amplify";
+import React, { Component, useEffect, useReducer, useState } from "react";
+import { API, graphqlOperation } from "aws-amplify";
 import { Connect, S3Image } from "aws-amplify-react";
 import {
   Button,
@@ -16,6 +16,7 @@ import {
   Segment
 } from "semantic-ui-react";
 import { getProject } from "../graphql/queries";
+import { onUpdateProject } from "../graphql/subscriptions";
 import ProjectForm from "./forms/ProjectForm";
 import MaterialForm from "./forms/MaterialForm";
 import MediaForm from "./forms/MediaForm";
@@ -43,6 +44,13 @@ class ProjectDisplay extends Component {
       <Container style={{ marginTop: "80px" }}>
         <Connect
           query={graphqlOperation(getProject, { id: match.params.projectId })}
+          subscription={graphqlOperation(onUpdateProject, {
+            id: match.params.projectId
+          })}
+          onSubscriptionMsg={(prev, { onUpdateProject }) => {
+            console.log(onUpdateProject);
+            return prev;
+          }}
         >
           {({ data: { getProject }, loading, error }) => {
             if (error) return <h3>Error</h3>;
