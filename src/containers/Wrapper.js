@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
+import Login from "../components/Login";
 import Projects from "../components/Projects";
 import ProjectDisplay from "../components/ProjectDisplay";
 import Materials from "../components/Materials";
@@ -45,6 +46,7 @@ class Wrapper extends Component {
         <div className="ui container">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
             <Route
               path="/projects"
               render={() => <Projects user={this.state.user} />}

@@ -15,7 +15,7 @@ import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
 import ProjectForm from "./forms/ProjectForm";
 
-const Projects = ({ user }) => (
+const Projects = ({ authData }) => (
   <Container style={{ marginTop: "20px" }}>
     <Modal
       trigger={<Button positive icon="plus" content="Add a Project" />}
@@ -23,10 +23,10 @@ const Projects = ({ user }) => (
     >
       <Header icon="browser" content="Add a Project" />
       <Modal.Content>
-        <ProjectForm formMode="create" user={user} />
+        <ProjectForm formMode="create" user={authData} />
       </Modal.Content>
     </Modal>
-    {user && (
+    {authData && (
       <Card.Group
         style={{ marginTop: "30px" }}
         itemsPerRow={4}
@@ -34,7 +34,7 @@ const Projects = ({ user }) => (
       >
         <Connect
           query={graphqlOperation(listProjects, {
-            input: { userId: user.attributes.sub }
+            input: { userId: authData.attributes.sub }
           })}
           subscription={graphqlOperation(onCreateProject)}
           onSubscriptionMsg={(prev, { onCreateProject }) => {
