@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import { NavLink } from "react-router-dom";
 import { Icon, Menu, Button } from "semantic-ui-react";
+import SignOut from "../auth/SignOut";
 
 class Nav extends Component {
   constructor(props) {
@@ -22,20 +23,6 @@ class Nav extends Component {
     );
   }
 
-  signOut() {
-    Auth.signOut()
-      .then(data =>
-        this.setState({
-          authUserName: null
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-  gotoSignIn() {
-    console.log("go to sign in!");
-  }
-
   render() {
     console.log(this.getAuthUserName);
     return (
@@ -54,9 +41,7 @@ class Nav extends Component {
           <Menu.Item>
             {this.state.authUserName && (
               <NavLink to="/">
-                <Button inverted onClick={this.signOut}>
-                  Sign Out
-                </Button>
+                <SignOut />
               </NavLink>
             )}
             {!this.state.authUserName && (
