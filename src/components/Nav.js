@@ -1,74 +1,42 @@
-import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import React from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { Icon, Menu, Button } from "semantic-ui-react";
+import { Icon, Menu } from "semantic-ui-react";
+import SignOut from "./auth/SignOut";
 
-class Nav extends Component {
-  constructor(props) {
-    super(props);
+const Nav = ({ history, user }) => (
+  <Menu className="inverted top">
+    <NavLink className="menu item" exact to="/" activeClassName="">
+      <Icon className="big rounded clipboard" />
+      Project-Box
+    </NavLink>
+    <NavLink className="menu item" to="/projects">
+      Projects
+    </NavLink>
+    <NavLink className="menu item" to="/materials">
+      Materials
+    </NavLink>
+    <Menu.Menu position="right">
+      <Menu.Item>
+        {user ? (
+          <SignOut history={history} />
+        ) : (
+          <NavLink className="ui button inverted" to="/login">
+            Log In / Sign Up
+          </NavLink>
+        )}
+      </Menu.Item>
+    </Menu.Menu>
+  </Menu>
+);
 
-    this.state = {
-      authUserName: null
-    };
+Nav.PropTypes = {
+  history: PropTypes.object.isRequired,
+  user: PropTypes.object
+};
 
-    this.signOut = this.signOut.bind(this);
-  }
-
-  componentDidMount() {
-    Auth.currentAuthenticatedUser().then(user =>
-      this.setState({
-        authUserName: user.username
-      })
-    );
-  }
-
-  signOut() {
-    Auth.signOut()
-      .then(data =>
-        this.setState({
-          authUserName: null
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-  gotoSignIn() {
-    console.log("go to sign in!");
-  }
-
-  render() {
-    console.log(this.getAuthUserName);
-    return (
-      <Menu className="inverted top">
-        <NavLink className="menu item" exact to="/" activeClassName="">
-          <Icon className="big rounded clipboard" />
-          Project-Box
-        </NavLink>
-        <NavLink className="menu item" to="/projects">
-          Projects
-        </NavLink>
-        <NavLink className="menu item" to="/materials">
-          Materials
-        </NavLink>
-        <Menu.Menu position="right">
-          <Menu.Item>
-            {this.state.authUserName && (
-              <NavLink to="/">
-                <Button inverted onClick={this.signOut}>
-                  Sign Out
-                </Button>
-              </NavLink>
-            )}
-            {!this.state.authUserName && (
-              <NavLink to="/projects">
-                <Button inverted>Log In / Sign Up</Button>
-              </NavLink>
-            )}
-          </Menu.Item>
-        </Menu.Menu>
-      </Menu>
-    );
-  }
-}
+Nav.defaultProps = {
+  user: null
+};
 
 export default Nav;

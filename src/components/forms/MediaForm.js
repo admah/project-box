@@ -22,9 +22,11 @@ class MediaForm extends Component {
     });
 
     acceptedFiles.forEach(file => {
-      this.props.setFieldValue("src", file.name);
+      const updatedFilename = this.formatFilename(file.name);
 
-      Storage.put(file.name, file, {
+      this.props.setFieldValue("src", updatedFilename);
+
+      Storage.put(updatedFilename, file, {
         contentType: file.type
       })
         .then(result => console.log(result))
