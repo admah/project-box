@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { withRouter } from "react-router";
 import { Auth } from "aws-amplify";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
@@ -7,6 +8,8 @@ import Login from "../components/Login";
 import Projects from "../components/Projects";
 import ProjectDisplay from "../components/ProjectDisplay";
 import Materials from "../components/Materials";
+
+const NavWithRouter = withRouter(Nav);
 
 class Wrapper extends Component {
   constructor(props) {
@@ -42,7 +45,7 @@ class Wrapper extends Component {
     const { user } = this.state;
     return (
       <React.Fragment>
-        <Nav user={user} />
+        <NavWithRouter user={user} />
         <div className="ui container">
           <Switch>
             <Route exact path="/" component={Home} />
