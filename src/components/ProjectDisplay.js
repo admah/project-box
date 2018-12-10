@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useReducer, useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import React, { Component } from "react";
+import { graphqlOperation } from "aws-amplify";
 import { Connect, S3Image } from "aws-amplify-react";
 import {
   Button,
