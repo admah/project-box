@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { API, Auth, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import { Button, Confirm, Form, Input, Message } from "semantic-ui-react";
 import { withFormik } from "formik";
 import DatePicker from "react-datepicker";

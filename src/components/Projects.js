@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { graphqlOperation } from "aws-amplify";
 import { Connect, withAuthenticator } from "aws-amplify-react";
 import {

@@ -30,7 +30,7 @@ const Nav = ({ history, user }) => (
   </Menu>
 );
 
-Nav.PropTypes = {
+Nav.propTypes = {
   history: PropTypes.object.isRequired,
   user: PropTypes.object
 };

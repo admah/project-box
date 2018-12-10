@@ -52,11 +52,13 @@ class Wrapper extends Component {
             <Route exact path="/login" component={Login} />
             <Route
               path="/projects"
-              render={() => <Projects user={this.state.user} />}
+              render={props => <Projects user={this.state.user} {...props} />}
             />
             <Route
               path="/project/:projectId"
-              render={() => <ProjectDisplay user={this.state.user} />}
+              render={props => (
+                <ProjectDisplay user={this.state.user} {...props} />
+              )}
             />
             <Route path="/materials" component={Materials} />
           </Switch>
