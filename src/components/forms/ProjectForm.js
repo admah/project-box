@@ -196,14 +196,14 @@ export default withFormik({
 
   handleSubmit: async (values, { props, setSubmitting }) => {
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
-    const authUser = await Auth.currentAuthenticatedUser();
+    const authUserId = props.user.attributes.sub;
 
     const CreateProjectForm = async () =>
       await API.graphql(
         graphqlOperation(createProject, {
           input: {
             name: values.name,
-            userId: authUser ? authUser.attributes.sub : "",
+            userId: authUserId ? authUserId : "",
             description: values.description,
             tags: projectTags,
             startDate: values.startDate,
@@ -218,7 +218,7 @@ export default withFormik({
           input: {
             id: props.project.id,
             name: values.name,
-            userId: authUser ? authUser.attributes.sub : "",
+            userId: authUserId ? authUserId : "",
             description: values.description,
             tags: projectTags,
             startDate: values.startDate,

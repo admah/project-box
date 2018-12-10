@@ -66,8 +66,6 @@ class ProjectDisplay extends Component {
               0
             );
 
-            console.log(materials);
-
             return (
               <React.Fragment>
                 <Modal
