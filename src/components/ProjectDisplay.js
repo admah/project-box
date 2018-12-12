@@ -179,11 +179,20 @@ class ProjectDisplay extends Component {
                       </Modal>
 
                       {getProject.media.items.length > 0 && (
-                        <div>
+                        <div style={{ marginTop: "15px" }}>
                           <h4>Images</h4>
-                          <Image.Group size="tiny">
+                          <Image.Group size="tiny" style={{ display: "flex" }}>
                             {getProject.media.items.map(item => (
-                              <S3Image key={item.src} imgKey={item.src} />
+                              <S3Image
+                                key={item.src}
+                                imgKey={item.src}
+                                style={{
+                                  width: "60px",
+                                  height: "60px",
+                                  padding: "0 5px",
+                                  overflow: "hidden"
+                                }}
+                              />
                             ))}
                           </Image.Group>
                         </div>
