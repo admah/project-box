@@ -24,15 +24,15 @@ class MediaForm extends Component {
     acceptedFiles.forEach(file => {
       const updatedFilename = this.formatFilename(file.name);
 
-      this.props.setFieldValue("src", updatedFilename);
-
-      Storage.put(updatedFilename, file, {
-        contentType: file.type
-      })
-        .then(result => console.log(result))
-        .catch(err => console.log(err));
+      this.props.values.src.push({ file, updatedFilename });
     });
   };
+
+  onCancel() {
+    this.setState({
+      files: []
+    });
+  }
 
   formatFilename = filename => {
     const date = moment().format("YYYYMMDD");
@@ -48,13 +48,16 @@ class MediaForm extends Component {
     const { handleSubmit, closeModal } = this.props;
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <Dropzone required onDrop={this.onDrop} name="src">
-          <Segment>
-            <Header icon>
-              <Icon name="picture" />
-              Drag files here or click to add them to your project.
-            </Header>
-          </Segment>
+        <Dropzone
+          required
+          onDrop={this.onDrop}
+          onFileDialogCancel={this.onCancel.bind(this)}
+          name="src"
+        >
+          <Header icon>
+            <Icon name="picture" />
+            Drag files here or click to add them to your project.
+          </Header>
         </Dropzone>
         {this.state.files.length > 0 &&
           this.state.files.map(file => <p key={file.name}>{file.name}</p>)}
@@ -80,31 +83,33 @@ class MediaForm extends Component {
 
 export default withFormik({
   enableReinitialize: true,
-  mapPropsToValues: props => ({
-    src: props.formMode === "edit" && props.media.src ? props.media.src : ""
-  }),
+
+  mapPropsToValues: () => ({ src: [] }),
 
   handleSubmit: async (values, { props, setSubmitting }) => {
-    console.log("values: ", values);
-    console.log("props: ", props);
+    const CreateMediaForm = async filename =>
+      await API.graphql(
+        graphqlOperation(createMedia, {
+          input: {
+            mediaProjectId: props.project.id,
+            src: filename
+          }
+        })
+      );
 
-    const CreateMediaForm = await API.graphql(
-      graphqlOperation(createMedia, {
-        input: {
-          mediaProjectId: props.project.id,
-          src: values.src
-        }
-      })
-    );
-
-    try {
-      CreateMediaForm();
-      props.closeModal();
-      console.log("success adding media: ", values);
-    } catch {
-      console.log("problem adding media: ", values);
-    }
-
+    values.src.forEach(src => {
+      try {
+        CreateMediaForm(src.updatedFilename);
+        Storage.put(src.updatedFilename, src.file, {
+          contentType: src.file.type
+        })
+          .then(result => console.log(result))
+          .catch(err => console.log(err));
+      } catch {
+        console.log("problem adding media: ", values);
+      }
+    });
+    props.closeModal();
     setSubmitting(false);
   },
 
