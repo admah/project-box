@@ -12,9 +12,11 @@ import {
   Image,
   Item,
   Loader,
+  Message,
   Modal,
   Segment
 } from "semantic-ui-react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getProject } from "../graphql/queries";
 import { onUpdateProject } from "../graphql/subscriptions";
 import ProjectForm from "./forms/ProjectForm";
@@ -25,10 +27,12 @@ class ProjectDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeModal: ""
+      activeModal: "",
+      linkCopied: false
     };
 
     this.closeModal = this.closeModal.bind(this);
+    this.copyLink = this.copyLink.bind(this);
   }
 
   closeModal() {
@@ -37,11 +41,18 @@ class ProjectDisplay extends Component {
     });
   }
 
+  copyLink() {
+    this.setState({ linkCopied: true, linkMessageVisible: true });
+    setTimeout(() => {
+      this.setState({ linkMessageVisible: false });
+    }, 2500);
+  }
+
   render() {
     const { history, match, user } = this.props;
 
     return (
-      <Container style={{ marginTop: "80px" }}>
+      <Container style={{ marginTop: "60px" }}>
         <Connect
           query={graphqlOperation(getProject, { id: match.params.projectId })}
           subscription={graphqlOperation(onUpdateProject, {
@@ -68,36 +79,55 @@ class ProjectDisplay extends Component {
 
             return (
               <React.Fragment>
-                <Modal
-                  trigger={
-                    <Button
-                      icon="edit outline"
-                      floated="right"
-                      size="tiny"
-                      onClick={() =>
-                        this.setState({
-                          activeModal: "project"
-                        })
-                      }
-                    />
-                  }
-                  onClose={this.closeModal}
-                  open={this.state.activeModal === "project"}
-                  closeIcon
-                >
-                  <Header icon="edit outline" content="Edit Project" />
-                  <Modal.Content>
-                    <ProjectForm
-                      formMode="edit"
-                      history={history}
-                      project={getProject}
-                      closeModal={this.closeModal}
-                      user={user}
-                    />
-                  </Modal.Content>
-                </Modal>
+                {this.state.linkMessageVisible && (
+                  <Message positive>
+                    <p>Project link copied successfully to clipboard!</p>
+                  </Message>
+                )}
                 <Container>
-                  <h2>{getProject.name}</h2>
+                  <Modal
+                    trigger={
+                      <Button
+                        icon="edit outline"
+                        floated="right"
+                        size="tiny"
+                        onClick={() =>
+                          this.setState({
+                            activeModal: "project"
+                          })
+                        }
+                      />
+                    }
+                    onClose={this.closeModal}
+                    open={this.state.activeModal === "project"}
+                    closeIcon
+                  >
+                    <Header icon="edit outline" content="Edit Project" />
+                    <Modal.Content>
+                      <ProjectForm
+                        formMode="edit"
+                        history={history}
+                        project={getProject}
+                        closeModal={this.closeModal}
+                        user={user}
+                      />
+                    </Modal.Content>
+                  </Modal>
+                  <Header as="h2">
+                    {getProject.public && (
+                      <CopyToClipboard
+                        text={window.location.href}
+                        onCopy={() => this.copyLink()}
+                      >
+                        <Icon
+                          link
+                          name="linkify"
+                          aria-label="get project link"
+                        />
+                      </CopyToClipboard>
+                    )}
+                    <Header.Content>{getProject.name}</Header.Content>
+                  </Header>
                   <Divider />
                   <Grid>
                     <Grid.Column width={4}>
