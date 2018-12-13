@@ -38,7 +38,7 @@ class ProjectDisplay extends Component {
   }
 
   render() {
-    const { history, match } = this.props;
+    const { history, match, user } = this.props;
 
     return (
       <Container style={{ marginTop: "80px" }}>
@@ -92,6 +92,7 @@ class ProjectDisplay extends Component {
                       history={history}
                       project={getProject}
                       closeModal={this.closeModal}
+                      user={user}
                     />
                   </Modal.Content>
                 </Modal>

@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { Button, Confirm, Form, Input, Message } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Confirm,
+  Form,
+  Input,
+  Message
+} from "semantic-ui-react";
 import { withFormik } from "formik";
 import DatePicker from "react-datepicker";
 import {
@@ -120,6 +127,16 @@ class ProjectForm extends Component {
         />
         {errors.tags && touched.tags && <div id="feedback">{errors.tags}</div>}
 
+        <Form.Field
+          id="form-input-control-project-public"
+          inline
+          control={Checkbox}
+          label="Do you want this project to be public?"
+          name="public"
+          onChange={handleChange}
+          checked={values.public}
+        />
+
         <br />
         <br />
         <Message
@@ -176,7 +193,11 @@ export default withFormik({
     endDate:
       props.formMode === "edit" && props.project.endDate
         ? new Date(props.project.endDate)
-        : new Date()
+        : new Date(),
+    public:
+      props.formMode === "edit" && props.project.public
+        ? props.project.public
+        : false
   }),
 
   // Custom sync validation
@@ -208,6 +229,7 @@ export default withFormik({
             tags: projectTags,
             startDate: values.startDate,
             endDate: values.endDate,
+            public: values.public,
             created: Date.now()
           }
         })
@@ -222,7 +244,8 @@ export default withFormik({
             description: values.description,
             tags: projectTags,
             startDate: values.startDate,
-            endDate: values.endDate
+            endDate: values.endDate,
+            public: values.public
           }
         })
       );
