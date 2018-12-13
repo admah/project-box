@@ -5,6 +5,7 @@ import { Auth } from "aws-amplify";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
 import Login from "../components/Login";
+import Community from "../components/Community";
 import Projects from "../components/Projects";
 import ProjectDisplay from "../components/ProjectDisplay";
 import Materials from "../components/Materials";
@@ -50,6 +51,7 @@ class Wrapper extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/community" component={Community} />
             <Route
               path="/projects"
               render={props => <Projects user={this.state.user} {...props} />}

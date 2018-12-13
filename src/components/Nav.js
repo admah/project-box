@@ -10,12 +10,19 @@ const Nav = ({ history, user }) => (
       <Icon className="big rounded clipboard" />
       Project-Box
     </NavLink>
-    <NavLink className="menu item" to="/projects">
-      Projects
+    <NavLink className="menu item" to="/community">
+      Community
     </NavLink>
-    <NavLink className="menu item" to="/materials">
-      Materials
-    </NavLink>
+    {user && (
+      <React.Fragment>
+        <NavLink className="menu item" to="/projects">
+          Projects
+        </NavLink>
+        <NavLink className="menu item" to="/materials">
+          Materials
+        </NavLink>
+      </React.Fragment>
+    )}
     <Menu.Menu position="right">
       <Menu.Item>
         {user ? (
