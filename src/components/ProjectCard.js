@@ -2,7 +2,11 @@ import React from "react";
 import { Card, Icon, Label, List } from "semantic-ui-react";
 
 const ProjectCard = ({ id, name, description, tags }) => (
-  <Card href={`/project/${id}`}>
+  <Card
+    href={`${
+      window.location.pathname === "/user/projects" ? "/user" : "/community"
+    }/project/${id}`}
+  >
     <Card.Content>
       <Label color="blue" ribbon>
         Project

@@ -7,7 +7,8 @@ import Home from "../components/Home";
 import Login from "../components/Login";
 import Community from "../components/Community";
 import Projects from "../components/Projects";
-import ProjectDisplay from "../components/ProjectDisplay";
+import ProjectDisplayPublic from "../components/ProjectDisplayPublic";
+import ProjectDisplayUser from "../components/ProjectDisplayUser";
 import Materials from "../components/Materials";
 
 const NavWithRouter = withRouter(Nav);
@@ -53,16 +54,22 @@ class Wrapper extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/community" component={Community} />
             <Route
-              path="/projects"
+              path="/community/project/:projectId"
+              render={props => (
+                <ProjectDisplayPublic user={this.state.user} {...props} />
+              )}
+            />
+            <Route
+              path="/user/projects"
               render={props => <Projects user={this.state.user} {...props} />}
             />
             <Route
-              path="/project/:projectId"
+              path="/user/project/:projectId"
               render={props => (
-                <ProjectDisplay user={this.state.user} {...props} />
+                <ProjectDisplayUser user={this.state.user} {...props} />
               )}
             />
-            <Route path="/materials" component={Materials} />
+            <Route path="/user/materials" component={Materials} />
           </Switch>
         </div>
       </React.Fragment>

@@ -23,7 +23,8 @@ import ProjectForm from "./forms/ProjectForm";
 import MaterialForm from "./forms/MaterialForm";
 import MediaForm from "./forms/MediaForm";
 import StepForm from "./forms/StepForm";
-class ProjectDisplay extends Component {
+
+class ProjectDisplayUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -334,4 +335,4 @@ class ProjectDisplay extends Component {
   }
 }
 
-export default ProjectDisplay;
+export default ProjectDisplayUser;
