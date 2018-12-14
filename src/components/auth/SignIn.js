@@ -29,7 +29,7 @@ export default class SignIn extends Component {
 
   signInSuccess(user) {
     this.setState({ error: "" });
-    this.props.history.push("/projects");
+    this.props.history.push("/user/projects");
 
     if (
       user.challengeName === "SMS_MFA" ||
@@ -65,8 +65,8 @@ export default class SignIn extends Component {
     const { error } = this.state;
 
     return (
-      <Container text center>
-        <Form preventDefault>
+      <Container text>
+        <Form>
           <Segment stacked>
             <Form.Input
               type="text"

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import { API, graphqlOperation, Storage } from "aws-amplify";
-import { Form, Header, Icon, Message, Segment } from "semantic-ui-react";
+import { Form, Header, Icon, Message } from "semantic-ui-react";
 import moment from "moment";
 import { withFormik } from "formik";
 import { createMedia } from "../../graphql/mutations";

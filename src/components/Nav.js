@@ -15,10 +15,10 @@ const Nav = ({ history, user }) => (
     </NavLink>
     {user && (
       <React.Fragment>
-        <NavLink className="menu item" to="/projects">
+        <NavLink className="menu item" to="/user/projects">
           Projects
         </NavLink>
-        <NavLink className="menu item" to="/materials">
+        <NavLink className="menu item" to="/user/materials">
           Materials
         </NavLink>
       </React.Fragment>
