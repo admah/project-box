@@ -5,7 +5,7 @@ import { Card, Container, Dimmer, Loader } from "semantic-ui-react";
 import { listProjects } from "../graphql/queries";
 import ProjectCard from "./ProjectCard";
 
-const Community = () => (
+const CommunityProjects = () => (
   <Container style={{ marginTop: "30px" }}>
     <h1>Community Projects</h1>
     <Card.Group style={{ marginTop: "30px" }} itemsPerRow={4} stackable={true}>
@@ -17,11 +17,7 @@ const Community = () => (
         {({ data: { listProjects }, loading, error }) => {
           if (error) return <h3>Error</h3>;
           if (loading || !listProjects)
-            return (
-              <Dimmer active>
-                <Loader />
-              </Dimmer>
-            );
+            return <Loader active inline="centered" />;
           return listProjects.items.map(project => (
             <ProjectCard key={project.id} {...project} />
           ));
@@ -31,4 +27,4 @@ const Community = () => (
   </Container>
 );
 
-export default Community;
+export default CommunityProjects;

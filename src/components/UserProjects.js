@@ -15,7 +15,7 @@ import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
 import ProjectForm from "./forms/ProjectForm";
 
-const Projects = ({ authData }) => (
+const UserProjects = ({ authData }) => (
   <Container style={{ marginTop: "20px" }}>
     <Modal
       trigger={<Button positive icon="plus" content="Add a Project" />}
@@ -45,11 +45,7 @@ const Projects = ({ authData }) => (
           {({ data: { listProjects }, loading, error }) => {
             if (error) return <h3>Error</h3>;
             if (loading || !listProjects)
-              return (
-                <Dimmer active>
-                  <Loader />
-                </Dimmer>
-              );
+              return <Loader active inline="centered" />;
             return listProjects.items.map(project => (
               <ProjectCard key={project.id} {...project} />
             ));
@@ -60,4 +56,4 @@ const Projects = ({ authData }) => (
   </Container>
 );
 
-export default withAuthenticator(Projects);
+export default withAuthenticator(UserProjects);
