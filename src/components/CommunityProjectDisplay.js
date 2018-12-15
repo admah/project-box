@@ -3,7 +3,6 @@ import { graphqlOperation } from "aws-amplify";
 import { Connect, S3Image } from "aws-amplify-react";
 import {
   Container,
-  Dimmer,
   Divider,
   Grid,
   Header,

@@ -5,7 +5,6 @@ import {
   Button,
   Card,
   Container,
-  Dimmer,
   Header,
   Loader,
   Modal

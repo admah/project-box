@@ -4,7 +4,6 @@ import { Connect, S3Image } from "aws-amplify-react";
 import {
   Button,
   Container,
-  Dimmer,
   Divider,
   Grid,
   Header,
