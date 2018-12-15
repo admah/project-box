@@ -24,7 +24,7 @@ import MaterialForm from "./forms/MaterialForm";
 import MediaForm from "./forms/MediaForm";
 import StepForm from "./forms/StepForm";
 
-class ProjectDisplayUser extends Component {
+class UserProjectDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,11 +67,7 @@ class ProjectDisplayUser extends Component {
           {({ data: { getProject }, loading, error }) => {
             if (error) return <h3>Error</h3>;
             if (loading || !getProject)
-              return (
-                <Dimmer active>
-                  <Loader />
-                </Dimmer>
-              );
+              return <Loader active inline="centered" />;
             const materials = getProject.materials.items;
             const totalMaterialCost = materials.reduce(
               (prev, cur) => prev + cur.totalCost,
@@ -335,4 +331,4 @@ class ProjectDisplayUser extends Component {
   }
 }
 
-export default ProjectDisplayUser;
+export default UserProjectDisplay;
