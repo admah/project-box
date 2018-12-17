@@ -1,4 +1,5 @@
-# specify language
 language: node_js
+node_js:
+  - "4.1"
 ## begin build steps
 ####################
