@@ -39,13 +39,6 @@ export default class JForgotPassword extends Component {
       return null;
     }
 
-    const style = {
-      width: "20rem",
-      links: { fontSize: "0.9em" },
-      button: { width: "100%" },
-      alert: { fontSize: "0.8em" }
-    };
-
     const { error } = this.state;
 
     return (
@@ -66,14 +59,10 @@ export default class JForgotPassword extends Component {
             </div>
             <div className="floated right" />
           </Segment>
-          <Button primary mt="3" style={style.button} onClick={this.sendCode}>
+          <Button primary fluid onClick={this.sendCode}>
             Send password reset code
           </Button>
-          {error && (
-            <Message warning mt="3" text="left" style={style.alert}>
-              {error}
-            </Message>
-          )}
+          {error && <Message warning>{error}</Message>}
         </Form>
       </Container>
     );
