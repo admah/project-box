@@ -48,14 +48,6 @@ export default class JSignUp extends Component {
       return null;
     }
 
-    const style = {
-      width: "20rem",
-      input: { borderRadius: "0" },
-      links: { fontSize: "0.9em" },
-      button: { width: "100%" },
-      alert: { fontSize: "0.8em" }
-    };
-
     const { error } = this.state;
 
     return (
@@ -65,30 +57,22 @@ export default class JSignUp extends Component {
             type="text"
             placeholder="Username"
             rounded="top"
-            border="bottom-0"
-            style={style.input}
             onChange={event => (this.inputs.username = event.target.value)}
             autoFocus
           />
           <Form.Input
             type="password"
             placeholder="Password"
-            border="bottom-0"
             onChange={event => (this.inputs.password = event.target.value)}
-            style={style.input}
           />
           <Form.Input
             type="email"
             placeholder="Email address"
-            border="bottom-0"
-            style={style.input}
             onChange={event => (this.inputs.email = event.target.value)}
           />
           <Form.Input
             type="tel"
             placeholder="Phone number"
-            rounded="bottom"
-            style={style.input}
             onChange={event => (this.inputs.phone_number = event.target.value)}
           />
           <Segment>
@@ -103,14 +87,10 @@ export default class JSignUp extends Component {
               </a>
             </div>
           </Segment>
-          <Button primary mt="3" style={style.button} onClick={this.signUp}>
+          <Button primary fluid onClick={this.signUp}>
             Create account
           </Button>
-          {error && (
-            <Message warning mt="3" text="left" style={style.alert}>
-              {error}
-            </Message>
-          )}
+          {error && <Message warning>{error}</Message>}
         </Form>
       </Container>
     );

@@ -19,6 +19,7 @@ const MainContainer = styled.div`
     url(${HomeBG}) no-repeat;
   background-size: cover;
   height: 100vh;
+  padding-top: 50px;
 `;
 
 const NavWithRouter = withRouter(Nav);
