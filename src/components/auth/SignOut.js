@@ -4,7 +4,6 @@ import { Button } from "semantic-ui-react";
 
 const SignOut = ({ history }) => (
   <Button
-    inverted
     onClick={() => {
       Auth.signOut();
       history.push("/");

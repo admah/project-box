@@ -28,7 +28,8 @@ class UserProjectDisplay extends Component {
     super(props);
     this.state = {
       activeModal: "",
-      linkCopied: false
+      linkCopied: false,
+      s3src: []
     };
 
     this.closeModal = this.closeModal.bind(this);
@@ -210,16 +211,26 @@ class UserProjectDisplay extends Component {
                           <h4>Images</h4>
                           <Image.Group size="tiny" style={{ display: "flex" }}>
                             {getProject.media.items.map(item => (
-                              <S3Image
+                              <Modal
                                 key={item.src}
-                                imgKey={item.src}
-                                style={{
-                                  width: "60px",
-                                  height: "60px",
-                                  padding: "0 5px",
-                                  overflow: "hidden"
-                                }}
-                              />
+                                trigger={
+                                  <S3Image
+                                    key={item.src}
+                                    imgKey={item.src}
+                                    style={{
+                                      width: "60px",
+                                      height: "60px",
+                                      padding: "0 5px",
+                                      overflow: "hidden"
+                                    }}
+                                  />
+                                }
+                                closeIcon
+                              >
+                                <Modal.Content>
+                                  <Image fluid src="" />
+                                </Modal.Content>
+                              </Modal>
                             ))}
                           </Image.Group>
                         </div>
