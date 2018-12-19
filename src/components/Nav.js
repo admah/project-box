@@ -6,6 +6,7 @@ import { Icon, Menu } from "semantic-ui-react";
 import SignOut from "./auth/SignOut";
 
 const MainMenu = styled(Menu)`
+  font-size: 16px !important;
   margin-bottom: 0 !important;
 `;
 
