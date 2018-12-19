@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { API, graphqlOperation, Storage } from "aws-amplify";
-import { Connect, S3Image } from "aws-amplify-react";
+import { S3Image } from "aws-amplify-react";
 import {
   Container,
   Divider,
@@ -9,7 +9,6 @@ import {
   Icon,
   Image,
   Item,
-  Loader,
   Modal,
   Segment
 } from "semantic-ui-react";
