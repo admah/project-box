@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
-import HomeBG from "../images/building-plan.jpg";
+import GlobalStyles from "../css/GlobalStyles.js";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
 import Login from "../components/Login";
@@ -11,14 +11,6 @@ import Community from "./Community";
 import User from "./User";
 
 const MainContainer = styled.div`
-  background: linear-gradient(
-      180deg,
-      rgba(28, 160, 134, 0.8) 0%,
-      rgba(255, 255, 255, 0.8) 100%
-    ),
-    url(${HomeBG}) no-repeat;
-  background-size: cover;
-  height: 100vh;
   padding-top: 50px;
 `;
 
@@ -67,6 +59,7 @@ class Wrapper extends Component {
             <Route path="/user" component={User} />
           </Switch>
         </MainContainer>
+        <GlobalStyles />
       </React.Fragment>
     );
   }
