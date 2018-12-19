@@ -23,20 +23,9 @@ class Wrapper extends Component {
     this.state = {
       user: null
     };
-
-    this.loadUser = this.loadUser.bind(this);
   }
 
-  componentDidMount() {
-    this.loadUser();
-    Auth.currentAuthenticatedUser().then(user =>
-      this.setState({
-        authUserName: user.username
-      })
-    );
-  }
-
-  loadUser() {
+  async componentDidMount() {
     Auth.currentAuthenticatedUser()
       .then(user =>
         this.setState({
