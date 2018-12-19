@@ -52,7 +52,7 @@ class UserProjectDisplay extends Component {
     const { history, match, user } = this.props;
 
     return (
-      <Container style={{ marginTop: "60px" }}>
+      <Container>
         <Connect
           query={graphqlOperation(getProject, { id: match.params.projectId })}
           subscription={graphqlOperation(onUpdateProject, {

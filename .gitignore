@@ -26,7 +26,7 @@ yarn-error.log*
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/backend/amplify-meta.json
-aws-exports.js
+src/aws-exports.js
 awsconfiguration.json
 /amplify
 .graphqlconfig.yml

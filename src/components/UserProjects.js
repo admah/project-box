@@ -15,7 +15,7 @@ import ProjectCard from "./ProjectCard";
 import ProjectForm from "./forms/ProjectForm";
 
 const UserProjects = ({ authData }) => (
-  <Container style={{ marginTop: "20px" }}>
+  <Container>
     <Modal
       trigger={<Button positive icon="plus" content="Add a Project" />}
       closeIcon
