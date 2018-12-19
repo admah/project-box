@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Auth, JS } from "aws-amplify";
-import { Button, Container, Form, Message, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Icon,
+  Form,
+  Message,
+  Segment
+} from "semantic-ui-react";
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -71,7 +78,6 @@ export default class SignIn extends Component {
             <Form.Input
               type="text"
               placeholder="Username"
-              rounded="top"
               border="bottom-0"
               defaultValue={authData || ""}
               onChange={event => (this.inputs.username = event.target.value)}
@@ -80,7 +86,6 @@ export default class SignIn extends Component {
             <Form.Input
               type="password"
               placeholder="Password"
-              rounded="bottom"
               onChange={event => (this.inputs.password = event.target.value)}
             />
             <Button primary fluid onClick={this.signIn}>
@@ -88,7 +93,12 @@ export default class SignIn extends Component {
             </Button>
           </Segment>
 
-          {error && <Message negative>{error}</Message>}
+          {error && (
+            <Message negative>
+              <Icon name="warning" />
+              {error}
+            </Message>
+          )}
         </Form>
         <Message style={{ textAlign: "center" }}>
           <span className="left item" style={{ paddingRight: "30px" }}>
