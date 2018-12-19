@@ -6,7 +6,7 @@ import { listProjects } from "../graphql/queries";
 import ProjectCard from "./ProjectCard";
 
 const CommunityProjects = () => (
-  <Container style={{ marginTop: "30px" }}>
+  <Container>
     <h1>Community Projects</h1>
     <Card.Group style={{ marginTop: "30px" }} itemsPerRow={4} stackable={true}>
       <Connect

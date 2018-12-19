@@ -1,11 +1,16 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { Icon, Menu } from "semantic-ui-react";
 import SignOut from "./auth/SignOut";
 
+const MainMenu = styled(Menu)`
+  margin-bottom: 0 !important;
+`;
+
 const Nav = ({ history, user }) => (
-  <Menu className="inverted top">
+  <MainMenu className="top">
     <NavLink className="menu item" exact to="/" activeClassName="">
       <Icon className="big rounded clipboard" />
       Project-Box
@@ -28,13 +33,13 @@ const Nav = ({ history, user }) => (
         {user ? (
           <SignOut history={history} />
         ) : (
-          <NavLink className="ui button inverted" to="/login">
+          <NavLink className="ui button" to="/login">
             Log In / Sign Up
           </NavLink>
         )}
       </Menu.Item>
     </Menu.Menu>
-  </Menu>
+  </MainMenu>
 );
 
 Nav.propTypes = {

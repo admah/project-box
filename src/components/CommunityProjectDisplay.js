@@ -15,7 +15,7 @@ import {
 import { getProject } from "../graphql/queries";
 
 const CommunityProjectDisplay = ({ match }) => (
-  <Container style={{ marginTop: "60px" }}>
+  <Container>
     <Connect
       query={graphqlOperation(getProject, { id: match.params.projectId })}
     >
