@@ -7,6 +7,7 @@ import GlobalStyles from "../css/GlobalStyles.js";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
 import Login from "../components/Login";
+import SignUp from "../components/auth/SignUp";
 import Community from "./Community";
 import User from "./User";
 
@@ -47,6 +48,11 @@ class Wrapper extends Component {
               exact
               path="/login"
               render={props => <Login user={this.state.user} {...props} />}
+            />
+            <Route
+              exact
+              path="/signup"
+              render={props => <SignUp authState="signUp" {...props} />}
             />
             <Route path="/community" component={Community} />
             <Route
