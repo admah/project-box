@@ -3,8 +3,9 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Materials from "../components/Materials";
 import UserProjects from "../components/UserProjects";
 import UserProjectDisplay from "../components/UserProjectDisplay";
+import { withLogin } from "../components/Login";
 
-const User = ({ props }) => (
+const User = () => (
   <React.Fragment>
     <Switch>
       <Route exact path="/user/projects" component={UserProjects} />
@@ -15,4 +16,4 @@ const User = ({ props }) => (
   </React.Fragment>
 );
 
-export default User;
+export default withLogin(User);
