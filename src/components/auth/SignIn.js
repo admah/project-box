@@ -55,7 +55,7 @@ export default class SignIn extends Component {
     Auth.verifiedContact(user).then(data => {
       if (!JS.isEmpty(data.verified)) {
         this.changeState("signedIn", user);
-        this.props.history.push("/user/projects", [{ authState: "signedIn" }]);
+        this.props.history.push("/user/projects");
       } else {
         user = Object.assign(user, data);
         this.changeState("verifyContact", user);

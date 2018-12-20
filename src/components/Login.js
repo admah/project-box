@@ -14,18 +14,6 @@ const CustomAuthenticator = props => (
   </Authenticator>
 );
 
-export const withLogin = Component => {
-  return class WithLogin extends React.Component {
-    render() {
-      return !this.props.user ? (
-        <CustomAuthenticator history={this.props.history} />
-      ) : (
-        <Component history={this.props.history} user={this.props.user} />
-      );
-    }
-  };
-};
-
 const Login = ({ history, user }) => (
   <React.Fragment>
     {!user && <CustomAuthenticator history={history} />}
