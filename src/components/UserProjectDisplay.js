@@ -36,7 +36,6 @@ class UserProjectDisplay extends Component {
   }
 
   async componentWillMount() {
-    console.log(this.props);
     const project = await API.graphql(
       graphqlOperation(getProject, {
         id: this.props.match.params.projectId,
