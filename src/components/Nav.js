@@ -45,7 +45,7 @@ class Nav extends Component {
       <MainMenu className="top">
         <NavLink className="menu item" exact to="/" activeClassName="">
           <Icon className="big rounded clipboard" />
-          Project-Box
+          Projectable
         </NavLink>
         <NavLink className="menu item" to="/community">
           Community
