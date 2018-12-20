@@ -4,19 +4,16 @@ import Materials from "../components/Materials";
 import UserProjects from "../components/UserProjects";
 import UserProjectDisplay from "../components/UserProjectDisplay";
 
-const User = ({ user }) => (
+const User = () => (
   <React.Fragment>
     <Switch>
+      <Route exact path="/user/projects" component={UserProjects} />
       <Route
         exact
-        path="/user/projects"
-        render={props => <UserProjects user={user} />}
-      />
-      <Route
         path="/user/project/:projectId"
-        render={props => <UserProjectDisplay user={user} {...props} />}
+        component={UserProjectDisplay}
       />
-      <Route path="/user/materials" component={Materials} />
+      <Route exact path="/user/materials" component={Materials} />
       <Redirect to={"/user/projects"} />
     </Switch>
   </React.Fragment>
