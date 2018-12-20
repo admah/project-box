@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { S3Image } from "aws-amplify-react";
 import {
@@ -13,6 +14,16 @@ import {
   Segment
 } from "semantic-ui-react";
 import { getProject } from "../graphql/queries";
+
+const TagA = styled.a`
+  :after {
+    content: ", ";
+  }
+
+  :last-of-type:after {
+    content: "";
+  }
+`;
 
 class CommunityProjectDisplay extends Component {
   constructor(props) {
@@ -63,6 +74,14 @@ class CommunityProjectDisplay extends Component {
         <Divider />
         <Grid>
           <Grid.Column width={4}>
+            <h4>Tags</h4>
+            {this.state.project.tags && this.state.project.tags.length > 0 ? (
+              this.state.project.tags.map(tag => (
+                <TagA href={`/community/${tag}`}>{tag}</TagA>
+              ))
+            ) : (
+              <p>This project has no tags.</p>
+            )}
             {this.state.s3media.length > 0 && (
               <div style={{ marginTop: "15px" }}>
                 <h4>Images</h4>
