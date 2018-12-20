@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Container, Form, Message, Segment } from "semantic-ui-react";
 import { Auth } from "aws-amplify";
 
-export default class JSignUp extends Component {
+export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.signUp = this.signUp.bind(this);
