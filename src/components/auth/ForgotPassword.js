@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Container, Form, Message, Segment } from "semantic-ui-react";
 import { Auth } from "aws-amplify";
 
-export default class JForgotPassword extends Component {
+export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.sendCode = this.sendCode.bind(this);
