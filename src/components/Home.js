@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Container } from "semantic-ui-react";
+import { Button, Container, Grid } from "semantic-ui-react";
 import HomeBG from "../images/building-plan.jpg";
 
-const HomeMasthead = styled.section`
+const HomeContainer = styled(Container)`
   background: linear-gradient(
       180deg,
       rgba(50, 140, 193, 0.8) 0%,
@@ -15,16 +15,42 @@ const HomeMasthead = styled.section`
   margin-top: -50px;
 
   h1 {
-    font-size: 42px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: "Alfa Slab One", cursive;
+    font-weight: 400;
+    font-size: 56px;
+    letter-spacing: 1px;
     padding-top: 60px;
     text-align: center;
   }
 `;
 
-const Home = () => (
-  <Container fluid>
-    <HomeMasthead />
-  </Container>
+const Home = ({ history }) => (
+  <HomeContainer fluid>
+    <Grid verticalAlign="middle" centered stackable>
+      <Grid.Row>
+        <Grid.Column width={8}>
+          <h1>Welcome to a community of do-ers and diy-ers.</h1>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column width={8}>
+          <Button.Group size="large" vertical widths={3}>
+            <Button color="orange" onClick={() => history.push("/login")}>
+              Already a member? Log In
+            </Button>
+            <br />
+            <Button
+              color="blue"
+              onClick={() => history.push("/signup", [{ authState: "signUp" }])}
+            >
+              Join the Community
+            </Button>
+          </Button.Group>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </HomeContainer>
 );
 
 export default Home;
