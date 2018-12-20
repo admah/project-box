@@ -6,7 +6,7 @@ import CommunityProjectDisplay from "../components/CommunityProjectDisplay";
 const Community = () => (
   <React.Fragment>
     <Switch>
-      <Route exact path="/community" component={CommunityProjects} />
+      <Route exact path="/community/:tag?" component={CommunityProjects} />
       <Route
         path="/community/project/:projectId"
         render={props => <CommunityProjectDisplay {...props} />}
