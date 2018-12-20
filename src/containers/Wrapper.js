@@ -46,7 +46,7 @@ class Wrapper extends Component {
             <Route
               exact
               path="/login"
-              render={() => <Login user={this.state.user} />}
+              render={props => <Login user={this.state.user} {...props} />}
             />
             <Route path="/community" component={Community} />
             <Route
