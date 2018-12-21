@@ -30,8 +30,7 @@ const CommunityProjects = ({ match }) => {
         >
           {({ data: { listProjects }, loading, error }) => {
             if (error) return <h3>Error</h3>;
-            if (loading || !listProjects)
-              return <Loader active inline="centered" />;
+            if (loading || !listProjects) return <div />;
             return listProjects.items.map(project => (
               <ProjectCard key={project.id} {...project} />
             ));
