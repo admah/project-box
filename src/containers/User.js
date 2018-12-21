@@ -23,7 +23,11 @@ const User = ({ user }) => (
         path="/user/project/:projectId"
         component={UserProjectDisplay}
       />
-      <Route exact path="/user/materials" component={Materials} />
+      <Route
+        exact
+        path="/user/materials"
+        render={user => <Materials user={user} />}
+      />
       <Redirect to={"/user/projects"} />
     </Switch>
   </React.Fragment>
