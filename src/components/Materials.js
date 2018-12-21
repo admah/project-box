@@ -4,11 +4,9 @@ import { Connect, withAuthenticator } from "aws-amplify-react";
 import {
   Button,
   Container,
-  Dimmer,
   Divider,
   Header,
   Item,
-  Loader,
   Modal
 } from "semantic-ui-react";
 import { listMaterials } from "../graphql/queries";
@@ -49,12 +47,7 @@ class Materials extends Component {
           >
             {({ data: { listMaterials }, loading, error }) => {
               if (error) return <h3>Error</h3>;
-              if (loading || !listMaterials)
-                return (
-                  <Dimmer active>
-                    <Loader />
-                  </Dimmer>
-                );
+              if (loading || !listMaterials) return <div />;
               return listMaterials.items.map(material => (
                 <Item key={material.id}>
                   <Item.Content>

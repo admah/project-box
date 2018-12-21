@@ -42,7 +42,7 @@ class Nav extends Component {
     const { history } = this.props;
 
     return (
-      <MainMenu className="top">
+      <MainMenu className="top" stackable>
         <NavLink className="menu item" exact to="/" activeClassName="">
           <Icon className="big rounded clipboard" />
           Projectable
