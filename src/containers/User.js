@@ -13,10 +13,11 @@ const mapStateToProps = state => {
 const User = ({ user }) => (
   <React.Fragment>
     <Switch>
+      {!user.id && <Redirect to="/login" />}
       <Route
         exact
         path="/user/projects"
-        render={user => <UserProjects user={user} />}
+        render={props => <UserProjects user={user} />}
       />
       <Route
         exact
