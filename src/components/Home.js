@@ -18,7 +18,7 @@ const HomeContainer = styled(Container)`
     color: rgba(0, 0, 0, 0.87);
     font-family: "Alfa Slab One", cursive;
     font-weight: 400;
-    font-size: 56px;
+    font-size: 48px;
     letter-spacing: 1px;
     padding-top: 60px;
     text-align: center;
