@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Button, Container, Grid } from "semantic-ui-react";
 import HomeBG from "../images/building-plan.jpg";
@@ -52,5 +53,9 @@ const Home = ({ history }) => (
     </Grid>
   </HomeContainer>
 );
+
+Home.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 export default Home;
