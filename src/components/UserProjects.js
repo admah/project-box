@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { graphqlOperation } from "aws-amplify";
 import { Connect, withAuthenticator } from "aws-amplify-react";
 import {
@@ -14,7 +15,7 @@ import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
 import ProjectForm from "./forms/ProjectForm";
 
-const UserProjects = ({ authData }) => (
+const UserProjects = ({ user }) => (
   <Container>
     <Modal
       trigger={<Button positive icon="plus" content="Add a Project" />}
@@ -22,10 +23,10 @@ const UserProjects = ({ authData }) => (
     >
       <Header icon="browser" content="Add a Project" />
       <Modal.Content>
-        <ProjectForm formMode="create" user={authData} />
+        <ProjectForm formMode="create" user={user} />
       </Modal.Content>
     </Modal>
-    {authData && (
+    {user && (
       <Card.Group
         style={{ marginTop: "30px" }}
         itemsPerRow={4}
@@ -33,7 +34,7 @@ const UserProjects = ({ authData }) => (
       >
         <Connect
           query={graphqlOperation(listProjects, {
-            input: { userId: authData.attributes.sub }
+            input: { userId: user.id }
           })}
           subscription={graphqlOperation(onCreateProject)}
           onSubscriptionMsg={(prev, { onCreateProject }) => {
@@ -55,4 +56,9 @@ const UserProjects = ({ authData }) => (
   </Container>
 );
 
-export default withAuthenticator(UserProjects);
+UserProjects.propTypes = {
+  authData: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
+};
+
+export default UserProjects;

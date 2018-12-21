@@ -10,10 +10,14 @@ const mapStateToProps = state => {
   return { user: { name: state.account.name, id: state.account.id } };
 };
 
-const User = () => (
+const User = ({ user }) => (
   <React.Fragment>
     <Switch>
-      <Route exact path="/user/projects" component={UserProjects} />
+      <Route
+        exact
+        path="/user/projects"
+        render={user => <UserProjects user={user} />}
+      />
       <Route
         exact
         path="/user/project/:projectId"
