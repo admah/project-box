@@ -39,7 +39,7 @@ class UserProjectDisplay extends Component {
     const project = await API.graphql(
       graphqlOperation(getProject, {
         id: this.props.match.params.projectId,
-        userId: this.props.authData.attributes.sub
+        userId: this.props.user.id
       })
     );
     project &&
@@ -336,4 +336,4 @@ class UserProjectDisplay extends Component {
   }
 }
 
-export default withAuthenticator(UserProjectDisplay);
+export default UserProjectDisplay;
