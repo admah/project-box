@@ -11,11 +11,14 @@ const defaultState = AccountStateRecord();
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    case Constants.ACCOUNT_AWS_PROCESS_SUCCESS:
+    case Constants.ACCOUNT_AWS_LOGIN_SUCCESS:
       return state
         .set("name", action.payload.username)
         .set("email", action.payload.email)
-        .set("id", action.payload.attributes.sub);
+        .set("id", action.payload.id);
+
+    case Constants.ACCOUNT_AWS_LOGOUT_SUCCESS:
+      return AccountStateRecord();
 
     default:
       return state;

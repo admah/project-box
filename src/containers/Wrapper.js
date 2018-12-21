@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
+import { onAwsLogin, onAwsLogout } from "../actions/AccountActions";
 import GlobalStyles from "../css/GlobalStyles.js";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
@@ -10,6 +13,17 @@ import Login from "../components/Login";
 import SignUp from "../components/auth/SignUp";
 import Community from "./Community";
 import User from "./User";
+
+const mapStateToProps = state => {
+  return { user: { name: state.name, id: state.id } };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAwsLogin: payload => dispatch(onAwsLogin(payload)),
+    onAwsLogout: () => dispatch(onAwsLogout())
+  };
+};
 
 const MainContainer = styled.div`
   padding-top: 50px;
@@ -67,4 +81,4 @@ class Wrapper extends Component {
   }
 }
 
-export default Wrapper;
+export default connect(mapStateToProps)(Wrapper);
