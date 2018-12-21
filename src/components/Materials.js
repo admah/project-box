@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Auth, graphqlOperation } from "aws-amplify";
+import PropTypes from "prop-types";
+import { graphqlOperation } from "aws-amplify";
 import { Connect, withAuthenticator } from "aws-amplify-react";
 import {
   Button,
@@ -24,12 +25,6 @@ class Materials extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  async getAuthUserId() {
-    const authUser = await Auth.currentAuthenticatedUser();
-
-    return authUser.attributes.sub;
-  }
-
   closeModal() {
     this.setState({
       activeModal: ""
@@ -37,6 +32,7 @@ class Materials extends Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
       <Container>
         <h2>All Materials</h2>
@@ -44,17 +40,12 @@ class Materials extends Component {
         <Item.Group>
           <Connect
             query={graphqlOperation(listMaterials, {
-              input: { userId: this.getAuthUserId }
+              input: { userId: user.id }
             })}
           >
             {({ data: { listMaterials }, loading, error }) => {
               if (error) return <h3>Error</h3>;
-              if (loading || !listMaterials)
-                return (
-                  <Dimmer active>
-                    <Loader />
-                  </Dimmer>
-                );
+              if (loading || !listMaterials) return <div />;
               return listMaterials.items.map(material => (
                 <Item key={material.id}>
                   <Item.Content>
@@ -108,4 +99,8 @@ class Materials extends Component {
   }
 }
 
-export default withAuthenticator(Materials);
+Materials.propTypes = {
+  user: PropTypes.object.isRequired
+};
+
+export default Materials;
