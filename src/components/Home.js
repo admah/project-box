@@ -29,12 +29,15 @@ const Home = ({ history }) => (
   <HomeContainer fluid>
     <Grid verticalAlign="middle" centered stackable>
       <Grid.Row>
-        <Grid.Column width={8}>
-          <h1>Welcome to a community of do-ers and diy-ers.</h1>
+        <Grid.Column width={10}>
+          <h1>
+            Welcome to a place where you can plan, manage, and share all your
+            DIY projects.
+          </h1>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column width={8}>
+        <Grid.Column width={6}>
           <Button.Group size="large" vertical widths={3}>
             <Button color="orange" onClick={() => history.push("/login")}>
               Already a member? Log In
