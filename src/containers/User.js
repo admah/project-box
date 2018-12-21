@@ -21,7 +21,7 @@ const User = ({ user }) => (
       <Route
         exact
         path="/user/project/:projectId"
-        component={UserProjectDisplay}
+        render={props => <UserProjectDisplay user={user} {...props} />}
       />
       <Route
         exact
