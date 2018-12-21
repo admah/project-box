@@ -14,8 +14,8 @@ export default function(state = defaultState, action) {
     case Constants.ACCOUNT_AWS_LOGIN_SUCCESS:
       return state
         .set("name", action.payload.username)
-        .set("email", action.payload.email)
-        .set("id", action.payload.id);
+        .set("email", action.payload.signInUserSession.idToken.payload.email)
+        .set("id", action.payload.signInUserSession.idToken.payload.sub);
 
     case Constants.ACCOUNT_AWS_LOGOUT_SUCCESS:
       return AccountStateRecord();

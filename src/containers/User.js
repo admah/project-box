@@ -1,8 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Materials from "../components/Materials";
 import UserProjects from "../components/UserProjects";
 import UserProjectDisplay from "../components/UserProjectDisplay";
+
+const mapStateToProps = state => {
+  return { user: { name: state.account.name, id: state.account.id } };
+};
 
 const User = () => (
   <React.Fragment>
@@ -19,4 +25,8 @@ const User = () => (
   </React.Fragment>
 );
 
-export default User;
+User.propTypes = {
+  user: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps)(User);

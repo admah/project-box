@@ -9,6 +9,6 @@ export function onAwsLogin(payload) {
 
 export function onAwsLogout() {
   return {
-    type: Constants.ACCOUNT_AWS_LOGIN_SUCCESS
+    type: Constants.ACCOUNT_AWS_LOGOUT_SUCCESS
   };
 }

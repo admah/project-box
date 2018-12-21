@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Auth, JS } from "aws-amplify";
 import {
   Button,
@@ -8,8 +9,9 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
+import { onAwsLogin } from "../../actions/AccountActions";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.signIn = this.signIn.bind(this);
@@ -45,6 +47,8 @@ export default class SignIn extends Component {
     } else {
       this.checkContact(user);
     }
+
+    this.props.onAwsLogin(user);
   }
 
   signInError(err) {
@@ -117,3 +121,12 @@ export default class SignIn extends Component {
     );
   }
 }
+
+SignIn.propTypes = {
+  authData: PropTypes.object,
+  authState: PropTypes.string,
+  history: PropTypes.object.isRequired,
+  onAwsLogin: PropTypes.func.isRequired
+};
+
+export default SignIn;
