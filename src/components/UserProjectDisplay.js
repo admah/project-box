@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { API, graphqlOperation, Storage } from "aws-amplify";
-import { S3Image, withAuthenticator } from "aws-amplify-react";
+import { S3Image } from "aws-amplify-react";
 import {
   Button,
   Container,

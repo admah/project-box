@@ -1,15 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphqlOperation } from "aws-amplify";
-import { Connect, withAuthenticator } from "aws-amplify-react";
-import {
-  Button,
-  Card,
-  Container,
-  Header,
-  Loader,
-  Modal
-} from "semantic-ui-react";
+import { Connect } from "aws-amplify-react";
+import { Button, Card, Container, Header, Modal } from "semantic-ui-react";
 import { listProjects } from "../graphql/queries";
 import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
