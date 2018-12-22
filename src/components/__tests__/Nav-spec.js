@@ -4,6 +4,7 @@ import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 import "jest-dom/extend-expect";
 import Nav from "../Nav";
+import { onAwsLogout } from "../../actions/AccountActions";
 
 afterEach(cleanup);
 
@@ -27,8 +28,8 @@ describe("Nav", () => {
   test("it renders the container", () => {
     const props = {
       history: {},
-      match: {},
-      user: {}
+      user: {},
+      onAwsLogout: () => null
     };
     const route = "/";
     const { container } = renderWithRouter(<Nav {...props} />, { route });
