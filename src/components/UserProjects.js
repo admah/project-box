@@ -34,7 +34,7 @@ const UserProjects = ({ user }) => (
       >
         <Connect
           query={graphqlOperation(listProjects, {
-            input: { userId: user.id }
+            filter: { userId: { eq: user.id } }
           })}
           subscription={graphqlOperation(onCreateProject)}
           onSubscriptionMsg={(prev, { onCreateProject }) => {
@@ -57,7 +57,6 @@ const UserProjects = ({ user }) => (
 );
 
 UserProjects.propTypes = {
-  authData: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
 };
 
