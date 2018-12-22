@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { Auth, Hub } from "aws-amplify";
 import { NavLink } from "react-router-dom";
 import { Icon, Menu } from "semantic-ui-react";
@@ -39,7 +39,7 @@ class Nav extends Component {
   }
 
   render() {
-    const { history } = this.props;
+    const { history, onAwsLogout, user } = this.props;
 
     return (
       <MainMenu className="top" stackable>
@@ -63,7 +63,7 @@ class Nav extends Component {
         <Menu.Menu position="right">
           <Menu.Item>
             {this.state.user ? (
-              <SignOut history={history} />
+              <SignOut history={history} onAwsLogout={onAwsLogout} />
             ) : (
               <NavLink className="ui button" to="/login">
                 Log In / Sign Up
@@ -78,11 +78,8 @@ class Nav extends Component {
 
 Nav.propTypes = {
   history: PropTypes.object.isRequired,
-  user: PropTypes.object
-};
-
-Nav.defaultProps = {
-  user: null
+  onAwsLogout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default Nav;

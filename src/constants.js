@@ -1,0 +1,2 @@
+export const ACCOUNT_AWS_LOGIN_SUCCESS = "Account/LOGIN_SUCCESS";
+export const ACCOUNT_AWS_LOGOUT_SUCCESS = "Account/LOGOUT_SUCCESS";

@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
+import { onAwsLogin, onAwsLogout } from "../actions/AccountActions";
 import GlobalStyles from "../css/GlobalStyles.js";
 import Nav from "../components/Nav";
 import Home from "../components/Home";
@@ -11,60 +14,62 @@ import SignUp from "../components/auth/SignUp";
 import Community from "./Community";
 import User from "./User";
 
+const mapStateToProps = state => {
+  return { user: { name: state.account.name, id: state.account.id } };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAwsLogin: payload => dispatch(onAwsLogin(payload)),
+    onAwsLogout: () => dispatch(onAwsLogout())
+  };
+};
+
 const MainContainer = styled.div`
   padding-top: 50px;
 `;
 
 const NavWithRouter = withRouter(Nav);
 
-class Wrapper extends Component {
-  constructor(props) {
-    super(props);
+const Wrapper = ({ onAwsLogin, onAwsLogout, user }) => (
+  <React.Fragment>
+    <NavWithRouter
+      user={user}
+      onAwsLogin={onAwsLogin}
+      onAwsLogout={onAwsLogout}
+    />
+    <MainContainer path={window.location.pathname}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/login"
+          render={props => (
+            <Login user={user} {...props} onAwsLogin={onAwsLogin} />
+          )}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={props => <SignUp authState="signUp" {...props} />}
+        />
+        <Route path="/community" component={Community} />
+        <Route path="/user" render={props => <User user={user} {...props} />} />
+      </Switch>
+    </MainContainer>
+    <GlobalStyles />
+  </React.Fragment>
+);
 
-    this.state = {
-      user: null
-    };
-  }
+Wrapper.propTypes = {
+  onAwsLogin: PropTypes.func.isRequired,
+  onAwsLogout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
 
-  async componentDidMount() {
-    Auth.currentAuthenticatedUser()
-      .then(user =>
-        this.setState({
-          user: user
-        })
-      )
-      .catch(err => this.setState({ user: null }));
-  }
-
-  render() {
-    const { user } = this.state;
-    return (
-      <React.Fragment>
-        <NavWithRouter user={user} />
-        <MainContainer path={window.location.pathname}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              exact
-              path="/login"
-              render={props => <Login user={this.state.user} {...props} />}
-            />
-            <Route
-              exact
-              path="/signup"
-              render={props => <SignUp authState="signUp" {...props} />}
-            />
-            <Route path="/community" component={Community} />
-            <Route
-              path="/user"
-              render={props => <User user={this.state.user} {...props} />}
-            />
-          </Switch>
-        </MainContainer>
-        <GlobalStyles />
-      </React.Fragment>
-    );
-  }
-}
-
-export default Wrapper;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Wrapper)
+);
