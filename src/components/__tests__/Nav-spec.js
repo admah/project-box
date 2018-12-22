@@ -29,7 +29,7 @@ describe("Nav", () => {
     const props = {
       history: {},
       user: {},
-      onAwsLogout: {}
+      onAwsLogout: () => null
     };
     const route = "/";
     const { container } = renderWithRouter(<Nav {...props} />, { route });
