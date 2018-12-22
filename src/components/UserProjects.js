@@ -18,7 +18,7 @@ import ProjectForm from "./forms/ProjectForm";
 const UserProjects = ({ user }) => (
   <Container>
     <Modal
-      trigger={<Button positive icon="plus" content="Add a Project" />}
+      trigger={<Button color="black" icon="plus" content="Add a Project" />}
       closeIcon
     >
       <Header icon="browser" content="Add a Project" />

@@ -10,6 +10,9 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  .ui.blue.button, .ui.blue.label {
+    background-color: #295ba5 !important;
+  }
   .ui.primary.button {
       background-color: #1ca086;
   }
