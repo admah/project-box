@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { graphqlOperation } from "aws-amplify";
 import { Connect } from "aws-amplify-react";
-import { Card, Container, Loader } from "semantic-ui-react";
+import { Card, Container } from "semantic-ui-react";
 import { listProjects } from "../graphql/queries";
 import ProjectCard from "./ProjectCard";
 
@@ -40,4 +41,9 @@ const CommunityProjects = ({ match }) => {
     </Container>
   );
 };
+
+CommunityProjects.propTypes = {
+  match: PropTypes.object.isRequired
+};
+
 export default CommunityProjects;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { S3Image } from "aws-amplify-react";
@@ -161,4 +162,9 @@ class CommunityProjectDisplay extends Component {
     );
   }
 }
+
+CommunityProjectDisplay.propTypes = {
+  match: PropTypes.object.isRequired
+};
+
 export default CommunityProjectDisplay;

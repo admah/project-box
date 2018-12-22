@@ -9,7 +9,6 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
-import { onAwsLogin } from "../../actions/AccountActions";
 
 class SignIn extends Component {
   constructor(props) {

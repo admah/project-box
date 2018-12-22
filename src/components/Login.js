@@ -15,7 +15,7 @@ const CustomAuthenticator = props => (
   </Authenticator>
 );
 
-const Login = ({ history, onAwsLogin, user }) => (
+const Login = ({ history, onAwsLogin }) => (
   <React.Fragment>
     <CustomAuthenticator history={history} onAwsLogin={onAwsLogin} />
   </React.Fragment>
@@ -23,8 +23,7 @@ const Login = ({ history, onAwsLogin, user }) => (
 
 Login.propTypes = {
   history: PropTypes.object.isRequired,
-  onAwsLogin: PropTypes.func.isRequired,
-  user: PropTypes.object
+  onAwsLogin: PropTypes.func.isRequired
 };
 
 export default Login;
