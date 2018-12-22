@@ -26,7 +26,7 @@ const HomeContainer = styled(Container)`
   }
 `;
 
-const Home = ({ history }) => (
+const Home = ({ history, user }) => (
   <HomeContainer fluid>
     <Grid verticalAlign="middle" centered stackable>
       <Grid.Row>
@@ -39,18 +39,32 @@ const Home = ({ history }) => (
       </Grid.Row>
       <Grid.Row>
         <Grid.Column width={6}>
-          <Button.Group size="large" vertical widths={3}>
-            <Button color="orange" onClick={() => history.push("/login")}>
-              Already a member? Log In
-            </Button>
-            <br />
-            <Button
-              color="blue"
-              onClick={() => history.push("/signup", [{ authState: "signUp" }])}
-            >
-              Join the Community
-            </Button>
-          </Button.Group>
+          {user.id ? (
+            <Button.Group size="large" vertical widths={3}>
+              <br />
+              <Button
+                color="blue"
+                onClick={() => history.push("/user/projects")}
+              >
+                Create a New Project
+              </Button>
+            </Button.Group>
+          ) : (
+            <Button.Group size="large" vertical widths={3}>
+              <Button color="orange" onClick={() => history.push("/login")}>
+                Already a member? Log In
+              </Button>
+              <br />
+              <Button
+                color="blue"
+                onClick={() =>
+                  history.push("/signup", [{ authState: "signUp" }])
+                }
+              >
+                Join the Community
+              </Button>
+            </Button.Group>
+          )}
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -58,7 +72,8 @@ const Home = ({ history }) => (
 );
 
 Home.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default Home;

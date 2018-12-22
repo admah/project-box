@@ -39,7 +39,11 @@ const Wrapper = ({ onAwsLogin, onAwsLogout, user }) => (
     />
     <MainContainer path={window.location.pathname}>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/"
+          render={props => <Home user={user} {...props} />}
+        />
         <Route
           exact
           path="/login"
