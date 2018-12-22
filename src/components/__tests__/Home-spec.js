@@ -5,7 +5,7 @@ import Home from "../Home";
 
 describe("Home", () => {
   test("it renders the container", () => {
-    const { container } = render(<Home />);
+    const { container } = render(<Home user={{}} />);
     expect(container).toBeDefined();
   });
 });
