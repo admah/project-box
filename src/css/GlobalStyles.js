@@ -9,6 +9,17 @@ const GlobalStyles = createGlobalStyle`
       font-family: 'Hind', sans-serif;
     }
   }
+
+  .ui.blue.button, .ui.blue.label {
+    background-color: #295ba5 !important;
+  }
+  .ui.primary.button {
+      background-color: #1ca086;
+  }
+
+  a {
+    color: #1ca086;
+  }
 `;
 
 export default GlobalStyles;

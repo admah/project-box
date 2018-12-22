@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { graphqlOperation } from "aws-amplify";
-import { Connect, withAuthenticator } from "aws-amplify-react";
+import { Connect } from "aws-amplify-react";
 import {
   Button,
   Container,

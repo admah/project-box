@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
 import { onAwsLogin, onAwsLogout } from "../actions/AccountActions";
 import GlobalStyles from "../css/GlobalStyles.js";
 import Nav from "../components/Nav";

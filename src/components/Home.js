@@ -7,8 +7,8 @@ import HomeBG from "../images/building-plan.jpg";
 const HomeContainer = styled(Container)`
   background: linear-gradient(
       180deg,
-      rgba(50, 140, 193, 0.8) 0%,
-      rgba(255, 255, 255, 0.8) 100%
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 1) 100%
     ),
     url(${HomeBG}) no-repeat;
   background-size: cover;

@@ -5,6 +5,7 @@ import { Button } from "semantic-ui-react";
 
 const SignOut = ({ history, onAwsLogout }) => (
   <Button
+    inverted
     onClick={() => {
       Auth.signOut();
       onAwsLogout();

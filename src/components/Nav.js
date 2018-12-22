@@ -1,80 +1,53 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Auth, Hub } from "aws-amplify";
 import { NavLink } from "react-router-dom";
 import { Icon, Menu } from "semantic-ui-react";
 import SignOut from "./auth/SignOut";
 
 const MainMenu = styled(Menu)`
+  background-color: #1ca086 !important;
+  color: #fff !important;
   font-size: 16px !important;
   margin-bottom: 0 !important;
 `;
 
-class Nav extends Component {
-  constructor(props) {
-    super(props);
+const StyledNavLink = styled(NavLink)`
+  color: #fff !important;
+`;
 
-    Hub.listen("auth", this, "Nav");
-
-    this.state = {
-      user: null
-    };
-
-    this.loadUser = this.loadUser.bind(this);
-  }
-
-  componentDidMount() {
-    this.loadUser();
-  }
-
-  onHubCapsule(capsule) {
-    this.loadUser();
-  }
-
-  loadUser() {
-    Auth.currentAuthenticatedUser()
-      .then(user => this.setState({ user: user }))
-      .catch(err => this.setState({ user: null }));
-  }
-
-  render() {
-    const { history, onAwsLogout, user } = this.props;
-
-    return (
-      <MainMenu className="top" stackable>
-        <NavLink className="menu item" exact to="/" activeClassName="">
-          <Icon className="big rounded clipboard" />
-          Projectable
-        </NavLink>
-        <NavLink className="menu item" to="/community">
-          Community
-        </NavLink>
-        {this.state.user && (
-          <React.Fragment>
-            <NavLink className="menu item" to="/user/projects">
-              Projects
-            </NavLink>
-            <NavLink className="menu item" to="/user/materials">
-              Materials
-            </NavLink>
-          </React.Fragment>
+const Nav = ({ history, onAwsLogout, user }) => (
+  <MainMenu className="top" stackable>
+    <StyledNavLink className="menu item" exact to="/" activeClassName="">
+      <Icon className="big rounded clipboard" />
+      Projectable
+    </StyledNavLink>
+    <StyledNavLink className="menu item" to="/community">
+      Community
+    </StyledNavLink>
+    {user.id && (
+      <React.Fragment>
+        <StyledNavLink className="menu item" to="/user/projects">
+          Projects
+        </StyledNavLink>
+        <StyledNavLink className="menu item" to="/user/materials">
+          Materials
+        </StyledNavLink>
+      </React.Fragment>
+    )}
+    <Menu.Menu position="right">
+      <Menu.Item>
+        {user.id ? (
+          <SignOut history={history} onAwsLogout={onAwsLogout} />
+        ) : (
+          <NavLink className="ui button inverted" to="/login">
+            Log In / Sign Up
+          </NavLink>
         )}
-        <Menu.Menu position="right">
-          <Menu.Item>
-            {this.state.user ? (
-              <SignOut history={history} onAwsLogout={onAwsLogout} />
-            ) : (
-              <NavLink className="ui button" to="/login">
-                Log In / Sign Up
-              </NavLink>
-            )}
-          </Menu.Item>
-        </Menu.Menu>
-      </MainMenu>
-    );
-  }
-}
+      </Menu.Item>
+    </Menu.Menu>
+  </MainMenu>
+);
 
 Nav.propTypes = {
   history: PropTypes.object.isRequired,
