@@ -15,6 +15,11 @@ const GlobalStyles = createGlobalStyle`
   }
   .ui.primary.button {
       background-color: #1ca086;
+
+      :hover {
+        background-color: #1ca086;
+        opacity: 0.9;
+      }
   }
 
   a {
