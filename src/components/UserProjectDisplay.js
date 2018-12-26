@@ -186,31 +186,6 @@ class UserProjectDisplay extends Component {
                     />
                   </Modal.Content>
                 </Modal>
-                <Modal
-                  trigger={
-                    <Button
-                      content="Add Step"
-                      onClick={() =>
-                        this.setState({
-                          activeModal: "step"
-                        })
-                      }
-                      fluid
-                    />
-                  }
-                  onClose={this.closeModal}
-                  open={this.state.activeModal === "step"}
-                  closeIcon
-                >
-                  <Header icon="plus" content="Add Step" />
-                  <Modal.Content>
-                    <StepForm
-                      formMode="create"
-                      projectId={this.state.project.id}
-                      closeModal={this.closeModal}
-                    />
-                  </Modal.Content>
-                </Modal>
                 {this.state.s3media.length > 0 && (
                   <div style={{ marginTop: "15px" }}>
                     <h4>Images</h4>
