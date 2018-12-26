@@ -1,10 +1,20 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Form, Header, Icon, Message } from "semantic-ui-react";
 import moment from "moment";
 import { withFormik } from "formik";
 import { createMedia } from "../../graphql/mutations";
+
+const StyledDropzone = styled(Dropzone)`
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-style: dashed;
+  border-radius: 5px;
+  padding: 25px 0 20px;
+  width: 100%;
+`;
 
 class MediaForm extends Component {
   static defaultProps = {
@@ -48,17 +58,17 @@ class MediaForm extends Component {
     const { handleSubmit, closeModal } = this.props;
     return (
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <Dropzone
+        <StyledDropzone
           required
           onDrop={this.onDrop}
           onFileDialogCancel={this.onCancel.bind(this)}
           name="src"
         >
-          <Header icon>
+          <Header icon textAlign="center">
             <Icon name="picture" />
             Drag files here or click to add them to your project.
           </Header>
-        </Dropzone>
+        </StyledDropzone>
         {this.state.files.length > 0 &&
           this.state.files.map(file => <p key={file.name}>{file.name}</p>)}
         <br />
