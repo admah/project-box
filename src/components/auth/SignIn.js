@@ -76,6 +76,12 @@ class SignIn extends Component {
 
     return (
       <Container text>
+        {error && (
+          <Message negative>
+            <Icon name="warning" />
+            {error}
+          </Message>
+        )}
         <Form>
           <Segment stacked>
             <Form.Input
@@ -95,13 +101,6 @@ class SignIn extends Component {
               Sign In
             </Button>
           </Segment>
-
-          {error && (
-            <Message negative>
-              <Icon name="warning" />
-              {error}
-            </Message>
-          )}
         </Form>
         <Message style={{ textAlign: "center" }}>
           <span className="left item" style={{ paddingRight: "30px" }}>

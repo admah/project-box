@@ -99,19 +99,26 @@ class ProjectForm extends Component {
         />
 
         <br />
-        <DatePicker
-          name={"startDate"}
-          selected={values["startDate"]}
-          onChange={e => setFieldValue("startDate", e)}
-          placeholderText="Start Date"
-        />
-        <DatePicker
-          name={"endDate"}
-          selected={values["endDate"]}
-          onChange={e => setFieldValue("endDate", e)}
-          placeholderText="End Date"
-        />
-
+        <Form.Group>
+          <Form.Field>
+            <label>Start Date</label>
+            <DatePicker
+              name={"startDate"}
+              selected={values["startDate"]}
+              onChange={e => setFieldValue("startDate", e)}
+              placeholderText="Start Date"
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>End Date</label>
+            <DatePicker
+              name={"endDate"}
+              selected={values["endDate"]}
+              onChange={e => setFieldValue("endDate", e)}
+              placeholderText="End Date"
+            />
+          </Form.Field>
+        </Form.Group>
         <Form.Field
           id="form-input-control-project-tags"
           control={Input}
@@ -189,11 +196,11 @@ export default withFormik({
     startDate:
       props.formMode === "edit" && props.project.startDate
         ? new Date(props.project.startDate)
-        : new Date(),
+        : null,
     endDate:
       props.formMode === "edit" && props.project.endDate
         ? new Date(props.project.endDate)
-        : new Date(),
+        : null,
     public:
       props.formMode === "edit" && props.project.public
         ? props.project.public

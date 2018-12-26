@@ -43,6 +43,7 @@ export default class ForgotPassword extends Component {
 
     return (
       <Container text>
+        {error && <Message warning>{error}</Message>}
         <Form>
           <Form.Input
             type="text"
@@ -62,7 +63,6 @@ export default class ForgotPassword extends Component {
           <Button primary fluid onClick={this.sendCode}>
             Send password reset code
           </Button>
-          {error && <Message warning>{error}</Message>}
         </Form>
       </Container>
     );
