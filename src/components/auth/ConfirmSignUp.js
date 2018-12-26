@@ -51,66 +51,37 @@ export default class ConfirmSignUp extends Component {
       return null;
     }
 
-    const style = {
-      width: "20rem",
-      input: { borderRadius: "0" },
-      links: { fontSize: "0.9em" },
-      button: { width: "100%" },
-      alert: { fontSize: "0.8em" }
-    };
-
     const { message, error } = this.state;
 
     return (
       <Container text>
-        <Form style={style}>
+        {message && <Message success>{message}</Message>}
+        {error && <Message warning>{error}</Message>}
+        <Form>
           <Form.Input
             type="text"
             placeholder="Username"
             defaultValue={authData || ""}
-            rounded="top"
-            border="bottom-0"
-            style={style.input}
             onChange={event => (this.inputs.username = event.target.value)}
             htmlDisabled={!!authData}
           />
           <Form.Input
             type="text"
             placeholder="Code"
-            rounded="bottom"
-            style={style.input}
             onChange={event => (this.inputs.code = event.target.value)}
             autoFocus
           />
-          <Segment my="2" style={style.links}>
-            <div class=" floated left">
-              <a
-                href="#"
-                preventDefault
-                onClick={() => this.changeState("signIn")}
-              >
+          <Segment>
+            <div>
+              <a href="#" onClick={() => this.changeState("signIn")}>
                 Back to sign in
               </a>
             </div>
           </Segment>
-          <Button.Group style={style.button}>
-            <Button primary flex="grow-1" onClick={this.confirmSignUp}>
-              Confirm
-            </Button>
-            <Button success flex="grow-1" onClick={this.resendCode}>
-              Resend
-            </Button>
+          <Button.Group>
+            <Button onClick={this.confirmSignUp}>Confirm</Button>
+            <Button onClick={this.resendCode}>Resend</Button>
           </Button.Group>
-          {message && (
-            <Message success mt="3" text="left" style={style.alert}>
-              {message}
-            </Message>
-          )}
-          {error && (
-            <Message warning mt="3" text="left" style={style.alert}>
-              {error}
-            </Message>
-          )}
         </Form>
       </Container>
     );

@@ -51,7 +51,7 @@ const Home = ({ history, user }) => (
             </Button.Group>
           ) : (
             <Button.Group size="large" vertical widths={3}>
-              <Button color="orange" onClick={() => history.push("/login")}>
+              <Button primary onClick={() => history.push("/login")}>
                 Already a member? Log In
               </Button>
               <br />

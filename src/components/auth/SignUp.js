@@ -52,6 +52,7 @@ export default class SignUp extends Component {
 
     return (
       <Container text>
+        {error && <Message warning>{error}</Message>}
         <Form>
           <Form.Input
             type="text"
@@ -90,7 +91,6 @@ export default class SignUp extends Component {
           <Button primary fluid onClick={this.signUp}>
             Create account
           </Button>
-          {error && <Message warning>{error}</Message>}
         </Form>
       </Container>
     );
