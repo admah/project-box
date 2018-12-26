@@ -31,7 +31,7 @@ class StepForm extends Component {
           onBlur={handleBlur}
           value={values.name}
           name="name"
-          placeholder="Enter your project name"
+          placeholder="Enter a title"
         />
         {errors.name && touched.name && <div id="feedback">{errors.name}</div>}
         <Form.Field
