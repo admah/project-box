@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const MainContainer = styled.div`
-  padding-top: 50px;
+  padding-top: 20px;
 `;
 
 const NavWithRouter = withRouter(Nav);
