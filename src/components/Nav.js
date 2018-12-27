@@ -22,11 +22,11 @@ const Nav = ({ history, onAwsLogout, user }) => (
       <Icon className="big rounded clipboard" />
       Projectable
     </StyledNavLink>
-    <StyledNavLink className="menu item" to="/community">
-      Community
-    </StyledNavLink>
     {user.id && (
       <React.Fragment>
+        <StyledNavLink className="menu item" to="/community">
+          Community
+        </StyledNavLink>
         <StyledNavLink className="menu item" to="/user/projects">
           Projects
         </StyledNavLink>

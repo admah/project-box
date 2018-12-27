@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/project-box-20181226155844-deployment/amplify-cfn-templates/auth/cognito63984d3f-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "cognito63984d3f_identitypool_63984d3f",
-					"allowUnauthenticatedIdentities": false,
+					"allowUnauthenticatedIdentities": true,
 					"thirdPartyAuth": false,
 					"lambdaLogPolicy": "cognito63984d3f_lambda_log_policy",
 					"openIdLambdaRoleName": "cognito63984d3f_openid_lambda_role",
