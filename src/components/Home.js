@@ -13,7 +13,7 @@ const HomeContainer = styled(Container)`
     url(${HomeBG}) no-repeat;
   background-size: cover;
   height: 100vh;
-  margin-top: -20px;
+  margin-top: -40px;
 
   h1 {
     color: rgba(0, 0, 0, 0.87);

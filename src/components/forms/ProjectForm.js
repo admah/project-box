@@ -225,7 +225,7 @@ export default withFormik({
 
   handleSubmit: async (values, { props, setSubmitting }) => {
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
-    const authUserId = props.user.attributes.sub;
+    const authUserId = props.user.id;
 
     const CreateProjectForm = async () =>
       await API.graphql(
