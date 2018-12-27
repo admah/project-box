@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Card, Icon, Label, List } from "semantic-ui-react";
 
 const ProjectCard = ({ id, name, description, tags }) => (
@@ -30,5 +31,12 @@ const ProjectCard = ({ id, name, description, tags }) => (
     )}
   </Card>
 );
+
+ProjectCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  tags: PropTypes.array.isRequired
+};
 
 export default ProjectCard;

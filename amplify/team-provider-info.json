@@ -1,0 +1,19 @@
+{
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "project-box-20181226155844-authRole",
+            "UnauthRoleArn": "arn:aws:iam::537789755158:role/project-box-20181226155844-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::537789755158:role/project-box-20181226155844-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "project-box-20181226155844-deployment",
+            "UnauthRoleName": "project-box-20181226155844-unauthRole",
+            "StackName": "project-box-20181226155844",
+            "StackId": "arn:aws:cloudformation:us-east-1:537789755158:stack/project-box-20181226155844/6a446f80-0959-11e9-bcf6-0aad5d963972"
+        },
+        "categories": {
+            "auth": {
+                "cognito63984d3f": {}
+            }
+        }
+    }
+}
