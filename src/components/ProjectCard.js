@@ -15,7 +15,7 @@ const ProjectCard = ({ id, name, description, tags }) => (
       <Card.Header style={{ marginTop: "10px" }}>{name}</Card.Header>
       <Card.Description
         dangerouslySetInnerHTML={{
-          __html: description
+          __html: description.substring(0, 240)
         }}
       />
     </Card.Content>

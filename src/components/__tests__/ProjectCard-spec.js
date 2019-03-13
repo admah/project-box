@@ -8,7 +8,7 @@ describe("Project Card", () => {
     const { container } = render(
       <ProjectCard
         id="123"
-        title="TEST"
+        name="TEST"
         description="This is a test."
         tags={[]}
       />

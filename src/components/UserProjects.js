@@ -8,7 +8,7 @@ import { onCreateProject } from "../graphql/subscriptions";
 import ProjectCard from "./ProjectCard";
 import ProjectForm from "./forms/ProjectForm";
 
-const UserProjects = ({ user }) => (
+const UserProjects = ({ history, user }) => (
   <Container>
     <Modal
       trigger={<Button color="black" icon="plus" content="Add a Project" />}
@@ -31,8 +31,7 @@ const UserProjects = ({ user }) => (
           })}
           subscription={graphqlOperation(onCreateProject)}
           onSubscriptionMsg={(prev, { onCreateProject }) => {
-            console.log(onCreateProject);
-            return prev;
+            history.push(`/user/project/${onCreateProject.id}`);
           }}
         >
           {({ data: { listProjects }, loading, error }) => {
@@ -49,6 +48,7 @@ const UserProjects = ({ user }) => (
 );
 
 UserProjects.propTypes = {
+  history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
 };
 

@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, Container, Form, Message, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Form,
+  Grid,
+  Message,
+  Segment
+} from "semantic-ui-react";
 import { Auth } from "aws-amplify";
 
 export default class SignUp extends Component {
@@ -8,7 +15,7 @@ export default class SignUp extends Component {
     this.signUp = this.signUp.bind(this);
     this.changeState = this.changeState.bind(this);
     this.inputs = {};
-    this.state = { error: "" };
+    this.state = { error: "", signedUp: false };
   }
 
   changeState(state, data) {
@@ -27,7 +34,7 @@ export default class SignUp extends Component {
   }
 
   signUpSuccess(username) {
-    this.setState({ error: "" });
+    this.setState({ error: "", signedUp: true });
 
     this.changeState("confirmSignUp", username);
   }
@@ -53,40 +60,61 @@ export default class SignUp extends Component {
     return (
       <Container text>
         {error && <Message warning>{error}</Message>}
+        {this.state.signedUp && (
+          <Message positive>
+            You've successfully signed up! Please check your email for a
+            verfication code.
+          </Message>
+        )}
         <Form>
-          <Form.Input
-            type="text"
-            placeholder="Username"
-            rounded="top"
-            onChange={event => (this.inputs.username = event.target.value)}
-            autoFocus
-          />
-          <Form.Input
-            type="password"
-            placeholder="Password"
-            onChange={event => (this.inputs.password = event.target.value)}
-          />
-          <Form.Input
-            type="email"
-            placeholder="Email address"
-            onChange={event => (this.inputs.email = event.target.value)}
-          />
-          <Form.Input
-            type="tel"
-            placeholder="Phone number"
-            onChange={event => (this.inputs.phone_number = event.target.value)}
-          />
+          <Form.Field>
+            <label>Username</label>
+            <Form.Input
+              type="text"
+              placeholder="Enter letters and numbers only"
+              rounded="top"
+              onChange={event => (this.inputs.username = event.target.value)}
+              autoFocus
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Password</label>
+            <Form.Input
+              type="password"
+              placeholder="Minimum 8 characters with at least 1 uppercase, lowercase, and number"
+              onChange={event => (this.inputs.password = event.target.value)}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Email address</label>
+            <Form.Input
+              type="email"
+              onChange={event => (this.inputs.email = event.target.value)}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Phone number</label>
+            <Form.Input
+              type="tel"
+              placeholder="Must be in +12345678901 format"
+              onChange={event =>
+                (this.inputs.phone_number = event.target.value)
+              }
+            />
+          </Form.Field>
           <Segment>
-            <div className="floated left">
-              <a href="#" onClick={() => this.changeState("signIn")}>
-                Back to sign in
-              </a>
-            </div>
-            <div className="floated right">
-              <a href="#" onClick={() => this.changeState("confirmSignUp")}>
-                Confirm a code
-              </a>
-            </div>
+            <Grid centered>
+              <Grid.Column floated="left" textAlign="center" width={5}>
+                <a href="#" onClick={() => this.changeState("signIn")}>
+                  Back to sign in
+                </a>
+              </Grid.Column>
+              <Grid.Column floated="right" textAlign="center" width={5}>
+                <a href="#" onClick={() => this.changeState("confirmSignUp")}>
+                  Confirm a code
+                </a>
+              </Grid.Column>
+            </Grid>
           </Segment>
           <Button primary fluid onClick={this.signUp}>
             Create account

@@ -17,7 +17,9 @@ class SignIn extends Component {
     this.checkContact = this.checkContact.bind(this);
     this.changeState = this.changeState.bind(this);
     this.inputs = {};
-    this.state = { error: "" };
+    this.state = {
+      error: ""
+    };
   }
 
   changeState(state, data) {
@@ -58,7 +60,11 @@ class SignIn extends Component {
     Auth.verifiedContact(user).then(data => {
       if (!JS.isEmpty(data.verified)) {
         this.changeState("signedIn", user);
-        this.props.history.push("/user/projects");
+        if (this.props.location.state && this.props.location.state.referrer) {
+          this.props.history.push(this.props.location.state.referrer);
+        } else {
+          this.props.history.push("/user/projects");
+        }
       } else {
         user = Object.assign(user, data);
         this.changeState("verifyContact", user);
@@ -80,6 +86,11 @@ class SignIn extends Component {
           <Message negative>
             <Icon name="warning" />
             {error}
+          </Message>
+        )}
+        {this.props.location.state && this.props.location.state.referrer && (
+          <Message warning>
+            Please log in or sign up to view the shared link.
           </Message>
         )}
         <Form>
@@ -124,6 +135,7 @@ SignIn.propTypes = {
   authData: PropTypes.object,
   authState: PropTypes.string,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object,
   onAwsLogin: PropTypes.func.isRequired
 };
 

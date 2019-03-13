@@ -54,7 +54,8 @@ class ProjectForm extends Component {
         }
       })
     );
-    this.props.history.push("/projects");
+
+    this.props.history.push("/user/projects");
   };
 
   onEditorStateChange = editorState => {
@@ -72,6 +73,7 @@ class ProjectForm extends Component {
       values,
       touched,
       errors,
+      status,
       handleChange,
       handleBlur,
       handleSubmit,
@@ -79,105 +81,112 @@ class ProjectForm extends Component {
     } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit} autoComplete="off">
-        <Form.Field
-          required
-          id="form-input-control-project-name"
-          control={Input}
-          label="Project Name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.name}
-          name="name"
-          placeholder="Enter your project name"
-        />
-        {errors.name && touched.name && <div id="feedback">{errors.name}</div>}
-
-        <Editor
-          wrapperClassName="project-wysiwyg ui textarea segment"
-          editorState={this.state.editorState}
-          onEditorStateChange={this.onEditorStateChange}
-        />
-
-        <br />
-        <Form.Group>
-          <Form.Field>
-            <label>Start Date</label>
-            <DatePicker
-              name={"startDate"}
-              selected={values["startDate"]}
-              onChange={e => setFieldValue("startDate", e)}
-              placeholderText="Start Date"
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>End Date</label>
-            <DatePicker
-              name={"endDate"}
-              selected={values["endDate"]}
-              onChange={e => setFieldValue("endDate", e)}
-              placeholderText="End Date"
-            />
-          </Form.Field>
-        </Form.Group>
-        <Form.Field
-          id="form-input-control-project-tags"
-          control={Input}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.tags}
-          name="tags"
-          placeholder="Enter tags for your project"
-          icon="tags"
-          iconPosition="left"
-          label="Project Tags"
-          labelPosition="right"
-        />
-        {errors.tags && touched.tags && <div id="feedback">{errors.tags}</div>}
-
-        <Form.Field
-          id="form-input-control-project-public"
-          inline
-          control={Checkbox}
-          label="Do you want this project to be public?"
-          name="public"
-          onChange={handleChange}
-          checked={values.public}
-        />
-
-        <br />
-        <br />
-        <Message
-          success
-          header="Project Created!"
-          content="Your project was successfully created. Refresh the page to see it added to the list."
-        />
-
-        <div style={{ paddingBottom: "40px" }}>
-          <Button type="submit" floated="left" positive>
-            Save
-          </Button>
-          {formMode === "edit" && (
-            <div>
-              <Button
-                type="button"
-                floated="right"
-                onClick={this.open}
-                negative
-              >
-                Delete
-              </Button>
-              <Confirm
-                open={this.state.open}
-                onCancel={this.close}
-                onConfirm={this.confirmDelete}
-                content="Are you sure that you want to delete this project?"
-                confirmButton="Yes"
-              />
-            </div>
+      <React.Fragment>
+        {status === "submitted" && (
+          <Message
+            success
+            content="Your project was successfully created. Close this and refresh the page to see it added to the list."
+          />
+        )}
+        <Form onSubmit={handleSubmit} autoComplete="off">
+          <Form.Field
+            required
+            id="form-input-control-project-name"
+            control={Input}
+            label="Project Name"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
+            name="name"
+            placeholder="Enter your project name"
+          />
+          {errors.name && touched.name && (
+            <div id="feedback">{errors.name}</div>
           )}
-        </div>
-      </Form>
+
+          <Editor
+            wrapperClassName="project-wysiwyg ui textarea segment"
+            editorState={this.state.editorState}
+            onEditorStateChange={this.onEditorStateChange}
+          />
+
+          <br />
+          <Form.Group>
+            <Form.Field>
+              <label>Start Date</label>
+              <DatePicker
+                name={"startDate"}
+                selected={values["startDate"]}
+                onChange={e => setFieldValue("startDate", e)}
+                placeholderText="Start Date"
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>End Date</label>
+              <DatePicker
+                name={"endDate"}
+                selected={values["endDate"]}
+                onChange={e => setFieldValue("endDate", e)}
+                placeholderText="End Date"
+              />
+            </Form.Field>
+          </Form.Group>
+          <Form.Field
+            id="form-input-control-project-tags"
+            control={Input}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.tags}
+            name="tags"
+            placeholder="Enter tags for your project"
+            icon="tags"
+            iconPosition="left"
+            label="Project Tags"
+            labelPosition="right"
+          />
+          {errors.tags && touched.tags && (
+            <div id="feedback">{errors.tags}</div>
+          )}
+
+          <Form.Field
+            id="form-input-control-project-public"
+            inline
+            control={Checkbox}
+            label="Do you want this project to be public?"
+            name="public"
+            onChange={handleChange}
+            checked={values.public}
+          />
+
+          <br />
+          <br />
+
+          <div style={{ paddingBottom: "40px" }}>
+            <Button type="submit" floated="left" positive>
+              Save
+            </Button>
+            {formMode === "edit" && (
+              <div>
+                <Button
+                  type="button"
+                  floated="right"
+                  onClick={this.open}
+                  negative
+                >
+                  Delete
+                </Button>
+                <Confirm
+                  open={this.state.open}
+                  onCancel={this.close}
+                  onConfirm={this.confirmDelete}
+                  content="Are you sure that you want to delete this project?"
+                  confirmButton="Yes"
+                />
+              </div>
+            )}
+          </div>
+        </Form>
+      </React.Fragment>
     );
   }
 }
@@ -223,7 +232,7 @@ export default withFormik({
     console.log(event);
   },
 
-  handleSubmit: async (values, { props, setSubmitting }) => {
+  handleSubmit: async (values, { props, setStatus, setSubmitting }) => {
     const projectTags = values.tags ? values.tags.split(/[ ,]+/) : [];
     const authUserId = props.user.id;
 
@@ -260,13 +269,13 @@ export default withFormik({
 
     try {
       props.formMode === "edit" ? UpdateProjectForm() : CreateProjectForm();
-      props.closeModal();
     } catch {
       console.log("problem adding project: ", values);
     }
 
+    props.formMode === "create" && setStatus("submitted");
+
     setSubmitting(false);
-    //props.history.push("/projects?saved=true");*/
   },
 
   displayName: "Project Form"

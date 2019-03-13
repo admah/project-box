@@ -9,7 +9,10 @@ export default class ConfirmSignUp extends Component {
     this.resendCode = this.resendCode.bind(this);
     this.changeState = this.changeState.bind(this);
     this.inputs = {};
-    this.state = { message: "", error: "" };
+    this.state = {
+      message: "Please enter the verification code that you receive via email.",
+      error: ""
+    };
   }
 
   changeState(state, data) {
@@ -63,7 +66,7 @@ export default class ConfirmSignUp extends Component {
             placeholder="Username"
             defaultValue={authData || ""}
             onChange={event => (this.inputs.username = event.target.value)}
-            htmlDisabled={!!authData}
+            disabled={!!authData}
           />
           <Form.Input
             type="text"

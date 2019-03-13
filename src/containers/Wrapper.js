@@ -10,6 +10,7 @@ import Nav from "../components/Nav";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import SignUp from "../components/auth/SignUp";
+import ConfirmSignUp from "../components/auth/ConfirmSignUp";
 import Community from "./Community";
 import User from "./User";
 
@@ -55,6 +56,13 @@ const Wrapper = ({ onAwsLogin, onAwsLogout, user }) => (
           exact
           path="/signup"
           render={props => <SignUp authState="signUp" {...props} />}
+        />
+        <Route
+          exact
+          path="/confirm"
+          render={props => (
+            <ConfirmSignUp authState="confirmSignUp" {...props} />
+          )}
         />
         <Route path="/community" component={Community} />
         <Route path="/user" render={props => <User user={user} {...props} />} />

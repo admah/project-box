@@ -8,21 +8,30 @@ import ConfirmSignUp from "./auth/ConfirmSignUp";
 
 const CustomAuthenticator = props => (
   <Authenticator hideDefault>
-    <SignIn history={props.history} onAwsLogin={props.onAwsLogin} />
+    <SignIn
+      history={props.history}
+      location={props.location}
+      onAwsLogin={props.onAwsLogin}
+    />
     <SignUp />
     <ConfirmSignUp />
     <ForgotPassword />
   </Authenticator>
 );
 
-const Login = ({ history, onAwsLogin }) => (
+const Login = ({ history, location, onAwsLogin }) => (
   <React.Fragment>
-    <CustomAuthenticator history={history} onAwsLogin={onAwsLogin} />
+    <CustomAuthenticator
+      history={history}
+      location={location}
+      onAwsLogin={onAwsLogin}
+    />
   </React.Fragment>
 );
 
 Login.propTypes = {
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   onAwsLogin: PropTypes.func.isRequired
 };
 

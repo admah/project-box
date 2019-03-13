@@ -13,11 +13,18 @@ const mapStateToProps = state => {
 const User = ({ user }) => (
   <React.Fragment>
     <Switch>
-      {!user.id && <Redirect to="/login" />}
+      {!user.id && (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { referrer: window.location.pathname }
+          }}
+        />
+      )}
       <Route
         exact
         path="/user/projects"
-        render={props => <UserProjects user={user} />}
+        render={props => <UserProjects history={props.history} user={user} />}
       />
       <Route
         exact
